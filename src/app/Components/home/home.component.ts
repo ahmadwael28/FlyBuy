@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   dataSamples;
   originalData;
+  topSelling;
   ngOnInit(): void {
 
     //console.log(this.Service.getAllProducts());
@@ -29,7 +30,29 @@ export class HomeComponent implements OnInit {
         element.Image = `http://localhost:3000/static/${element.Image}`
     });
 
-    // this.ImagePath = `http://localhost:3000/static/${data[0].Image}`
+    // this.ImagePath = `http://localhost:3000/static/${element.Image}`
+    dispose.unsubscribe();
+  },
+  (err)=>{
+    console.log(err);
+  });
+
+
+
+
+
+
+
+  observable = this.Service.getTopSellingProducts();
+  dispose = observable.subscribe((data) => {
+    console.log(data);
+    console.log(data[0].Image);
+
+    this.topSelling = data;
+
+    this.topSelling.forEach(element => {
+      element.Image = `http://localhost:3000/static/${element.Image}`
+  });
     dispose.unsubscribe();
   },
   (err)=>{

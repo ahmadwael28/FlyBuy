@@ -1,8 +1,4 @@
-<h2>home</h2>
-
-
-
-<section class="section-margin mt-0">
+<!-- <section class="section-margin mt-0">
     <div class="owl-carousel owl-theme hero-carousel">
 
         <div class="owl-item cloned" style="width: 627.667px; margin-right: 10px;"
@@ -17,6 +13,37 @@
         </div>
 
     </div>
+</section> -->
+
+
+<section class="section-margin calc-60px">
+      <div class="container">
+        <div class="section-intro pb-60px">
+          <p>Popular Item in the market</p>
+          <h2>Trending <span class="section-intro__style">Product</span></h2>
+        </div>
+        <div class="row">
+
+          <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of topSelling; index as i;">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+                <img class="card-img" [src]=item.Image alt="">
+                <ul class="card-product__imgOverlay">
+                  <li><button><i class="ti-search"></i></button></li>
+                  <li><button><i class="ti-shopping-cart"></i></button></li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <p>{{item.Category.CategoryName}}</p>
+                <h4 class="card-product__title"><a href="single-product.html">{{item.Name}}</a></h4>
+                <p class="card-product__price">{{item.Price}}EGP</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
 </section>
 
 <!-- <img [src] = "ImagePath"> -->

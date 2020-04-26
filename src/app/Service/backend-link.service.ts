@@ -17,6 +17,12 @@ export class BackendLinkService {
     return response;
   }
 
+  getTopSellingProducts(){
+    console.log("get top selling products")
+    let response= this.myClient.get(`${this.baseURL}/Products/top/Selling`);
+    return response;
+  }
+
   getProductById(Id){
     console.log("get single products")
     let response= this.myClient.get(`${this.baseURL}/Products/${Id}`);
