@@ -18,10 +18,9 @@ export class HomeComponent implements OnInit {
 
     //console.log(this.Service.getAllProducts());
 
-    let observable = this.Service.getAllProducts();
-    let dispose = observable.subscribe((data) => {
-    console.log(data);
-    console.log(data[0].Image);
+    let AllProductsObservable = this.Service.getAllProducts();
+    let AllProductsdispose = AllProductsObservable.subscribe((data) => {
+    //console.log(data);
 
     this.dataSamples = data;
     this.originalData = data;
@@ -30,8 +29,7 @@ export class HomeComponent implements OnInit {
         element.Image = `http://localhost:3000/static/${element.Image}`
     });
 
-    // this.ImagePath = `http://localhost:3000/static/${element.Image}`
-    dispose.unsubscribe();
+    AllProductsdispose.unsubscribe();
   },
   (err)=>{
     console.log(err);
@@ -43,17 +41,16 @@ export class HomeComponent implements OnInit {
 
 
 
-  observable = this.Service.getTopSellingProducts();
-  dispose = observable.subscribe((data) => {
-    console.log(data);
-    console.log(data[0].Image);
-
+  let TopProductsobservable = this.Service.getTopSellingProducts();
+  let TopProductsdispose = TopProductsobservable.subscribe((data) => {
+    
     this.topSelling = data;
+    console.log(this.topSelling.length);
 
     this.topSelling.forEach(element => {
       element.Image = `http://localhost:3000/static/${element.Image}`
   });
-    dispose.unsubscribe();
+  TopProductsdispose.unsubscribe();
   },
   (err)=>{
     console.log(err);
