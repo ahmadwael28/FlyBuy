@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
 
     //console.log(this.Service.getAllProducts());
 
-    let AllProductsObservable = this.Service.getAllProducts();
-    let AllProductsdispose = AllProductsObservable.subscribe((data) => {
+    let RandomProductsObservable = this.Service.getThreeRandomProducts();
+    let AllProductsdispose = RandomProductsObservable.subscribe((data) => {
     //console.log(data);
 
     this.dataSamples = data;

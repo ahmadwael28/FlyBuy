@@ -17,6 +17,13 @@ export class BackendLinkService {
     return response;
   }
 
+  getThreeRandomProducts(){    
+    console.log("get Three Random Products")
+    let response= this.myClient.get(`${this.baseURL}/Products/random/three`);
+    return response;
+  }
+
+
   getTopSellingProducts(){
     console.log("get top selling products")
     let response= this.myClient.get(`${this.baseURL}/Products/top/Selling`);
