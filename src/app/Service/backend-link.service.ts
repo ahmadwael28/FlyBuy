@@ -36,6 +36,15 @@ export class BackendLinkService {
     return response;
   }
 
+
+  getAllCategories()
+  {
+    console.log("get all Categories")
+    let response= this.myClient.get(`${this.baseURL}/Categories/WithProducts`);
+    return response;
+  }
+
+
   image(image) {
     return this.myClient.request('GET', `${this.baseURL}/Products/getImage/${image}`, {responseType: 'blob'}).toPromise();;
   }
