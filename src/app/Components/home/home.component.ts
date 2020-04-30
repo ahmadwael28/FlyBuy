@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { NgModule } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private Service:BackendLinkService) { }
+  constructor(private Service:BackendLinkService,private router:Router) { }
 
   dataSamples;
   originalData;
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.dataSamples.forEach(element => {
         element.Image = `http://localhost:3000/static/${element.Image}`
     });
-
+    console.log(this.dataSamples[0]._id);
     AllProductsdispose.unsubscribe();
   },
   (err)=>{
@@ -58,5 +59,8 @@ export class HomeComponent implements OnInit {
 
   }
   
-
+  goProductDetails(id)
+  {
+      this.router.navigateByUrl(`Products/${id}`);
+  }
 }

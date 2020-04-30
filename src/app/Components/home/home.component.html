@@ -26,10 +26,12 @@
 
           <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of topSelling; index as i;">
             <div class="card text-center card-product">
+              <h2>{{item._id}}</h2>
               <div class="card-product__img">
+            
                 <img class="card-img" [src]=item.Image alt="">
                 <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
+                  <li><button (click)="goProductDetails(item._id)"><i class="ti-search"></i><!--<a [routerLink]="['Products/', item._id]"></a>--></button></li>
                   <li><button><i class="ti-shopping-cart"></i></button></li>
                 </ul>
               </div>
