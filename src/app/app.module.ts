@@ -10,14 +10,14 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
 
 import { ImagePipe } from './Pipes/image.pipe';
 import { ShopComponent } from './Components/shop/shop.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
+import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.component'
 
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
-  {path:'ShoppingCart/:userId',component:ShoppingCartComponent},
+  {path:'ShoppingCarts/:userId',component:ShoppingCartComponent},
 ]
 
 @NgModule({
