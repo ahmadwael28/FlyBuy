@@ -1,11 +1,11 @@
-<div class="product_image_area">
+<div class="product_image_area" *ngIf="isDataLoaded">
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
-                
+               
                 <div class="owl-carousel owl-theme s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" [src]=Product.Image alt="">
+                        <img class="img-fluid" [src]="Product.Image" alt="">
                     </div>
                     <!-- <div class="single-prd-item">
                         <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
@@ -22,7 +22,7 @@
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a></li>
                         <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">: In Stock</span>
-                        <ng-template #elseBlock>: Out Of Stock</ng-template> </a></li>
+                        <ng-template #elseBlock>:  Out Of Stock</ng-template> </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
                     <div class="product_count">
