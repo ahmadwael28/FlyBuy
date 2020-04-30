@@ -9,13 +9,15 @@ import { HomeComponent } from './Components/home/home.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 import { ImagePipe } from './Pipes/image.pipe';
-import { ShopComponent } from './Components/shop/shop.component'
+import { ShopComponent } from './Components/shop/shop.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
 
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
+  {path:'ShoppingCart/:userId',component:ShoppingCartComponent},
 ]
 
 @NgModule({
@@ -24,7 +26,8 @@ const routes:Routes = [
     HomeComponent,
     ProductDetailsComponent,
     ImagePipe,
-    ShopComponent
+    ShopComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
