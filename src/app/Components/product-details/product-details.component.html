@@ -2,10 +2,17 @@
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
+<<<<<<< HEAD
                 
                 <div class="owl-carousel owl-theme s_Product_carousel">
                     <div class="single-prd-item">
                         <img class="img-fluid" [src]=Product.Image alt="">
+=======
+               <input type="hidden" [value]="Product._id">
+                <div class="owl-carousel owl-theme s_Product_carousel">
+                    <div class="single-prd-item">
+                        <img  *ngIf="isDataLoaded" class="img-fluid" [src]="Product.Image" alt="" height="500px">
+>>>>>>> 0e6ac90e567c6d08eceff6775e9a46bd0cf6aac0
                     </div>
                     <!-- <div class="single-prd-item">
                         <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
@@ -21,18 +28,18 @@
                     <h2>{{Product.Price}} EGP</h2>
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a></li>
-                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">: In Stock</span>
+                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">:In Stock</span>
                         <ng-template #elseBlock>: Out Of Stock</ng-template> </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
                     <div class="product_count">
-          <label for="qty">Quantity:</label>
-          <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                         class="increase items-count" type="button"></button>
-                        <input type="number" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                        <label for="qty">Quantity:</label>
+                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                        class="increase items-count" type="button"></button>
+                        <input type="number" name="qty" id="sst" size="1" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                         <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-           class="reduced items-count" type="button"></button>
-                        <a class="button primary-btn" href="#">Add to Cart</a>               
+                         class="reduced items-count" type="button"></button>
+                         <a class="button primary-btn" href="#">Add to Cart</a>               
                     </div>
                     
                 </div>
