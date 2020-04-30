@@ -15,7 +15,7 @@
                     <h2>{{Product.Price}} EGP</h2>
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a></li>
-                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">:In Stock</span>
+                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">: In Stock</span>
                         <ng-template #elseBlock>: Out Of Stock</ng-template> </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
