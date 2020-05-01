@@ -41,7 +41,8 @@
                 <form action="#">
                   <ul>
                     <li  class="filter-list" *ngFor="let item of AllCategories; index as i;">
-                        <input class="pixel-radio" [value] = item._id type="radio" id="item.CategoryName" name="brand" (click)=changeCategory($event)>
+                        <input class="pixel-radio" [value] = item._id type="radio" id="item.CategoryName" 
+                        name="brand" index = i (click)="changeCategory($event)" [checked]=" (SelectedCategory==item._id)" >
                         <label for="item.CategoryName">{{item.CategoryName}}<span> ({{item.Products.length}})</span>
                         </label>
                     </li>
@@ -81,7 +82,8 @@
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list Items-List"
-           *ngFor="let category of AllCategories; index as i;" [id]= category._id>
+           *ngFor="let category of AllCategories; index as i;" [id]= category._id
+           [attr.display]='category._id==SelectedCategory?"block":"none"'>
             <div class="row">
 
 

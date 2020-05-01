@@ -1,23 +1,39 @@
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit,AfterViewChecked {
 
   constructor(private Service:BackendLinkService) { }
-  
+
+  SelectedCategory;
+
   AllProducts;
   AllCategories;
+
+  ngAfterViewChecked(): void {
+    var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
+
+    for(let i = 0;i < CategoryItems.length;i++)
+    {
+      if(CategoryItems[i].id == this.SelectedCategory)
+        CategoryItems[i].style.display = "block";
+      else
+        CategoryItems[i].style.display = "none";
+    }
+  }
+  
   ngOnInit(): void {
     let AllCategoriesobservable = this.Service.getAllCategories();
-  let AllCategoriesdispose = AllCategoriesobservable.subscribe((data) => {
+    let AllCategoriesdispose = AllCategoriesobservable.subscribe((data) => {
     
     this.AllCategories = data;
     console.log(this.AllCategories.length);
+    this.SelectedCategory = this.AllCategories[1]._id;
 
 
     this.AllCategories.forEach(category => {
@@ -53,6 +69,8 @@ export class ShopComponent implements OnInit {
   changeCategory(event) {
     console.log(event.target.value);
     var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
+
+    this.SelectedCategory = event.target.value;
 
     for(let i = 0;i < CategoryItems.length;i++)
     {
