@@ -11,6 +11,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ID;
   router;
+  Product;
+  isDataLoaded:boolean = false;
   constructor(private Service:BackendLinkService,
     myActivatedRoute:ActivatedRoute,
     myRouter: Router) { 
@@ -25,12 +27,17 @@ export class ProductDetailsComponent implements OnInit {
     let observable = this.Service.getProductById(this.ID);
   let dispose = observable.subscribe((data) => {
     console.log(data);
-
+    
+    this.Product = data;
+    this.Product.Image = `http://localhost:3000/static/${this.Product.Image}`;
+    this.isDataLoaded = true;
+    
     dispose.unsubscribe();
   },
   (err)=>{
     console.log(err);
   });
   }
+
 
 }
