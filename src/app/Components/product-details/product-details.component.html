@@ -5,7 +5,8 @@
                <input type="hidden" [value]="Product._id">
                 <div class="owl-carousel owl-theme s_Product_carousel">
                     <div class="single-prd-item">
-                        <img  *ngIf="isDataLoaded" class="img-fluid" [src]="Product.Image" alt="" height="500px">
+                        <img  *ngIf="isDataLoaded" id="productDetailImg" class="img-fluid" [src]="Product.Image" 
+                         alt="" height="500px"  >
                     </div>
               </div>
             </div>
@@ -15,8 +16,8 @@
                     <h2>{{Product.Price}} EGP</h2>
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a></li>
-                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock">: In Stock</span>
-                        <ng-template #elseBlock>: Out Of Stock</ng-template> </a></li>
+                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock"> : In Stock</span>
+                        <ng-template #elseBlock> : Out Of Stock</ng-template> </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
                     <div class="product_count">
@@ -34,3 +35,5 @@
         </div>
     </div>
 </div>
+
+
