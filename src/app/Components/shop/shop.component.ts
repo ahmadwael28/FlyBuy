@@ -10,20 +10,21 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
   constructor(private Service:BackendLinkService) { }
 
-  SelectedCategory;
+  SelectedCategoryId;
 
   AllProducts;
   AllCategories;
 
   SelectedProducts;
   SelectedCategoryName;
+  SelectedCategory;
 
   ngAfterViewChecked(): void {
     // var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
 
     // for(let i = 0;i < CategoryItems.length;i++)
     // {
-    //   if(CategoryItems[i].id == this.SelectedCategory)
+    //   if(CategoryItems[i].id == this.SelectedCategoryId)
     //     CategoryItems[i].style.display = "block";
     //   else
     //     CategoryItems[i].style.display = "none";
@@ -33,17 +34,18 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   }
   
   ngOnInit(): void {
-      let AllCategoriesobservable = this.Service.getAllCategories();
-      let AllCategoriesdispose = AllCategoriesobservable.subscribe((data) => {
-      
-      this.AllCategories = data;
-      console.log(this.AllCategories.length);
-      this.SelectedCategory = this.AllCategories[1]._id;
-      
-      this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategory).CategoryName;
-      this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategory).Products;
-      
-      this.AllCategories.forEach(category => {
+    let AllCategoriesobservable = this.Service.getAllCategories();
+    let AllCategoriesdispose = AllCategoriesobservable.subscribe((data) => {
+    
+    this.AllCategories = data;
+    console.log(this.AllCategories.length);
+    this.SelectedCategoryId = this.AllCategories[1]._id;
+
+    this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
+    this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
+    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+
+    this.AllCategories.forEach(category => {
       category.Products.forEach(element => {
         element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
       }); 
@@ -76,23 +78,18 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   }
 
   changeCategory(event) {
-    // console.log(event.target.value);
-    // var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
+    this.SelectedCategoryId = event.target.value;
 
-    // this.SelectedCategory = event.target.value;
+    this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
+    this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
+    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
-    // for(let i = 0;i < CategoryItems.length;i++)
-    // {
-    //   if(CategoryItems[i].id == event.target.value)
-    //     CategoryItems[i].style.display = "block";
-    //   else
-    //     CategoryItems[i].style.display = "none";
-    // }
-    this.SelectedCategory = event.target.value;
+    (<HTMLInputElement> document.querySelector("#search")).value = ""
+  }
 
-    this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategory).CategoryName;
-    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategory).Products;
-
+  onSearchChange(searchValue: string): void {
+    var result = this.SelectedCategory.Products.filter(product => product.productId.Name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1);
+    this.SelectedProducts = result;
   }
 
 }
