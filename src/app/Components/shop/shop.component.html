@@ -81,7 +81,7 @@
           </div>
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
-          <section class="lattest-product-area pb-40 category-list Items-List"
+          <!-- <section class="lattest-product-area pb-40 category-list Items-List"
            *ngFor="let category of AllCategories; index as i;" [id]= category._id
            [attr.display]='category._id==SelectedCategory?"block":"none"'>
             <div class="row">
@@ -106,7 +106,12 @@
 
 
             </div>
-          </section>
+          </section> -->
+
+
+          <app-products-section [ProductsInput]="SelectedProducts" 
+          [CategoryNameInput]="SelectedCategoryName"></app-products-section>
+
           <!-- End Best Seller -->
         </div>
       </div>

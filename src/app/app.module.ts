@@ -23,6 +23,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { ImagePipe } from './Pipes/image.pipe';
 import { ShopComponent } from './Components/shop/shop.component';
 import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.component';
+import { ProductsSectionComponent } from './Components/products-section/products-section.component';
 
  //import { AuthInterceptor } from './Helpers/auth-interceptor';
 const routes:Routes = [
@@ -42,7 +43,8 @@ const routes:Routes = [
     ImagePipe,
     ShopComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsSectionComponent
   ],
   imports: [
     BrowserModule,

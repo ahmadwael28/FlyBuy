@@ -1,0 +1,24 @@
+<section class="lattest-product-area pb-40 category-list Items-List">
+            <div class="row">
+
+
+              <div class="col-md-6 col-lg-4" *ngFor="let item of ProductsInput; index as j;">
+                <div class="card text-center card-product">
+                  <div class="card-product__img">
+                    <img class="card-img" [src]=item.productId.Image alt="">
+                    <ul class="card-product__imgOverlay">
+                      <li><button><i class="ti-search"></i></button></li>
+                      <li><button><i class="ti-shopping-cart"></i></button></li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <p>{{CategoryNameInput}}</p>
+                    <h4 class="card-product__title"><a href="#">{{item.productId.Name}}</a></h4>
+                    <p class="card-product__price">{{item.productId.Price}} EGP</p>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </section>
