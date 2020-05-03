@@ -49,4 +49,9 @@ export class BackendLinkService {
     return this.myClient.request('GET', `${this.baseURL}/Products/getImage/${image}`, {responseType: 'blob'}).toPromise();;
   }
 
+  Search(categoryId,searchKey)
+  {
+    return this.myClient.request('GET', `${this.baseURL}/Categories/Search/${categoryId}/${searchKey}`);
+  }
+
 }
