@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Fly-Buy';
+  constructor(public authService: AuthService, private router: Router) { }
+
+  logout() {
+    this.authService.doLogout();
+    this.router.navigate(['Login']);
+  }
 }
