@@ -13,6 +13,7 @@ export class ShopComponent implements OnInit {
   AllProducts;
   AllCategories;
   ngOnInit(): void {
+    window.localStorage.removeItem('refresh');
     let AllCategoriesobservable = this.Service.getAllCategories();
   let AllCategoriesdispose = AllCategoriesobservable.subscribe((data) => {
     

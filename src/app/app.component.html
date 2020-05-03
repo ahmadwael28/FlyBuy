@@ -31,11 +31,9 @@
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                 aria-expanded="false">Shop</a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="Products/3">Product Details</a></li>
 
-                <li class="nav-item"><a class="nav-link" routerLinkActive="Active" routerLink="Shop">Shop Category</a>
-                </li>
+
+                <li class="nav-item"><a class="nav-link" routerLink="Shop">Shop Category</a></li>
 
 
                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
@@ -55,17 +53,12 @@
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                 aria-expanded="false">Pages</a>
               <ul class="dropdown-menu">
-
-                <!-- <li class="nav-item"><a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark">User Profile</a></li> -->
-                
                 <li class="nav-item">
-
                   <a *ngIf="!this.authService.isLoggedIn" class="nav-link">User Profile</a>
-                  <a *ngIf="this.authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
-
-                  <!-- <a *ngIf="!this.authService.isLoggedIn" class="nav-link" routerLinkActive="active"
-                    routerLink="/Login">Login</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                  <a *ngIf="this.authService.isLoggedIn" class="nav-link" routerLinkActive="active"
+                    routerLink="/Login">Login</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" routerLink="Register">Register</a></li>
                 <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
               </ul>
             </li>

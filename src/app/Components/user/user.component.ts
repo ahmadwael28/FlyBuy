@@ -38,6 +38,7 @@ export class UserComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    window.localStorage.removeItem('refresh');
     //this.getUser();
   }
 

@@ -20,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.localStorage.removeItem('refresh');
     let cartByUserIDObservable=this.service.getShoppingCartProductsByUserID(this.id);
     let cartByUserIDDispose=cartByUserIDObservable.subscribe((data)=>{
       this.productsInShoppingCart=data;

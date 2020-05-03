@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit() { }
+  ngOnInit() { window.localStorage.removeItem('refresh'); }
 
   loginUser() {
     console.log("login.component.ts");

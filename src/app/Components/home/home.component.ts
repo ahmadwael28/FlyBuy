@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   originalData;
   topSelling;
   ngOnInit(): void {
-
+    window.localStorage.removeItem('refresh');
     //console.log(this.Service.getAllProducts());
 
     let RandomProductsObservable = this.Service.getThreeRandomProducts();
@@ -61,6 +61,8 @@ export class HomeComponent implements OnInit {
   
   goProductDetails(id)
   {
+      
       this.router.navigateByUrl(`Products/${id}`);
   }
+  
 }
