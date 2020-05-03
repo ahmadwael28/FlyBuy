@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 //import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
 
 import {RouterModule,Routes} from '@angular/router'
@@ -23,6 +23,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { ImagePipe } from './Pipes/image.pipe';
 import { ShopComponent } from './Components/shop/shop.component';
 import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.component';
+import { RegisterComponent } from './Components/register/register.component';
 
  //import { AuthInterceptor } from './Helpers/auth-interceptor';
 const routes:Routes = [
@@ -31,7 +32,8 @@ const routes:Routes = [
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts/:userId',component:ShoppingCartComponent},
-  {path:'Users/Login',component:LoginComponent},
+  {path:'Login',component:LoginComponent},
+  {path:'Register',component:RegisterComponent},
 ]
 
 @NgModule({
@@ -42,11 +44,13 @@ const routes:Routes = [
     ImagePipe,
     ShopComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
