@@ -10,15 +10,13 @@ import {RouterModule,Routes} from '@angular/router'
 import { AppComponent } from './app.component';
 import {BackendLinkService} from '../app/Service/backend-link.service';
 import {ShoppingCartService} from '../app/Service/shopping-cart.service';
-import {AuthService} from './Service/auth.service';
-import {TokenStorageService} from './Service/token-storage.service';
 import {UserService} from './Service/user.service';
 
 import { authInterceptorProviders } from './Helpers/auth.interceptor';
 
 import { HomeComponent } from './Components/home/home.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
-import { LoginComponent } from './Components/login/login.component';
+
 
 import { ImagePipe } from './Pipes/image.pipe';
 import { ShopComponent } from './Components/shop/shop.component';
@@ -32,7 +30,6 @@ const routes:Routes = [
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts/:userId',component:ShoppingCartComponent},
-  {path:'Login',component:LoginComponent},
   {path:'Register',component:RegisterComponent},
 ]
 
@@ -44,7 +41,6 @@ const routes:Routes = [
     ImagePipe,
     ShopComponent,
     ShoppingCartComponent,
-    LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -57,8 +53,6 @@ const routes:Routes = [
   providers: [
     BackendLinkService,
     ShoppingCartService,
-    AuthService,
-    TokenStorageService,
     UserService,
     authInterceptorProviders
   ],
