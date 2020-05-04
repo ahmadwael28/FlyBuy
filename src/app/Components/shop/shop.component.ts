@@ -22,6 +22,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
   NProductsPerPage = 5;
   Npages;
+  CurrentPage = 1;
 
   ngAfterViewChecked(): void {    
   }
@@ -37,8 +38,9 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
     this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
-    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
+    this.GetPage(this.CurrentPage);
     this.AllCategories.forEach(category => {
       category.Products.forEach(element => {
         element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
@@ -79,7 +81,8 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
     this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
-    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    this.GetPage(this.CurrentPage);
 
     this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
 
@@ -89,7 +92,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   onSearchChange(searchValue: string): void {
 
     if (searchValue == "") {
-      this.SelectedProducts = this.SelectedCategory.Products;
+      this.GetPage(this.CurrentPage);
     }
     else {
       let SearchResult = this.Service.Search(this.SelectedCategoryId, searchValue);
@@ -116,6 +119,23 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   GetPage(event)
   {
     console.log(event);
+    this.CurrentPage = event;
+
+    let NewPageProducts = this.Service.ChangePage(this.SelectedCategoryId,this.NProductsPerPage,this.CurrentPage);
+    let NewPageProductsdispose = NewPageProducts.subscribe((data) => {
+    
+    this.SelectedProducts = data;
+
+    this.SelectedProducts.forEach(element => {
+        element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
+      }); 
+
+      NewPageProductsdispose.unsubscribe();
+  },
+  (err)=>{
+    console.log(err);
+  });
+
   }
 
 }

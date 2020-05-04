@@ -54,4 +54,9 @@ export class BackendLinkService {
     return this.myClient.request('GET', `${this.baseURL}/Categories/Search/${categoryId}/${searchKey}`);
   }
 
+  ChangePage(categoryId,NProductsPerPage,RequiredPage)
+  {
+    return this.myClient.request('GET', `${this.baseURL}/Categories/Page/${categoryId}/${NProductsPerPage}/${RequiredPage}`);
+  }
+
 }
