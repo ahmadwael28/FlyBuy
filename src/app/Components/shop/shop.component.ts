@@ -89,7 +89,10 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   }
 
   onSearchChange(searchValue: string): void {
-    var result = this.SelectedCategory.Products.filter(product => product.productId.Name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1);
+    // var result = this.SelectedCategory.Products.filter(product => product.productId.Name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1);
+    // this.SelectedProducts = result;
+
+    var result = this.Service.Search(this.SelectedCategoryId,searchValue);
     this.SelectedProducts = result;
   }
 
