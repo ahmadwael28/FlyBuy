@@ -14,23 +14,13 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
   AllProducts;
   AllCategories;
+  SearchRes;
 
   SelectedProducts;
   SelectedCategoryName;
   SelectedCategory;
 
-  ngAfterViewChecked(): void {
-    // var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
-
-    // for(let i = 0;i < CategoryItems.length;i++)
-    // {
-    //   if(CategoryItems[i].id == this.SelectedCategoryId)
-    //     CategoryItems[i].style.display = "block";
-    //   else
-    //     CategoryItems[i].style.display = "none";
-    // }
-
-    
+  ngAfterViewChecked(): void {    
   }
   
   ngOnInit(): void {
@@ -85,15 +75,34 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
     this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
-    (<HTMLInputElement> document.querySelector("#search")).value = ""
+    (<HTMLInputElement>document.querySelector("#search")).value = ""
   }
 
   onSearchChange(searchValue: string): void {
-    // var result = this.SelectedCategory.Products.filter(product => product.productId.Name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1);
-    // this.SelectedProducts = result;
 
-    var result = this.Service.Search(this.SelectedCategoryId,searchValue);
-    this.SelectedProducts = result;
+    if (searchValue == "") {
+      this.SelectedProducts = this.SelectedCategory.Products;
+    }
+    else {
+      let SearchResult = this.Service.Search(this.SelectedCategoryId, searchValue);
+      let SearchResultdispose = SearchResult.subscribe((data) => {
+
+        console.log(data)
+        this.SearchRes = data;
+        this.SearchRes.forEach(element => {
+          element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`;
+        });
+
+        this.SelectedProducts = this.SearchRes;
+
+        SearchResultdispose.unsubscribe();
+      },
+        (err) => {
+          console.log(err);
+        });
+    }
+
+
   }
 
 }
