@@ -41,14 +41,9 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
     this.GetPage(this.CurrentPage);
-    this.AllCategories.forEach(category => {
-      category.Products.forEach(element => {
-        element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
-      }); 
-
-      this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
-
-  });
+    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+    
+    
   AllCategoriesdispose.unsubscribe();
   },
   (err)=>{

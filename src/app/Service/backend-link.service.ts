@@ -40,6 +40,13 @@ export class BackendLinkService {
   getAllCategories()
   {
     console.log("get all Categories")
+    let response= this.myClient.get(`${this.baseURL}/Categories/`);
+    return response;
+  }
+
+  getAllCategoriesWithProducts()
+  {
+    console.log("get all Categories")
     let response= this.myClient.get(`${this.baseURL}/Categories/WithProducts`);
     return response;
   }
