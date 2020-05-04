@@ -20,6 +20,9 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   SelectedCategoryName;
   SelectedCategory;
 
+  NProductsPerPage = 5;
+  Npages;
+
   ngAfterViewChecked(): void {    
   }
   
@@ -40,6 +43,9 @@ export class ShopComponent implements OnInit,AfterViewChecked {
       category.Products.forEach(element => {
         element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
       }); 
+
+      this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+
   });
   AllCategoriesdispose.unsubscribe();
   },
@@ -75,6 +81,8 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
     this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
+    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+
     (<HTMLInputElement>document.querySelector("#search")).value = ""
   }
 
@@ -103,6 +111,11 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     }
 
 
+  }
+
+  GetPage(event)
+  {
+    console.log(event);
   }
 
 }

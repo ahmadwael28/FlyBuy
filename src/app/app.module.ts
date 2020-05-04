@@ -26,6 +26,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
+import { PaginationComponent } from './Components/pagination/pagination.component';
 
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
@@ -49,7 +50,8 @@ const routes:Routes = [
     LoginComponent,
     ProductsSectionComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
