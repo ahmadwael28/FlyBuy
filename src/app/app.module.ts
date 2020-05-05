@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 //import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import {RouterModule,Routes} from '@angular/router'
 
@@ -27,13 +27,15 @@ import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
 
+import { AuthInterceptor } from './shared/authconfig.interceptor';
+
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts/:userId',component:ShoppingCartComponent},
-  {path:'Users/:userId',component:UserComponent,canActivate:[AuthGuard]},
+  {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
   { path: 'Login', component: LoginComponent },
   {path:'Register',component:RegisterComponent},
 ]
@@ -61,7 +63,12 @@ const routes:Routes = [
   providers: [
     BackendLinkService,
     ShoppingCartService,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

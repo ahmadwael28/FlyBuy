@@ -38,7 +38,10 @@
             </div>
             <div class="card-body">
               <p>{{item.Category.CategoryName}}</p>
-              <h4 class="card-product__title"><a [routerLink]="['/Products/', item._id]">{{item.Name}}</a></h4>
+              <h4 class="card-product__title">
+                <a *ngIf="authService.isLoggedIn" [routerLink]="['/Products/', item._id]">{{item.Name}}</a>
+                <a *ngIf="!authService.isLoggedIn" routerLink="/Login">{{item.Name}}</a>
+              </h4>
               <p class="card-product__price">{{item.Price}} EGP</p>
             </div>
           </div>
