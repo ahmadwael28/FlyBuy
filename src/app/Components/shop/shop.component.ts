@@ -43,7 +43,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     this.GetPage(this.CurrentPage);
     this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
     
-    
+
   AllCategoriesdispose.unsubscribe();
   },
   (err)=>{

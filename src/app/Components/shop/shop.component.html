@@ -1,18 +1,18 @@
-<!-- ================ start banner area ================= -->	
+<!-- ================ start banner area ================= -->
 <section class="blog-banner-area" id="category">
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
                 <h1>Shop Category</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
-        </ol>
-      </nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-</div>
+    </div>
 </section>
 <!-- ================ end banner area ================= -->
 
@@ -29,73 +29,80 @@
 
 
 
-<!-- ================ category section start ================= -->		  
+<!-- ================ category section start ================= -->
 <section class="section-margin--small mb-5">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">Browse Categories</div>
-            <ul class="main-categories">
-              <li class="common-filter">
-                <form action="#">
-                  <ul>
-                    <li  class="filter-list" *ngFor="let item of AllCategories; index as i;">
-                        <input class="pixel-radio" [value] = item._id type="radio" id="item.CategoryName" 
-                        name="brand" index = i (click)="changeCategory($event)" [checked]=" (SelectedCategoryId==item._id)" >
-                        <label for="item.CategoryName">{{item.CategoryName}}<span> ({{item.Products.length}})</span>
-                        </label>
-                    </li>
-                  </ul>
-                </form>
-              </li>
-            </ul>
-          </div>
-          
-        </div>
-        <div class="col-xl-9 col-lg-8 col-md-7">
-          <!-- Start Filter Bar -->
-          <div class="filter-bar d-flex flex-wrap align-items-center">
-            <div class="sorting">
-              <select>
-                <option value="1">Default sorting</option>
-                <option value="1">Default sorting</option>
-                <option value="1">Default sorting</option>
-              </select>
-            </div>
-            <div class="sorting mr-auto">
-              <select>
-                <option value="1">Show 12</option>
-                <option value="1">Show 12</option>
-                <option value="1">Show 12</option>
-              </select>
-            </div>
-            <div>
-              <div class="input-group filter-bar-search">
-                <input id="search" type="text" placeholder="Search" (input)="onSearchChange($event.target.value)">
-                <div class="input-group-append">
-                  <button type="button"><i class="ti-search"></i></button>
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <div class="sidebar-categories">
+                    <div class="head">Browse Categories</div>
+                    <ul class="main-categories">
+                        <li class="common-filter">
+                            <form action="#">
+                                <ul>
+                                    <li class="filter-list" *ngFor="let item of AllCategories; index as i;">
+                                        <input class="pixel-radio" [value]=item._id type="radio" id="item.CategoryName"
+                                            name="brand" index=i (click)="changeCategory($event)"
+                                            [checked]=" (SelectedCategoryId==item._id)">
+                                        <label for="item.CategoryName">{{item.CategoryName}}<span>
+                                                ({{item.Products.length}})</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
-              </div>
+
             </div>
-          </div>
-          <!-- End Filter Bar -->
-          <!-- Start Products List -->
-          
-            <app-products-section [ProductsInput]="SelectedProducts" 
-            [CategoryNameInput]="SelectedCategoryName"></app-products-section>
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <!-- Start Filter Bar -->
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="sorting">
+                        <select>
+                            <option value="1">Default sorting</option>
+                            <option value="1">Default sorting</option>
+                            <option value="1">Default sorting</option>
+                        </select>
+                    </div>
+                    <div class="sorting mr-auto">
+                        <select>
+                            <option value="1">Show 12</option>
+                            <option value="1">Show 12</option>
+                            <option value="1">Show 12</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="input-group filter-bar-search">
+                            <input id="search" type="text" placeholder="Search"
+                                (input)="onSearchChange($event.target.value)">
+                            <div class="input-group-append">
+                                <button type="button"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Filter Bar -->
+                <!-- Start Products List -->
 
-          <!-- End Products List -->
-                   
-          <!-- Start Pagination -->
+                <app-products-section [ProductsInput]="SelectedProducts" [CategoryNameInput]="SelectedCategoryName">
+                </app-products-section>
 
-            <app-pagination [Npages]="Npages" (RequestPage)="GetPage($event)"></app-pagination>
-          <!-- End Pagination -->
+                <!-- End Products List -->
 
+                <!-- Start Pagination -->
+
+                <app-pagination [Npages]="Npages" (RequestPage)="GetPage($event)"></app-pagination>
+                <!-- End Pagination -->
+
+            </div>
         </div>
-      </div>
     </div>
-  </section>
-    <!-- ================ category section end ================= -->
-    
-    
+</section>
+<!-- ================ category section end ================= -->
+
+
+
+<!-- ================ trending product section start ================= -->
+<app-top-selling></app-top-selling>
+<!-- ================ trending product section end ================= -->

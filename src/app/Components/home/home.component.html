@@ -1,51 +1,20 @@
 <section class="section-margin mt-0 row">
   <div class="owl-carousel owl-theme hero-carousel">
 
-      <div class="owl-item col-12 col-sm-4"
-          *ngFor="let item of dataSamples; index as i;">
-          <div class="hero-carousel__slide">
-              <img [src]=item.Image alt="" class="img-fluid">
-              <a href="#" class="hero-carousel__slideOverlay">
-                  <h3>{{item.Name}}</h3>
-                  <p>{{item.Category.CategoryName}}</p>
-              </a>
-          </div>
+    <div class="owl-item col-12 col-sm-4" *ngFor="let item of dataSamples; index as i;">
+      <div class="hero-carousel__slide">
+        <img [src]=item.Image alt="" class="img-fluid">
+        <a class="hero-carousel__slideOverlay">
+          <h3 [routerLink]="['/Products/', item._id]">{{item.Name}}</h3>
+          <p>{{item.Category.CategoryName}}</p>
+        </a>
       </div>
+    </div>
 
   </div>
 </section>
 <!--================ Random Products Carousel end =================-->
 
-  <!-- ================ trending product section start ================= -->  
-<section class="section-margin calc-60px">
-    <div class="container">
-      <div class="section-intro pb-60px">
-        <p>Popular Item in the market</p>
-        <h2>Trending <span class="section-intro__style">Product</span></h2>
-      </div>
-      <div class="row">
-
-        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of topSelling; index as i;">
-          <div class="card text-center card-product">
-            
-            <div class="card-product__img">
-          
-              <img class="card-img" [src]=item.Image alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button (click)="goProductDetails(item._id)"><i class="ti-search"></i><!--<a [routerLink]="['Products/', item._id]"></a>--></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>{{item.Category.CategoryName}}</p>
-              <h4 class="card-product__title"><a [routerLink]="['/Products/', item._id]">{{item.Name}}</a></h4>
-              <p class="card-product__price">{{item.Price}} EGP</p>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-</section>
-<!-- ================ trending product section end ================= -->  
+<!-- ================ trending product section start ================= -->
+<app-top-selling></app-top-selling>
+<!-- ================ trending product section end ================= -->

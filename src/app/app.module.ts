@@ -27,6 +27,7 @@ import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
 import { PaginationComponent } from './Components/pagination/pagination.component';
+import { TopSellingComponent } from './Components/top-selling/top-selling.component';
 
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
@@ -51,7 +52,8 @@ const routes:Routes = [
     ProductsSectionComponent,
     UserComponent,
     RegisterComponent,
-    PaginationComponent
+    PaginationComponent,
+    TopSellingComponent
   ],
   imports: [
     BrowserModule,
