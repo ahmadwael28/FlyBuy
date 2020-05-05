@@ -26,6 +26,9 @@ import { LoginComponent } from './Components/login/login.component';
 import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
+import { PaginationComponent } from './Components/pagination/pagination.component';
+import { TopSellingComponent } from './Components/top-selling/top-selling.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 
@@ -51,7 +54,10 @@ const routes:Routes = [
     LoginComponent,
     ProductsSectionComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    PaginationComponent,
+    TopSellingComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

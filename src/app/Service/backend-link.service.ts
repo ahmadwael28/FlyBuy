@@ -40,6 +40,13 @@ export class BackendLinkService {
   getAllCategories()
   {
     console.log("get all Categories")
+    let response= this.myClient.get(`${this.baseURL}/Categories/`);
+    return response;
+  }
+
+  getAllCategoriesWithProducts()
+  {
+    console.log("get all Categories")
     let response= this.myClient.get(`${this.baseURL}/Categories/WithProducts`);
     return response;
   }
@@ -52,6 +59,11 @@ export class BackendLinkService {
   Search(categoryId,searchKey)
   {
     return this.myClient.request('GET', `${this.baseURL}/Categories/Search/${categoryId}/${searchKey}`);
+  }
+
+  ChangePage(categoryId,NProductsPerPage,RequiredPage)
+  {
+    return this.myClient.request('GET', `${this.baseURL}/Categories/Page/${categoryId}/${NProductsPerPage}/${RequiredPage}`);
   }
 
 }

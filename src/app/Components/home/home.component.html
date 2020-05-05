@@ -1,16 +1,15 @@
 <section class="section-margin mt-0 row">
   <div class="owl-carousel owl-theme hero-carousel">
 
-      <div class="owl-item col-12 col-sm-4"
-          *ngFor="let item of dataSamples; index as i;">
-          <div class="hero-carousel__slide">
-              <img [src]=item.Image alt="" class="img-fluid">
-              <a href="#" class="hero-carousel__slideOverlay">
-                  <h3>{{item.Name}}</h3>
-                  <p>{{item.Category.CategoryName}}</p>
-              </a>
-          </div>
+    <div class="owl-item col-12 col-sm-4" *ngFor="let item of dataSamples; index as i;">
+      <div class="hero-carousel__slide">
+        <img [src]=item.Image alt="" class="img-fluid">
+        <a class="hero-carousel__slideOverlay">
+          <h3 [routerLink]="['/Products/', item._id]">{{item.Name}}</h3>
+          <p>{{item.Category.CategoryName}}</p>
+        </a>
       </div>
+    </div>
 
   </div>
 </section>
@@ -47,8 +46,7 @@
           </div>
         </div>
 
+<!-- ================ trending product section start ================= -->
+<app-top-selling></app-top-selling>
+<!-- ================ trending product section end ================= -->
 
-      </div>
-    </div>
-</section>
-<!-- ================ trending product section end ================= -->  
