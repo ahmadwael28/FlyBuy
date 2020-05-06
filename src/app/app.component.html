@@ -53,7 +53,7 @@
                   <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
                   <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" routerLink="Register">Register</a></li>
+                <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
                 <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
               </ul>
             </li>

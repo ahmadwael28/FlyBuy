@@ -1,6 +1,7 @@
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit, AfterViewChecked } from '@angular/core';
-
+import { AuthService } from './../../shared/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -8,7 +9,16 @@ import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit
 })
 export class ShopComponent implements OnInit,AfterViewChecked {
 
-  constructor(private Service:BackendLinkService) { }
+  constructor(private Service:BackendLinkService,public authService:AuthService,private router:Router) { 
+    if(this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl(`Shop`);
+      }
+      if(!this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl('Login');
+      }
+  }
 
   SelectedCategoryId;
 
