@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { Router } from '@angular/router';
+import { AuthService } from './../../shared/auth.service';
 
 @Component({
   selector: 'app-top-selling',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TopSellingComponent implements OnInit {
 
-  constructor(private Service:BackendLinkService,private router:Router) { }
+  constructor(private Service:BackendLinkService,private router:Router, public authService:AuthService) { }
 
 
   topSelling;
@@ -34,7 +35,14 @@ export class TopSellingComponent implements OnInit {
 
   goProductDetails(id)
   {
+    if(this.authService.isLoggedIn)
+    {
       this.router.navigateByUrl(`Products/${id}`);
+    }
+    else
+    {
+      this.router.navigateByUrl('Login');
+    }
   }
 
 }
