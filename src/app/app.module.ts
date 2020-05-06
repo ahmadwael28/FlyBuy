@@ -27,6 +27,11 @@ import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+//import { FileSelectDirective} from 'ng2-file-upload';
+
+
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
@@ -49,14 +54,18 @@ const routes:Routes = [
     LoginComponent,
     ProductsSectionComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+   // FileSelectDirective 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
+ 
   ],
   providers: [
     BackendLinkService,

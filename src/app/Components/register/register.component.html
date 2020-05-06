@@ -3,15 +3,15 @@
         <div class="blog-banner">
             <div class="text-center">
                 <h1>Register</h1>
-                <nav  class="banner-breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Register</li>
-        </ol>
-      </nav>
+                <nav class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Register</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-</div>
+    </div>
 </section>
 <!-- ================ end banner area ================= -->
 
@@ -20,11 +20,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="login_box_img">
+                <div class="login_box_img" style="height: 47em;">
                     <div class="hover">
                         <h4>Already have an account?</h4>
-                        <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                        <a class="button button-account" routerLink="Login">Login Now</a>
+                        <p>There are advances being made in science and technology everyday, and a good example of this
+                            is the</p>
+                        <a class="button button-account" routerLink="/Login">Login Now</a>
                     </div>
                 </div>
             </div>
@@ -32,26 +33,112 @@
                 <div class="login_form_inner register_form_inner">
                     <h3>Create an account</h3>
                     <form class="row login_form" [formGroup]="registerationForm" (ngSubmit)="addUser()">
+
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" formControlName="Name" placeholder="Name"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'">
+                            <input type="text" class="form-control" (focusout)="UniqueUsername(registerationForm)"
+                                formControlName="Username" placeholder="Username" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Username'">
                         </div>
-                        <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" formControlName="Username" placeholder="Username"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                        <div *ngIf="Username.errors && (Username.dirty || Username.touched)"
+                            class="alert alert-danger col-12">
+
+                            <div *ngIf="Username.errors.required" class="text-left">
+                                Username field is required.
+                            </div>
+                            <div *ngIf="Username.errors.patterns" class="text-left">
+                                Invalid Username Format.
+                            </div>
+                            <div class="text-left" *ngIf="Username.errors?.alreadyExists">
+                                Username already exists.
+                            </div>
+
+
                         </div>
+
+
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" formControlName="Email" placeholder="Email Address"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                            <input type="email" class="form-control" (focusout)="UniqueEmail(registerationForm)"
+                                formControlName="Email" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Email Address'">
                         </div>
-                        <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" formControlName="Password" placeholder="Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                        <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-danger col-12">
+
+                            <div *ngIf="Email.errors.required" class="text-left">
+                                Email field is required.
+                            </div>
+                            <div class="text-left" *ngIf="Email.errors?.pattern ||Email.errors?.validEmailDomain">
+                                Invalid Email format
+                            </div>
+                            <div class="text-left" *ngIf="Email.errors?.alreadyExists">
+                                Email already exists.
+                            </div>
+
+
+
                         </div>
+
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" formControlName="ConfirmPassword"
+                            <input type="password" class="form-control" formControlName="Password"
+                                placeholder="Password" minlength="6" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Password'">
+                        </div>
+                        <div *ngIf="Password.errors && (Password.dirty || Password.touched)"
+                            class="alert alert-danger col-12">
+
+                            <div *ngIf="Password.errors.required" class="text-left">
+                                Password field is required.
+                            </div>
+                            <div *ngIf="Password.errors.minlength" class="text-left">
+                                Password must be at least 6 characters long.
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" formControlName="ConfirmPassword"
                                 placeholder="Confirm Password" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Confirm Password'">
+                        </div>
+                        <div *ngIf="ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched)"
+                            class="alert alert-danger col-12">
+
+                            <div *ngIf="ConfirmPassword.errors.required" class="text-left">
+                                Please Re-enter password.
+                            </div>
+                            <div *ngIf="ConfirmPassword.errors?.passwordMismatch" class="text-left">
+                                Password does not match.
+                            </div>
+
+
+                        </div>
+                        
+                        <div class="col-md-12 form-group text-left">
+
+                            <input style="position: relative;top:1em" class="offset-1" type="radio" value="m"
+                                formControlName="Gender"> &nbsp;Male
+                            <input style="position: relative;top:1em" class="offset-3" type="radio" value="f"
+                                formControlName="Gender"> &nbsp;Female
+
+
+                        </div>
+                        <!-- <div *ngIf="Gender.errors" class="alert alert-danger col-12"> -->
+
+                            <div class="text-left alert alert-danger col-12" *ngIf="Gender.errors && isValidFormSubmitted">
+                               
+                                <div *ngIf="Gender.errors.required" class="text-left">
+                                    Gender is required.
+                                </div>
+                            </div>
+                            <!--  
+                        </div> -->
+                        <div class="file-upload col-md-12">
+                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" />
+                            <!--ng2FileSelect [uploader]="uploader" -->
+                            <!-- <button type="button" class="btn btn-primary">
+                                (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"
+                                Upload
+                            </button> -->
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
@@ -59,8 +146,11 @@
                                 <label for="f-option2">Keep me logged in</label>
                             </div>
                         </div>
+
+
                         <div class="col-md-12 form-group">
-                            <button type="submit" value="submit" class="button button-register w-100">Register</button>
+                            <input type="submit" value="submit" value="Register" class="button button-register w-100">
+                            <!-- [disabled]="!isValid" -->
                         </div>
                     </form>
                 </div>
