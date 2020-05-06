@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 //import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http'
@@ -31,7 +30,7 @@ import { TopSellingComponent } from './Components/top-selling/top-selling.compon
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { AuthInterceptor } from './shared/authconfig.interceptor';
-
+import { AboutComponent } from './Components/about/about.component';
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
@@ -41,6 +40,8 @@ const routes:Routes = [
   {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
   { path: 'Login', component: LoginComponent },
   {path:'Register',component:RegisterComponent},
+  {path:'About',component:AboutComponent}
+
 ]
 
 @NgModule({
@@ -57,7 +58,8 @@ const routes:Routes = [
     RegisterComponent,
     PaginationComponent,
     TopSellingComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
