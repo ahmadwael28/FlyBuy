@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 //import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import {RouterModule,Routes} from '@angular/router'
 
@@ -26,6 +25,13 @@ import { LoginComponent } from './Components/login/login.component';
 import { UserComponent } from './Components/user/user.component';
 
 import { AuthGuard } from "./shared/auth.guard";
+import { PaginationComponent } from './Components/pagination/pagination.component';
+import { TopSellingComponent } from './Components/top-selling/top-selling.component';
+import { FooterComponent } from './Components/footer/footer.component';
+
+import { AuthInterceptor } from './shared/authconfig.interceptor';
+import { AboutComponent } from './Components/about/about.component';
+import { SearchResultsComponent } from './Components/search-results/search-results.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -38,9 +44,12 @@ const routes:Routes = [
   {path:'Shop',component:ShopComponent},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts/:userId',component:ShoppingCartComponent},
-  {path:'Users/:userId',component:UserComponent,canActivate:[AuthGuard]},
+  {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
   { path: 'Login', component: LoginComponent },
   {path:'Register',component:RegisterComponent},
+  {path:'About',component:AboutComponent},
+  {path:'Search/:searchKey',component:SearchResultsComponent}
+
 ]
 
 @NgModule({
@@ -56,6 +65,11 @@ const routes:Routes = [
     UserComponent,
     RegisterComponent,
    // FileSelectDirective 
+    PaginationComponent,
+    TopSellingComponent,
+    FooterComponent,
+    AboutComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +84,12 @@ const routes:Routes = [
   providers: [
     BackendLinkService,
     ShoppingCartService,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

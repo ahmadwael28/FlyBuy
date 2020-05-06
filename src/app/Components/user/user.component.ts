@@ -14,10 +14,10 @@ export class UserComponent implements OnInit {
   subscriber;
   isDataLoaded:boolean=false;
   constructor(public authService: AuthService,private route: ActivatedRoute) {
-    this.id = this.route.snapshot.params['userId'];
-    console.log("user component id",this.route.snapshot.params['userId']);
+    // this.id = this.route.snapshot.params['userId'];
+    // console.log("user component id",this.route.snapshot.params['userId']);
 
-     this.subscriber= this.authService.getUserProfile(this.id).subscribe(res => {
+     this.subscriber= this.authService.getUserProfile().subscribe(res => {
       console.log("response", res);
       this.currentUser = res;
       this.isDataLoaded=true;

@@ -1,15 +1,93 @@
-
-<div class="auth-wrapper">
-    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <h3 class="h3 mb-3 font-weight-normal text-center">Please Login</h3>
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" formControlName="Username" placeholder="Enter username" required>
+ <!-- ================ start banner area ================= -->	
+ <section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Login</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Login</li>
+        </ol>
+      </nav>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" formControlName="Password" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary">Login</button>
-    </form>
 </div>
+</section>
+<!-- ================ end banner area ================= -->
+
+<!--================Login Box Area =================-->
+  <section class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <div class="hover">
+                        <h4>New to our website?</h4>
+                        <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+                        <a class="button button-account" routerLink="/Register">Create an Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner">
+                    <h3>Log in to enter</h3>
+                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()" >
+                        <!-- [ngClass]="{ 'is-invalid': isSubmitted && formControls.Email.errors }" first div -->
+                        <div class="col-md-12 form-group" >
+                            <input type="email" class="form-control" formControlName="Email" placeholder="Enter Email" >
+                        </div>
+                        <!-- <div *ngIf="isSubmitted && formControls.Email.errors" class="alert alert-danger">
+                            <div *ngIf="formControls.Email.errors.required">Email is required</div>
+                            <div *ngIf="formControls.Email.errors.email">Enter a valid email address</div>
+                        </div> -->
+                        <!-- <div *ngIf="loginForm.controls['Email'].invalid && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)" class="alert alert-danger">
+                            <div *ngIf="loginForm.controls['Email'].errors.required">
+                                Email is required.
+                            </div>
+                        </div>  -->
+                        <div *ngIf="loginForm.controls['Email'].errors && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)"  class="alert alert-danger col-12">
+
+                            <div *ngIf="loginForm.controls['Email'].errors.required" class="text-left">
+                                Email field is required.
+                            </div>
+                            <div class="text-left" *ngIf="loginForm.controls['Email'].errors?.pattern ||loginForm.controls['Email'].errors?.validEmailDomain">
+                                Invalid Email format
+                            </div>
+                        </div>
+                        <!-- [ngClass]="{ 'is-invalid': isSubmitted && formControls.Password.errors}" first div -->
+                        <div class="col-md-12 form-group" >
+                            <input type="password" class="form-control" formControlName="Password" placeholder="Password" >
+                        </div>
+                         <!-- <div *ngIf="loginForm.controls['Password'].invalid && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)" class="alert alert-danger">
+                            <div *ngIf="loginForm.controls['Password'].errors.required">
+                                Password is required.
+                            </div>
+                        </div>  -->
+                        <div *ngIf="loginForm.controls['Password'].errors && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)"
+                        class="alert alert-danger col-12">
+
+                        <div *ngIf="loginForm.controls['Password'].errors.required" class="text-left">
+                            Password field is required.
+                        </div>
+                    </div>
+                        <!-- class="help-block" -->
+                           <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector">
+                                <label for="f-option2" *ngIf="authService.getToken">Keep me logged in</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <!-- [disabled]="loginForm.pristine || loginForm.invalid" -->
+                            <button type="submit" class="button button-login w-100" >Log In</button>
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->
+

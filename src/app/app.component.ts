@@ -15,4 +15,18 @@ export class AppComponent {
     this.authService.doLogout();
     this.router.navigate(['Login']);
   }
+
+  Search() {
+    var searchKey = (<HTMLInputElement>document.getElementById("searchBar")).value;
+    if (searchKey != "") {
+
+      //if (this.authService.isLoggedIn) {
+        this.router.navigateByUrl(`Search/${searchKey}`);
+      // }
+      // else {
+      //   this.router.navigateByUrl('Login');
+      // }
+    }
+
+  }
 }

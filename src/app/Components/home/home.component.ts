@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './../../shared/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private Service:BackendLinkService,private router:Router) { }
+  constructor(private Service:BackendLinkService,private router:Router, public authService:AuthService) { }
 
   dataSamples;
   originalData;
@@ -61,8 +62,14 @@ export class HomeComponent implements OnInit {
   
   goProductDetails(id)
   {
-      
-      this.router.navigateByUrl(`Products/${id}`);
+      if(this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl(`Products/${id}`);
+      }
+      if(!this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl('Login');
+      }
   }
   
 }

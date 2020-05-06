@@ -7,13 +7,14 @@
                   <div class="card-product__img">
                     <img class="card-img" [src]=item.productId.Image alt="">
                     <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
+                      <!-- <li><button><i class="ti-search" (click)="goProductDetails(item.productId._id)"></i></button></li> -->
+                      <li><button (click)="goProductDetails(item.productId._id)"><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
                     </ul>
                   </div>
                   <div class="card-body">
-                    <p>{{CategoryNameInput}}</p>
-                    <h4 class="card-product__title"><a href="#">{{item.productId.Name}}</a></h4>
+                    <p>{{CategoryNameInput}}</p>                    
+                    <h4 class="card-product__title"><a [routerLink]="['/Products/', item.productId._id]">{{item.productId.Name}}</a></h4>
                     <p class="card-product__price">{{item.productId.Price}} EGP</p>
                   </div>
                 </div>

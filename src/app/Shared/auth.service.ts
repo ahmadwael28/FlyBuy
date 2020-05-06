@@ -22,7 +22,7 @@ export class AuthService {
 
   // Login
    login(user) {
-    console.log("Username",user.Username);
+    console.log("Email",user.Email);
     console.log("Password",user.Password);
     console.log("Login");
     let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
@@ -30,12 +30,15 @@ export class AuthService {
         console.log("res",res);
         localStorage.setItem('access_token', res.tokenCreated)
         console.log('access_token', res.tokenCreated);
+
         if(res){
-        this.getUserProfile(res._id).subscribe((res) => {
+        // this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
+          console.log("this.headers",this.headers.getAll('x-access-token'));
+        this.getUserProfile().subscribe((res) => {
         console.log('getUserProfile response', res);
          this.currentUser =  res;
         console.log('currentUser', this.currentUser);
-        this.router.navigateByUrl('Users/' + this.currentUser._id);
+        this.router.navigateByUrl('Users');
         })
       }
       })
@@ -60,9 +63,13 @@ export class AuthService {
   }
 
   // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${this.baseURL}/Users/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
+  getUserProfile(): Observable<any> {
+    console.log('inside getUserProfile');
+
+    //this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
+    let api = `${this.baseURL}/Users/UserToken`;
+    //console.log("this.headers",this.headers);
+    return this.http.get(api,{headers: this.headers.set('x-access-token',localStorage.getItem('access_token')) }).pipe(
       map((res: Response) => {
         return res || {}
       }),

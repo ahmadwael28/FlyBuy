@@ -1,6 +1,7 @@
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit, AfterViewChecked } from '@angular/core';
-
+import { AuthService } from './../../shared/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -8,29 +9,32 @@ import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit
 })
 export class ShopComponent implements OnInit,AfterViewChecked {
 
-  constructor(private Service:BackendLinkService) { }
+  constructor(private Service:BackendLinkService,public authService:AuthService,private router:Router) { 
+    if(this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl(`Shop`);
+      }
+      if(!this.authService.isLoggedIn)
+      {
+        this.router.navigateByUrl('Login');
+      }
+  }
 
   SelectedCategoryId;
 
   AllProducts;
   AllCategories;
+  SearchRes;
 
   SelectedProducts;
   SelectedCategoryName;
   SelectedCategory;
 
-  ngAfterViewChecked(): void {
-    // var CategoryItems = document.getElementsByClassName("Items-List") as HTMLCollectionOf<HTMLElement>;;
+  NProductsPerPage = 5;
+  Npages;
+  CurrentPage = 1;
 
-    // for(let i = 0;i < CategoryItems.length;i++)
-    // {
-    //   if(CategoryItems[i].id == this.SelectedCategoryId)
-    //     CategoryItems[i].style.display = "block";
-    //   else
-    //     CategoryItems[i].style.display = "none";
-    // }
-
-    
+  ngAfterViewChecked(): void {    
   }
   
   ngOnInit(): void {
@@ -44,13 +48,12 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
     this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
-    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
-    this.AllCategories.forEach(category => {
-      category.Products.forEach(element => {
-        element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
-      }); 
-  });
+    this.GetPage(this.CurrentPage);
+    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+    
+
   AllCategoriesdispose.unsubscribe();
   },
   (err)=>{
@@ -83,14 +86,61 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
     this.SelectedCategoryName = this.AllCategories.find(category => category._id == this.SelectedCategoryId).CategoryName;
     this.SelectedCategory = this.AllCategories.find(category => category._id == this.SelectedCategoryId);
-    this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
+    this.GetPage(this.CurrentPage);
 
-    (<HTMLInputElement> document.querySelector("#search")).value = ""
+    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+
+    (<HTMLInputElement>document.querySelector("#search")).value = ""
   }
 
   onSearchChange(searchValue: string): void {
-    var result = this.SelectedCategory.Products.filter(product => product.productId.Name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1);
-    this.SelectedProducts = result;
+
+    if (searchValue == "") {
+      this.GetPage(this.CurrentPage);
+    }
+    else {
+      let SearchResult = this.Service.Search(this.SelectedCategoryId, searchValue);
+      let SearchResultdispose = SearchResult.subscribe((data) => {
+
+        console.log(data)
+        this.SearchRes = data;
+        this.SearchRes.forEach(element => {
+          element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`;
+        });
+
+        this.SelectedProducts = this.SearchRes;
+
+        SearchResultdispose.unsubscribe();
+      },
+        (err) => {
+          console.log(err);
+        });
+    }
+
+
+  }
+
+  GetPage(event)
+  {
+    console.log(event);
+    this.CurrentPage = event;
+
+    let NewPageProducts = this.Service.ChangePage(this.SelectedCategoryId,this.NProductsPerPage,this.CurrentPage);
+    let NewPageProductsdispose = NewPageProducts.subscribe((data) => {
+    
+    this.SelectedProducts = data;
+
+    this.SelectedProducts.forEach(element => {
+        element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
+      }); 
+
+      NewPageProductsdispose.unsubscribe();
+  },
+  (err)=>{
+    console.log(err);
+  });
+
   }
 
 }
