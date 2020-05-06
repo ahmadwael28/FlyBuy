@@ -20,12 +20,14 @@ export class ProductDetailsComponent implements OnInit {
     
     this.router = myRouter;
     this.ID = myActivatedRoute.snapshot.params["id"];
-    var refresh = window.localStorage.getItem('refresh');
-    console.log(refresh);
-    if (refresh===null){
-        window.location.reload();
-        window.localStorage.setItem('refresh', "1");
-    }
+
+    //console.log("ctor")
+    // var refresh = window.localStorage.getItem('refresh');
+    // console.log(refresh);
+    // if (refresh===null){
+    //     window.location.reload();
+    //     window.localStorage.setItem('refresh', "1");
+    // }
   }
 
   
