@@ -31,6 +31,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { AboutComponent } from './Components/about/about.component';
+import { SearchResultsComponent } from './Components/search-results/search-results.component';
+
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
@@ -40,7 +42,8 @@ const routes:Routes = [
   {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
   { path: 'Login', component: LoginComponent },
   {path:'Register',component:RegisterComponent},
-  {path:'About',component:AboutComponent}
+  {path:'About',component:AboutComponent},
+  {path:'Search/:searchKey',component:SearchResultsComponent}
 
 ]
 
@@ -59,7 +62,8 @@ const routes:Routes = [
     PaginationComponent,
     TopSellingComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
