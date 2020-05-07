@@ -35,7 +35,8 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-//import { FileSelectDirective} from 'ng2-file-upload';
+import { FileUploadModule } from "ng2-file-upload";   
+
 
 
 const routes:Routes = [
@@ -64,12 +65,13 @@ const routes:Routes = [
     ProductsSectionComponent,
     UserComponent,
     RegisterComponent,
-   // FileSelectDirective 
+  
     PaginationComponent,
     TopSellingComponent,
     FooterComponent,
     AboutComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    //FileSelectDirective 
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ const routes:Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    FileUploadModule
  
   ],
   providers: [

@@ -23,7 +23,8 @@
                 <div class="login_box_img" style="height: 47em;">
                     <div class="hover">
                         <h4>Already have an account?</h4>
-                        <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+                        <p>There are advances being made in science and technology everyday, and a good example of this
+                            is the</p>
                         <a class="button button-account" routerLink="/Login">Login Now</a>
                     </div>
                 </div>
@@ -31,14 +32,16 @@
             <div class="col-lg-6">
                 <div class="login_form_inner register_form_inner">
                     <h3>Create an account</h3>
-                    <form class="row login_form" [formGroup]="registerationForm" (ngSubmit)="addUser()">
+                    <form class="row login_form" [formGroup]="registerationForm"
+                     (ngSubmit)="onSubmit()">
+                        <!--" -->
 
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" (focusout)="UniqueUsername(registerationForm)"
                                 formControlName="Username" placeholder="Username" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Username'">
                         </div>
-                        <div *ngIf="Username.errors && (Username.dirty || Username.touched)"
+                        <div *ngIf="Username.errors && (Username.dirty || Username.touched || isValidFormSubmitted)"
                             class="alert alert-danger col-12">
 
                             <div *ngIf="Username.errors.required" class="text-left">
@@ -60,7 +63,8 @@
                                 formControlName="Email" placeholder="Email Address" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Email Address'">
                         </div>
-                        <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-danger col-12">
+                        <div *ngIf="Email.errors && (Email.dirty || Email.touched || isValidFormSubmitted)"
+                            class="alert alert-danger col-12">
 
                             <div *ngIf="Email.errors.required" class="text-left">
                                 Email field is required.
@@ -78,17 +82,17 @@
 
                         <div class="col-md-12 form-group">
                             <input type="password" class="form-control" formControlName="Password"
-                                placeholder="Password" minlength="6" onfocus="this.placeholder = ''"
+                                placeholder="Password" minlength="8" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Password'">
                         </div>
-                        <div *ngIf="Password.errors && (Password.dirty || Password.touched)"
+                        <div *ngIf="Password.errors && (Password.dirty || Password.touched || isValidFormSubmitted)"
                             class="alert alert-danger col-12">
 
                             <div *ngIf="Password.errors.required" class="text-left">
                                 Password field is required.
                             </div>
                             <div *ngIf="Password.errors.minlength" class="text-left">
-                                Password must be at least 6 characters long.
+                                Password must be at least 8 characters long.
                             </div>
 
 
@@ -99,10 +103,10 @@
                                 placeholder="Confirm Password" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Confirm Password'">
                         </div>
-                        <div *ngIf="ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched)"
+                        <div *ngIf="ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched || isValidFormSubmitted)"
                             class="alert alert-danger col-12">
 
-                            <div *ngIf="ConfirmPassword.errors.required" class="text-left">
+                            <div *ngIf="ConfirmPassword.errors?.required" class="text-left">
                                 Please Re-enter password.
                             </div>
                             <div *ngIf="ConfirmPassword.errors?.passwordMismatch" class="text-left">
@@ -111,7 +115,7 @@
 
 
                         </div>
-                        
+
                         <div class="col-md-12 form-group text-left">
 
                             <input style="position: relative;top:1em" class="offset-1" type="radio" value="m"
@@ -123,21 +127,23 @@
                         </div>
                         <!-- <div *ngIf="Gender.errors" class="alert alert-danger col-12"> -->
 
-                            <div class="text-left alert alert-danger col-12" *ngIf="Gender.errors && isValidFormSubmitted">
-                               
-                                <div *ngIf="Gender.errors.required" class="text-left">
-                                    Gender is required.
-                                </div>
+                        <div class="text-left alert alert-danger col-12" *ngIf="Gender.errors && isValidFormSubmitted">
+
+                            <div *ngIf="Gender.errors.required" class="text-left">
+                                Gender is required.
                             </div>
-                            <!--  
+                        </div>
+                        <!--  
                         </div> -->
-                        <div class="file-upload col-md-12">
-                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" />
-                            <!--ng2FileSelect [uploader]="uploader" -->
-                            <!-- <button type="button" class="btn btn-primary">
-                                (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"
-                                Upload
-                            </button> -->
+                        <div class="col-md-12">
+                            <label><b>Profile Image:</b>
+                            <div>
+
+                                <input type="file" id="image" ng2FileSelect [uploader]="uploader"
+                                 [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"  accept="image/x-png,image/gif,image/jpeg" />
+
+                            </div>
+                        </label>
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
@@ -148,7 +154,8 @@
 
 
                         <div class="col-md-12 form-group">
-                            <input type="submit" value="submit" value="Register" class="button button-register w-100">
+                            <input type="submit" value="Register" class="button button-register w-100"  >
+                            <!-- (click)="uploader.uploadAll()" -->
                             <!-- [disabled]="!isValid" -->
                         </div>
                     </form>
