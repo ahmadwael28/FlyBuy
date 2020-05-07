@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       file.withCredentials = false;
     };
     this.uploader.onCompleteItem = (item: any, status: any) => {
-      //this.isValidFormSubmitted=true;
+     
       ("OnComplete Upload...");
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
@@ -188,7 +188,7 @@ export class RegisterComponent implements OnInit {
   addUser() {
     console.log('AddUser is Invoked...');
 
-   // if (this.registerationForm.valid) { ///false
+ 
       console.log(this.registerationForm.value);
       let { Email, Username, Password, Gender } = this.registerationForm.value;
       let user;
@@ -212,7 +212,7 @@ export class RegisterComponent implements OnInit {
         if (this.userAddedSuccMess) {
           console.log("User Added Successfully!");
           await this.auth.login(user);
-          this.router.navigateByUrl('/Users');
+         
           this.toastr.success('Your account has been registered successfully!');
         
 
@@ -223,11 +223,10 @@ export class RegisterComponent implements OnInit {
       },
         (err) => {
           console.log(err);
-          //  return null;
+        
         });
 
 
-   // }
   }
 
 }

@@ -42,21 +42,18 @@
                                 onblur="this.placeholder = 'Username'">
                         </div>
                         <div *ngIf="Username.errors && (Username.dirty || Username.touched || isValidFormSubmitted)"
-                            class="alert alert-danger col-12">
+                            class=" col-12">
 
-                            <div *ngIf="Username.errors.required" class="text-left">
+                            <div *ngIf="Username.errors.required" class="text-left alert alert-danger">
                                 Username field is required.
                             </div>
-                            <div *ngIf="Username.errors.patterns" class="text-left">
+                            <div *ngIf="Username.errors.patterns" class="text-left alert alert-danger">
                                 Invalid Username Format.
                             </div>
-                            <div class="text-left" *ngIf="Username.errors?.alreadyExists">
+                            <div class="text-left" *ngIf="Username.errors?.alreadyExists alert alert-danger">
                                 Username already exists.
                             </div>
-
-
                         </div>
-
 
                         <div class="col-md-12 form-group">
                             <input type="email" class="form-control" (focusout)="UniqueEmail(registerationForm)"
