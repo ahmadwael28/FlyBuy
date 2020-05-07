@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   router;
   Product;
   isDataLoaded:boolean = false;
+  navigationSubscription;
   constructor(private Service:BackendLinkService,
     myActivatedRoute:ActivatedRoute,
     myRouter: Router) { 
@@ -32,6 +33,10 @@ export class ProductDetailsComponent implements OnInit {
 
   
   ngOnInit(): void {
+
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      location.reload();
+    });
    
     let observable = this.Service.getProductById(this.ID);
   let dispose = observable.subscribe((data) => {
