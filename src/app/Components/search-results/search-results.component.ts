@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule, ActivatedRouteSnapshot, RouterLink, NavigationEnd } from '@angular/router';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class SearchResultsComponent implements OnInit {
   SearchKey;
 
   SearchResults;
+  navigationSubscription;
   constructor(private Service:BackendLinkService,
     myActivatedRoute:ActivatedRoute,
     myRouter: Router) { 
@@ -23,7 +24,16 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.GetSearchResults()
 
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      location.reload();
+    });
+  }
+
+
+  GetSearchResults()
+  {
     let SearchResultsobservable = this.Service.SearchAllProducts(this.SearchKey);
   let SearchResultdispose = SearchResultsobservable.subscribe((data) => {
     
