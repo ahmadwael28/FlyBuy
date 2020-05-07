@@ -8,6 +8,7 @@
                         <tr>
                             <th scope="col">Product</th>
                             <th scope="col">Price</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,12 +19,16 @@
                                         <img width="150px" [src]=item.Image alt="">
                                     </div>
                                     <div class="media-body">
-                                        <h4>{{item.Name}}</h4>
+                                        <h4 class="card-product__title"><a [routerLink]="['/Products/', item._id]">{{item.Name}}</a></h4>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <h5>{{item.Price}} EGP</h5>
+                            </td>
+
+                            <td>
+                                <button><i class="ti-shopping-cart"></i></button>
                             </td>
                         </tr>
                     </tbody>
