@@ -20,15 +20,18 @@ export class UserService {
   {
     console.log("Check if email exists...")
     let response = this.myClient.get(`${this.baseURL}/ValidateEmail/${email}`);
+    return response;
   }
   isUsernameExists(username)
   {
     console.log("Check if username exists...")
     let response = this.myClient.get(`${this.baseURL}/ValidateUsername/${username}`);
+    return response;
   }
   AddUser(user)
   {
       console.log("Post User..");
       let response = this.myClient.post(`${this.baseURL}`,user);
+      return response;
   }
 }

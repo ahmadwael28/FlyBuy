@@ -24,23 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              //"src/styles.css"
-              // "src/assets/vendors/bootstrap/bootstrap.min.css",           
-              // "src/assets/vendors/fontawesome/css/all.min.css",         
-              // "src/assets/vendors/themify-icons/themify-icons.css",    
-              // "src/assets/vendors/nice-select/nice-select.css",       
-              // "src/assets/vendors/owl-carousel/owl.theme.default.min.css",
-              // "src/assets/vendors/owl-carousel/owl.carousel.min.css"  
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
+             
             ],
             "scripts": [
-              // "src/assets/vendors/jquery/jquery-3.2.1.min.js",
-              // "src/assets/vendors/bootstrap/bootstrap.bundle.min.js",
-              // "src/assets/vendors/skrollr.min.js",    
-              // "src/assets/vendors/owl-carousel/owl.carousel.min.js",
-              // "src/assets/vendors/nice-select/jquery.nice-select.min.js",
-              // "src/assets/vendors/jquery.ajaxchimp.min.js",
-              // "src/assets/vendors/mail-script.js",
-              // "src/assets/js/main.js"
+              
             ]
           },
           "configurations": {

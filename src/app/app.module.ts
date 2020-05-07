@@ -33,6 +33,12 @@ import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { AboutComponent } from './Components/about/about.component';
 import { SearchResultsComponent } from './Components/search-results/search-results.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from "ng2-file-upload";   
+
+
+
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
@@ -59,18 +65,24 @@ const routes:Routes = [
     ProductsSectionComponent,
     UserComponent,
     RegisterComponent,
+  
     PaginationComponent,
     TopSellingComponent,
     FooterComponent,
     AboutComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    //FileSelectDirective 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+    FileUploadModule
+ 
   ],
   providers: [
     BackendLinkService,
