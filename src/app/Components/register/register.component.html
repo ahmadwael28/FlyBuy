@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="login_box_img" style="height: 47em;">
+                <div class="login_box_img" style="height: 67em;">
                     <div class="hover">
                         <h4>Already have an account?</h4>
                         <p>There are advances being made in science and technology everyday, and a good example of this
@@ -32,33 +32,40 @@
             <div class="col-lg-6">
                 <div class="login_form_inner register_form_inner">
                     <h3>Create an account</h3>
-                    <form class="row login_form" [formGroup]="registerationForm"
-                     (ngSubmit)="onSubmit()">
+                    <form class="row login_form" [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
                         <!--" -->
 
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" (focusout)="UniqueUsername(registerationForm)"
                                 formControlName="Username" placeholder="Username" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Username'">
+                                onblur="this.placeholder = 'Username'" pattern="^[a-z0-9_-]{3,16}$">
                         </div>
                         <div *ngIf="Username.errors && (Username.dirty || Username.touched || isValidFormSubmitted)"
-                            class=" col-12">
+                            class=" col-12  alert alert-danger">
 
-                            <div *ngIf="Username.errors.required" class="text-left alert alert-danger">
+                            <div *ngIf="Username.errors?.required" class="text-left">
                                 Username field is required.
                             </div>
-                            <div *ngIf="Username.errors.patterns" class="text-left alert alert-danger">
-                                Invalid Username Format.
-                            </div>
-                            <div class="text-left" *ngIf="Username.errors?.alreadyExists alert alert-danger">
+                        
+                            <div class="text-left" *ngIf="Username.errors?.alreadyExists">
                                 Username already exists.
+                            </div>
+                            <div class="text-left" *ngIf="Username.errors?.pattern">
+                                Invalid Username Format:
+                                <ul type="disc">
+                                    <li>Must contain Alphanumerics only</li>
+                                    <li>May contain '-' or '_'</li>
+                                    <li>Accept lowercase only</li>
+                                    <li>No spaces are allowed</li>
+                                </ul>
                             </div>
                         </div>
 
                         <div class="col-md-12 form-group">
                             <input type="email" class="form-control" (focusout)="UniqueEmail(registerationForm)"
                                 formControlName="Email" placeholder="Email Address" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Email Address'">
+                                onblur="this.placeholder = 'Email Address'"
+                                pattern="^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$">
                         </div>
                         <div *ngIf="Email.errors && (Email.dirty || Email.touched || isValidFormSubmitted)"
                             class="alert alert-danger col-12">
@@ -103,7 +110,7 @@
                         <div *ngIf="ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched || isValidFormSubmitted)"
                             class="alert alert-danger col-12">
 
-                            <div *ngIf="ConfirmPassword.errors?.required" class="text-left">
+                            <div *ngIf="ConfirmPassword.errors.required" class="text-left">
                                 Please Re-enter password.
                             </div>
                             <div *ngIf="ConfirmPassword.errors?.passwordMismatch" class="text-left">
@@ -133,27 +140,30 @@
                         <!--  
                         </div> -->
                         <div class="col-md-12">
-                            <label><b>Profile Image:</b>
-                            <div>
+                            <label id="file" class="text-left"><b>Choose Profile Image</b>
+                             
+                               <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
+                                        [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
+                                        accept="image/x-png,image/gif,image/jpeg" width="3em" />
 
-                                <input type="file" id="image" ng2FileSelect [uploader]="uploader"
-                                 [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"  accept="image/x-png,image/gif,image/jpeg" />
-
-                            </div>
-                        </label>
+                            
+                            </label>
+                        </div>
+                        <div class="alert alert-success col-md-12" *ngIf="isValid">
+                           Passed All Validations 
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
-                                <input type="checkbox" id="f-option2" name="selector">
+                                <input type="checkbox" id="f-option2" name="selector"  [(ngModel)]=" isLoggedInChecked" 
+                                [ngModelOptions]="{standalone: true}">
                                 <label for="f-option2">Keep me logged in</label>
                             </div>
                         </div>
 
 
                         <div class="col-md-12 form-group">
-                            <input type="submit" value="Register" class="button button-register w-100"  >
-                            <!-- (click)="uploader.uploadAll()" -->
-                            <!-- [disabled]="!isValid" -->
+                            <input type="submit" value="Register" style="color:white" class="button button-register w-100">
+                            
                         </div>
                     </form>
                 </div>

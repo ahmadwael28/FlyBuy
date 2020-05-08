@@ -25,6 +25,8 @@ export class RegisterComponent implements OnInit {
   isValidFormSubmitted: boolean = false;
   fileItem;
   fileValue: string = "";
+  isLoggedInChecked: boolean = false;
+
 
   constructor(private Service: UserService, private router: Router, private toastr: ToastrService,
     private auth: AuthService) {
@@ -32,19 +34,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    window.localStorage.removeItem('refresh');
-  
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
     this.uploader.onCompleteItem = (item: any, status: any) => {
-     
+
       ("OnComplete Upload...");
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
       this.addUser();
-      this.toastr.success('Your account has been registered successfully!');
+     
     };
   }
   registerationForm = new FormGroup({
@@ -134,7 +133,8 @@ export class RegisterComponent implements OnInit {
     if (email && email.indexOf("@") != -1) {
 
       let [, domain] = email.split("@");
-      if (!domain.includes('.com') || email.indexOf(".")< (email.indexOf("@")+5)) { //check domain 
+      var re = /^[A-Za-z.]+$/;
+      if (!domain.includes('.com') || email.indexOf(".") <= (email.indexOf("@") + 5) || !re.test(domain)) { //check domain 
         return { validEmailDomain: true };
 
       }
@@ -146,8 +146,10 @@ export class RegisterComponent implements OnInit {
     const passwordContrl = formGroup.get('Password');
     const confirmPasswordContrl = formGroup.get('ConfirmPassword');
     console.log(confirmPasswordContrl.value)
+    if (confirmPasswordContrl.value == "")
+      return confirmPasswordContrl.setErrors({ required: true })
 
-    if (passwordContrl.value === confirmPasswordContrl.value) {
+    else if (passwordContrl.value === confirmPasswordContrl.value) {
       //console.log('Matched..');
       return confirmPasswordContrl.setErrors(null);
 
@@ -168,12 +170,11 @@ export class RegisterComponent implements OnInit {
     console.log("Inside submit..");
     this.isValidFormSubmitted = true;
 
-    console.log("fileValue",this.fileValue);
+    console.log("fileValue", this.fileValue);
     console.log(this.fileItem);
-    
-    if (this.registerationForm.valid)
-    {
-      if (this.fileValue!="") {
+
+    if (this.registerationForm.valid) {
+      if (this.fileValue != "") {
         console.log('User chose a photo to upload');
         this.uploader.uploadAll();
       }
@@ -182,49 +183,52 @@ export class RegisterComponent implements OnInit {
         this.addUser();
       }
     }
-   
+
 
   }
   addUser() {
     console.log('AddUser is Invoked...');
 
- 
-      console.log(this.registerationForm.value);
-      let { Email, Username, Password, Gender } = this.registerationForm.value;
-      let user;
-      console.log(this.fileValue);
-      if (this.fileValue=="")
-       user = {
-          "Email": Email, "Username": Username, "Password": Password,
-          "Gender": Gender
-        };
-       
-      else
-        user = {
-          "Email": Email, "Username": Username, "Password": Password,
-          "Gender": Gender, "Image": this.fileItem?.file.name
-        };
-      let observable = this.Service.AddUser(user);
 
-      let dispose = observable.subscribe(async(data) => {
-        console.log(data);
-        this.userAddedSuccMess = data;
-        if (this.userAddedSuccMess) {
-          console.log("User Added Successfully!");
-          await this.auth.login(user);
-         
-          this.toastr.success('Your account has been registered successfully!');
-        
+    console.log(this.registerationForm.value);
+    let { Email, Username, Password, Gender } = this.registerationForm.value;
+    let user;
+    console.log(this.fileValue);
+    if (this.fileValue == "")
+      user = {
+        "Email": Email, "Username": Username, "Password": Password,
+        "Gender": Gender
+      };
 
-        }
+    else
+      user = {
+        "Email": Email, "Username": Username, "Password": Password,
+        "Gender": Gender, "Image": this.fileItem?.file.name
+      };
+    let observable = this.Service.AddUser(user);
 
-        dispose.unsubscribe();
+    let dispose = observable.subscribe((data) => {
+      console.log(data);
+      this.userAddedSuccMess = data;
+      if (this.userAddedSuccMess) {
+        console.log("User Added Successfully!");
+        if (this.isLoggedInChecked)
+          this.auth.login(user);
+        else
+          this.router.navigateByUrl('/Login');
 
-      },
-        (err) => {
-          console.log(err);
-        
-        });
+         this.toastr.success('Your account has been registered successfully!');
+
+
+      }
+
+      dispose.unsubscribe();
+
+    },
+      (err) => {
+        console.log(err);
+
+      });
 
 
   }

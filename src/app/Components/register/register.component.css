@@ -1,0 +1,13 @@
+#file{
+    padding: 10px;
+    background: rgb(11, 132, 207); 
+    display: table;
+    color: #fff;
+    border-radius:5em;
+     }
+
+
+
+input[type="file"] {
+    display: none;
+}
