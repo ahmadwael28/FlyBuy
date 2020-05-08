@@ -1,0 +1,16 @@
+.order-container{
+    border: solid gray 1px;
+    border-radius: 10px;
+}
+
+.pending{
+    background-color: yellow;
+}
+
+.accepted{
+    background-color: green;
+}
+
+.canceled{
+    background-color: red;
+}

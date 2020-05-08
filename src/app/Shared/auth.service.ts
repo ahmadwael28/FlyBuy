@@ -77,6 +77,11 @@ export class AuthService {
     )
   }
 
+  getUserOrders(id)
+  {
+    return this.http.request('GET', `${this.baseURL}/Orders/user/${id}`);
+  }
+
   // Error 
   handleError(error: HttpErrorResponse) {
     let msg = '';
