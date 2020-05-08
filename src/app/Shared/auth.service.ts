@@ -17,8 +17,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public router: Router
-  ) {
-  }
+  ) {}
 
   // Login
    login(user) {
@@ -69,7 +68,7 @@ export class AuthService {
     //this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
     let api = `${this.baseURL}/Users/UserToken`;
     //console.log("this.headers",this.headers);
-    return this.http.get(api,{headers: this.headers.set('x-access-token',localStorage.getItem('access_token')) }).pipe(
+    return this.http.get(api,{headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
