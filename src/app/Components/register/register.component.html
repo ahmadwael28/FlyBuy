@@ -140,9 +140,9 @@
                         <!--  
                         </div> -->
                         <div class="col-md-12">
-                            <label class="text-left"><b>Profile Image:</b>
+                            <label id="file" class="text-left"><b>Choose Profile Image</b>
                              
-                               <input type="file" id="image" ng2FileSelect [uploader]="uploader"
+                               <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
                                         [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
                                         accept="image/x-png,image/gif,image/jpeg" width="3em" />
 
@@ -162,7 +162,7 @@
 
 
                         <div class="col-md-12 form-group">
-                            <input type="submit" value="Register" class="button button-register w-100">
+                            <input type="submit" value="Register" style="color:white" class="button button-register w-100">
                             
                         </div>
                     </form>

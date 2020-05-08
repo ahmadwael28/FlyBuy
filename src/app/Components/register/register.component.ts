@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
       this.addUser();
-      this.toastr.success('Your account has been registered successfully!');
+     
     };
   }
   registerationForm = new FormGroup({
@@ -217,7 +217,7 @@ export class RegisterComponent implements OnInit {
         else
           this.router.navigateByUrl('/Login');
 
-        this.toastr.success('Your account has been registered successfully!');
+         this.toastr.success('Your account has been registered successfully!');
 
 
       }
