@@ -57,7 +57,7 @@
                                                     <h3 *ngIf="order.Status == 'Canceled'" class="text-danger">{{order.Status}}</h3>
                                                     <h3 *ngIf="order.Status == 'Accepted'" class="text-success">{{order.Status}}</h3>
                                                 </td>
-                                                <td><button *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'" class="btn btn-danger">Cancel</button></td>
+                                                <td><button *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'" class="btn btn-danger" (click)= cancelOrder(order._id) >Cancel</button></td>
                                             </tr>
                                             
                                             

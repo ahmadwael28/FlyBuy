@@ -57,6 +57,12 @@ export class UserComponent implements OnInit {
   // })
 }
 
+  cancelOrder(id)
+  {
+    this.authService.cancelOrder(id);
+    location.reload();
+  }
+
   ngOnInit(): void {
     window.localStorage.removeItem('refresh');
     //this.getUser();

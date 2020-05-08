@@ -9,6 +9,7 @@ import { Router,ActivatedRoute } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  
 
   baseURL: string='http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -80,6 +81,14 @@ export class AuthService {
   getUserOrders(id)
   {
     return this.http.request('GET', `${this.baseURL}/Orders/user/${id}`);
+  }
+
+  cancelOrder(id) {
+    //return this.http.request('DELETE', `${this.baseURL}/Orders/${id}`)
+    this.http.delete(`${this.baseURL}/Orders/${id}`)
+  .subscribe(
+    err => console.error(err)
+  );
   }
 
   // Error 
