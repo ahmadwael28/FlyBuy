@@ -13,6 +13,7 @@ export class AuthService {
   baseURL: string='http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser ;
+  loggedIn:boolean=false;
 
   constructor(
     private http: HttpClient,
@@ -26,23 +27,37 @@ export class AuthService {
     console.log("Login");
     let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
       .subscribe( (res: any) => {
-        console.log("res",res);
         localStorage.setItem('access_token', res.tokenCreated)
-        console.log('access_token', res.tokenCreated);
-
+        this.loggedIn=true;
         if(res){
-        // this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
-          console.log("this.headers",this.headers.getAll('x-access-token'));
         this.getUserProfile().subscribe((res) => {
-        console.log('getUserProfile response', res);
          this.currentUser =  res;
-        console.log('currentUser', this.currentUser);
         this.router.navigateByUrl('Users');
         })
       }
-      })
-     // console.log(result);
+      },(err)=>{
+        console.log("Invalid Password!",err);
+      
+      }
+      )
+      console.log("result",result);
       return result;
+  }
+
+  ValidateCredentials(user){
+    let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
+    .subscribe( (res: any) => {
+      localStorage.setItem('access_token', res.tokenCreated)
+      this.loggedIn=true;
+      
+
+    },(err)=>{
+      console.log("Invalid Password!",err);
+      this.loggedIn=false;
+    }
+    )
+    
+    return this.loggedIn;
   }
 
   getToken() {

@@ -61,7 +61,7 @@ export class TopSellingComponent implements OnInit {
       addToCartDispose.unsubscribe();
     },
     (err)=>{
-      console.log(err);
+      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
     });
     }
     else
