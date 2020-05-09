@@ -13,10 +13,96 @@
                         <div class="col-12 text-center">
 
 
-                            <img class="author_img rounded-circle" width="200px" [src]=currentUser.Image alt="">
-                            <input class="form-control m-2" type="text" [value]=currentUser.Username>
-                            <input class="form-control m-2" type="text" [value]=currentUser.Email>
+                        <!------------- modal content start ------------->
+
+                        <form class="row login_form" [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
+                        <!--" -->
+
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" (focusout)="UniqueUsername(registerationForm)"
+                                formControlName="Username" placeholder="Username" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Username'" pattern="^[a-z0-9_-]{3,16}$">
+                        </div>
+                        <div *ngIf="Username.errors && (Username.dirty || Username.touched || isValidFormSubmitted)"
+                            class=" col-12  alert alert-danger">
+
+                            <div *ngIf="Username.errors?.required" class="text-left">
+                                Username field is required.
+                            </div>
+                        
+                            <div class="text-left" *ngIf="Username.errors?.alreadyExists">
+                                Username already exists.
+                            </div>
+                            <div class="text-left" *ngIf="Username.errors?.pattern">
+                                Invalid Username Format:
+                                <ul type="disc">
+                                    <li>Must contain Alphanumerics only</li>
+                                    <li>May contain '-' or '_'</li>
+                                    <li>Accept lowercase only</li>
+                                    <li>No spaces are allowed</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <input type="email" class="form-control" (focusout)="UniqueEmail(registerationForm)"
+                                formControlName="Email" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Email Address'"
+                                pattern="^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$">
+                        </div>
+                        <div *ngIf="Email.errors && (Email.dirty || Email.touched || isValidFormSubmitted)"
+                            class="alert alert-danger col-12">
+
+                            <div *ngIf="Email.errors.required" class="text-left">
+                                Email field is required.
+                            </div>
+                            <div class="text-left" *ngIf="Email.errors?.pattern ||Email.errors?.validEmailDomain">
+                                Invalid Email format
+                            </div>
+                            <div class="text-left" *ngIf="Email.errors?.alreadyExists">
+                                Email already exists.
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-md-12 form-group text-left">
+
+                            <input style="position: relative;top:1em" class="offset-1" type="radio" value="m"
+                                formControlName="Gender"> &nbsp;Male
+                            <input style="position: relative;top:1em" class="offset-3" type="radio" value="f"
+                                formControlName="Gender"> &nbsp;Female
+
+
+                        </div>
+                        <!-- <div *ngIf="Gender.errors" class="alert alert-danger col-12"> -->
+
+                        <div class="text-left alert alert-danger col-12" *ngIf="Gender.errors && isValidFormSubmitted">
+
+                            <div *ngIf="Gender.errors.required" class="text-left">
+                                Gender is required.
+                            </div>
+                        </div>
+                        <!--  
+                        </div> -->
+                        <div class="col-md-12">
+                            <label id="file" class="text-left"><b>Choose Profile Image</b>
+                             
+                               <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
+                                        [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
+                                        accept="image/x-png,image/gif,image/jpeg" width="3em" />
+
                             
+                            </label>
+                        </div>
+                        <div class="alert alert-success col-md-12" *ngIf="isValid">
+                           Passed All Validations 
+                        </div>
+                    </form>
+
+                        <!------------- modal content end ----------------->
+
                         </div>
                     </div>
                 </div>
