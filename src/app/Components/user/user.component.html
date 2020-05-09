@@ -9,14 +9,19 @@
                             <img class="author_img rounded-circle" width="200px" [src]=currentUser.Image alt="">
                             <h2>{{currentUser.Username}}</h2>
                             <h4>{{currentUser.Email}}</h4>
+                            <br>
+                            <button><i class="ti-settings"></i></button>
+
 
                             <p>
                             </p>
                             <div class="br"></div>
 
-                            <div><h3 class="text-left">Your Orders</h3></div>
+                            <div>
+                                <h3 class="text-left">Your Orders</h3>
+                            </div>
 
-                            <div class="cart_inner order-container mt-3"  *ngFor="let order of userOrders; index as i;">
+                            <div class="cart_inner order-container mt-3" *ngFor="let order of userOrders; index as i;">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -51,22 +56,30 @@
                                             </tr>
 
                                             <tr>
-                                                <td><h3>Order Status</h3></td>
                                                 <td>
-                                                    <h3 *ngIf="order.Status == 'Pending'" class="text-warning">{{order.Status}}</h3>
-                                                    <h3 *ngIf="order.Status == 'Canceled'" class="text-danger">{{order.Status}}</h3>
-                                                    <h3 *ngIf="order.Status == 'Accepted'" class="text-success">{{order.Status}}</h3>
+                                                    <h3>Order Status</h3>
                                                 </td>
-                                                <td><button *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'" class="btn btn-danger" (click)= cancelOrder(order._id) >Cancel</button></td>
+                                                <td>
+                                                    <h3 *ngIf="order.Status == 'Pending'" class="text-warning">
+                                                        {{order.Status}}</h3>
+                                                    <h3 *ngIf="order.Status == 'Canceled'" class="text-danger">
+                                                        {{order.Status}}</h3>
+                                                    <h3 *ngIf="order.Status == 'Accepted'" class="text-success">
+                                                        {{order.Status}}</h3>
+                                                </td>
+                                                <td><button
+                                                        *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'"
+                                                        class="btn btn-danger"
+                                                        (click)=cancelOrder(order._id)>Cancel</button></td>
                                             </tr>
-                                            
-                                            
+
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 
-                            
+
                         </div>
                     </aside>
                 </div>
