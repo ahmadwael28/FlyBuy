@@ -134,7 +134,7 @@ export class RegisterComponent implements OnInit {
 
       let [, domain] = email.split("@");
       var re = /^[A-Za-z.]+$/;
-      if (!domain.includes('.com') || email.indexOf(".") <= (email.indexOf("@") + 5) || !re.test(domain)) { //check domain 
+      if (!(domain.includes('.com') || domain.includes('.eg')) || email.indexOf(".") <= (email.indexOf("@") + 5) || !re.test(domain)) { //check domain 
         return { validEmailDomain: true };
 
       }

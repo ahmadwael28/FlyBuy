@@ -21,11 +21,14 @@
                     </ul>
                     <p>{{Product.Description}}</p>
                     <div class="product_count">
+                        <div>
                         <label for="qty">Quantity:</label>
-                        <button onclick="" class="increase items-count" type="button"></button>
-                        <input type="number" name="qty" id="sst" size="1" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                        <button onclick="" class="reduced items-count" type="button"></button>
-                         <a class="button primary-btn" href="#">Add to Cart</a>               
+                        <a (click)="incrementQuantity(Product._id)" class="btn btn-primary mr-2" type="button">+</a>
+                        <!-- <input type="number" name="qty" id="sst" size="1" maxlength="12" value="1" title="Quantity:" class="input-text qty"> -->
+                        <a (click)="decrementQuantity(Product._id)" class="btn btn-primary mr-2" type="button">-</a>
+                        </div>
+                        <br/>
+                    <a class="button primary-btn" (click)="addToCart(Product._id)">Add to Cart</a>               
                     </div>
                     
                 </div>

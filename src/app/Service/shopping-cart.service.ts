@@ -28,4 +28,31 @@ export class ShoppingCartService {
     console.log("response",response);
     return response;
   }
+  incrementProductQuantity(productId){
+    console.log("increment Product Quantity")
+    console.log("productId",productId);
+    let response= this.myClient.patch(`${this.baseURL}/ShoppingCarts/UpdateProduct/${productId}/inc`,
+    {headers:{'x-access-token':this.authService.getToken()}}).pipe(
+      map((res: Response) => {
+        console.log("res",res);
+        return res || {}
+      }),
+      catchError(this.authService.handleError)
+    )
+    console.log("response",response);
+    return response;
+  }
+  decrementProductQuantity(productId){
+    console.log("decrement Product Quantity")
+    console.log("productId",productId);
+    let response= this.myClient.patch(`${this.baseURL}/ShoppingCarts/UpdateProduct/${productId}/dec`,
+    {headers:{'x-access-token':this.authService.getToken()}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.authService.handleError)
+    )
+    console.log("response",response);
+    return response;
+  }
 }

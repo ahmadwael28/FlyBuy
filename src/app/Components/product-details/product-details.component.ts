@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,9 +17,8 @@ export class ProductDetailsComponent implements OnInit {
   Product;
   isDataLoaded:boolean = false;
   navigationSubscription;
-  constructor(private Service:BackendLinkService,
-    myActivatedRoute:ActivatedRoute,
-    myRouter: Router) { 
+  constructor(private Service:BackendLinkService,private toaster: ToastrService, private shoppingCartService:ShoppingCartService,
+    myActivatedRoute:ActivatedRoute,myRouter: Router) { 
     
     this.router = myRouter;
     this.ID = myActivatedRoute.snapshot.params["id"];
@@ -54,5 +55,46 @@ export class ProductDetailsComponent implements OnInit {
     console.log(err);
   });
   }
+  addToCart(id)
+  {
+    let addToCartObservable=this.shoppingCartService.addToCart(id);
+    let addToCartDispose=addToCartObservable.subscribe((data)=>{
+      //this.productsInShoppingCart.push(data);
+      if(typeof(data)=="object")
+      {
+        this.toaster.success('This Product is Added Successfully');
 
+        console.log("Added Successfully",data);
+      }
+      addToCartDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('Product already Exists in your shopping cart, Do you want to change its Quantity?');
+      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
+    });
+  }
+  incrementQuantity(id)
+  {
+    let incrementObservable=this.shoppingCartService.incrementProductQuantity(id);
+    let incrementDispose=incrementObservable.subscribe((data)=>{
+      console.log("increment",data);
+      incrementDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('this product in out of stock!');
+      console.log("this product in out of stock!",err);
+    });
+  }
+  decrementQuantity(id)
+  {
+    let decrementObservable=this.shoppingCartService.decrementProductQuantity(id);
+    let decrementDispose=decrementObservable.subscribe((data)=>{
+      console.log("decrement",data);
+      decrementDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('cannot decrease product quantity less than 1!');
+      console.log("cannot decrease product quantity less than 1!",err);
+    });
+  }
 }

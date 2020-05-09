@@ -102,9 +102,12 @@ export class AuthService {
     if (error.error instanceof ErrorEvent) {
       // client-side error
       msg = error.error.message;
+      console.log("client-side error",msg)
     } else {
       // server-side error
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      console.log("server-side error",msg)
+
     }
     return throwError(msg);
   }

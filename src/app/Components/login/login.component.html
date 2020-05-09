@@ -32,7 +32,7 @@
             <div class="col-lg-6">
                 <div class="login_form_inner">
                     <h3>Log in to enter</h3>
-                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()" >
+                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
                         <!-- [ngClass]="{ 'is-invalid': isSubmitted && formControls.Email.errors }" first div -->
                        
                         <div class="col-md-12 form-group" >
@@ -69,7 +69,7 @@
                            <div class="col-md-12 form-group">
                             <div class="creat_account">
                                 <input type="checkbox" id="f-option2" name="selector">
-                                <label for="f-option2" *ngIf="authService.getToken">Keep me logged in</label>
+                                <label for="f-option2" >Keep me logged in</label>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">

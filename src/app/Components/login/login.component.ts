@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from
 import { AuthService } from './../../shared/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/Service/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   passwordCorrect;
   isSubmitted = false;
   isDataEntered: boolean = false;
+  isLoggedInChecked: boolean = true;
   passedCredentials;
   constructor(public authService: AuthService,public router: Router,private userService: UserService) {
     //this.isDataEntered=true;
@@ -25,12 +27,12 @@ export class LoginComponent implements OnInit {
   }
   ValidateEmail(control: AbstractControl)//AbstractControl>>Parent of Form Controls
   {
-
     let email = control.value;
     if (email && email.indexOf("@") != -1) {
 
       let [, domain] = email.split("@");
-      if ( !(domain.includes('.com') || domain.includes('.eg'))|| email.indexOf(".")<= (email.indexOf("@")+5)) { //check domain 
+      var re = /^[A-Za-z.]+$/;
+      if (!(domain.includes('.com') || domain.includes('.eg')) || email.indexOf(".") <= (email.indexOf("@") + 5) || !re.test(domain)) { //check domain 
         return { validEmailDomain: true };
 
       }
@@ -122,8 +124,24 @@ export class LoginComponent implements OnInit {
     // if (this.loginForm.invalid) {
     //   return;
     // }
-   this.authService.login(this.loginForm.value);
-   console.log("this.passedCredentials",this.passedCredentials);
+    this.authService.login(this.loginForm.value);
+    // if(this.isSubmitted)
+    // {
+    //   if (this.isLoggedInChecked)
+    //   {
+    //     console.log(" checked")
+    //     this.router.navigateByUrl('/Login');
+    //     this.isSubmitted = false;
+    //   }
+    //   if (!this.isLoggedInChecked)
+    //   {
+    //     console.log("not checked");
+    //     this.authService.login(this.loginForm.value);
+  
+    //   }
+  }
+    
+  // console.log("this.passedCredentials",this.passedCredentials);
   //  if(this.passedCredentials)
   //  {
   //    console.log("Correct Dredentials");
@@ -134,4 +152,4 @@ export class LoginComponent implements OnInit {
   //  }
   }
 
-}
+
