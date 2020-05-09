@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { UserService } from 'src/app/Service/user.service';
 import { Router } from '@angular/router';
@@ -46,24 +46,31 @@ export class EditUserInfoModalComponent implements OnInit {
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
       this.addUser();
-     
+      
     };
+    
+
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    this.registerationForm.controls['Username'].setValue(this.currentUser.Username);
+    this.registerationForm.controls['Email'].setValue(this.currentUser.Email);
+    this.registerationForm.controls['Gender'].setValue(this.currentUser.Gender);
+
+}
+
   registerationForm = new FormGroup({
 
     Email: new FormControl('', [Validators.required,
-    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$"),
-    this.ValidateEmail]),//
-    Username: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9_-]{3,16}$")]),
-    Password: new FormControl('', [Validators.required, Validators.minLength(8),
-    Validators.maxLength(16)]),
-    ConfirmPassword: new FormControl('', [Validators.required]),
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$"),this.ValidateEmail]),
+    Username: new FormControl( '', [Validators.required, Validators.pattern("^[a-z0-9_-]{3,16}$")]),
     Gender: new FormControl('', [Validators.required])
 
-  },
-    {
-      validators: this.CheckMatchedPasswords.bind(this)
-    })
+  })
+
+
+
   UniqueUsername(formGroup: FormGroup) {
     console.log("inside Unique Username");
     const usernameContrl = formGroup.get('Username');
@@ -145,27 +152,10 @@ export class EditUserInfoModalComponent implements OnInit {
       return null;//validation passes
     }
   }
-  CheckMatchedPasswords(formGroup: FormGroup) {
-    const passwordContrl = formGroup.get('Password');
-    const confirmPasswordContrl = formGroup.get('ConfirmPassword');
-    console.log(confirmPasswordContrl.value)
-    if (confirmPasswordContrl.value == "")
-      return confirmPasswordContrl.setErrors({ required: true })
-
-    else if (passwordContrl.value === confirmPasswordContrl.value) {
-      //console.log('Matched..');
-      return confirmPasswordContrl.setErrors(null);
-
-    }
-    return confirmPasswordContrl.setErrors({ passwordMismatch: true });
-
-  }
 
 
   get Username() { return this.registerationForm.get('Username') }
   get Email() { return this.registerationForm.get('Email') }
-  get Password() { return this.registerationForm.get('Password') }
-  get ConfirmPassword() { return this.registerationForm.get('ConfirmPassword') }
   get Gender() { return this.registerationForm.get('Gender') }
   get isValid() { return this.registerationForm.valid }
 
