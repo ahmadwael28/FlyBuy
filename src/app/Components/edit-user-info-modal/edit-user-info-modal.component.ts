@@ -69,8 +69,6 @@ export class EditUserInfoModalComponent implements OnInit {
 
   })
 
-
-
   UniqueUsername(formGroup: FormGroup) {
     console.log("inside Unique Username");
     const usernameContrl = formGroup.get('Username');
@@ -79,6 +77,8 @@ export class EditUserInfoModalComponent implements OnInit {
 
       console.log('check if username exists by sending request to server')
 
+      if(usernameContrl.value != this.currentUser.Username)
+      {
       let observable = this?.Service?.isUsernameExists(usernameContrl.value);
       let dispose = observable.subscribe(async (data) => {
         console.log(data);
@@ -99,6 +99,7 @@ export class EditUserInfoModalComponent implements OnInit {
           console.log(err);
 
         });
+      }
 
     }
 
@@ -111,6 +112,8 @@ export class EditUserInfoModalComponent implements OnInit {
 
       console.log('check if email exists by sending request to server')
 
+      if(emailContrl.value != this.currentUser.Email)
+      {
       let observable = this?.Service?.isEmailExists(emailContrl.value);
       let dispose = observable.subscribe(async (data) => {
         console.log(data);
@@ -131,6 +134,7 @@ export class EditUserInfoModalComponent implements OnInit {
           console.log(err);
 
         });
+      }
 
     }
 
@@ -184,19 +188,17 @@ export class EditUserInfoModalComponent implements OnInit {
 
 
     console.log(this.registerationForm.value);
-    let { Email, Username, Password, Gender } = this.registerationForm.value;
+    let { Email, Username, Gender } = this.registerationForm.value;
     let user;
     console.log(this.fileValue);
     if (this.fileValue == "")
       user = {
-        "Email": Email, "Username": Username, "Password": Password,
-        "Gender": Gender
+        "Email": Email, "Username": Username,"Gender": Gender
       };
 
     else
       user = {
-        "Email": Email, "Username": Username, "Password": Password,
-        "Gender": Gender, "Image": this.fileItem?.file.name
+        "Email": Email, "Username": Username,"Gender": Gender, "Image": this.fileItem?.file.name
       };
     let observable = this.Service.AddUser(user);
 
