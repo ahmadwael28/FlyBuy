@@ -35,7 +35,8 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from "ng2-file-upload";   
+import { FileUploadModule } from "ng2-file-upload";
+import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';   
 
 
 
@@ -71,6 +72,7 @@ const routes:Routes = [
     FooterComponent,
     AboutComponent,
     SearchResultsComponent,
+    EditUserInfoModalComponent,
     //FileSelectDirective 
   ],
   imports: [
