@@ -14,12 +14,12 @@ export class AuthService {
   baseURL: string='http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser ;
+  loggedIn:boolean=false;
 
   constructor(
     private http: HttpClient,
     public router: Router
-  ) {
-  }
+  ) {}
 
   // Login
    login(user) {
@@ -28,23 +28,37 @@ export class AuthService {
     console.log("Login");
     let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
       .subscribe( (res: any) => {
-        console.log("res",res);
         localStorage.setItem('access_token', res.tokenCreated)
-        console.log('access_token', res.tokenCreated);
-
+        this.loggedIn=true;
         if(res){
-        // this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
-          console.log("this.headers",this.headers.getAll('x-access-token'));
         this.getUserProfile().subscribe((res) => {
-        console.log('getUserProfile response', res);
          this.currentUser =  res;
-        console.log('currentUser', this.currentUser);
         this.router.navigateByUrl('Users');
         })
       }
-      })
-     // console.log(result);
+      },(err)=>{
+        console.log("Invalid Password!",err);
+      
+      }
+      )
+      console.log("result",result);
       return result;
+  }
+
+  ValidateCredentials(user){
+    let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
+    .subscribe( (res: any) => {
+      localStorage.setItem('access_token', res.tokenCreated)
+      this.loggedIn=true;
+      
+
+    },(err)=>{
+      console.log("Invalid Password!",err);
+      this.loggedIn=false;
+    }
+    )
+    
+    return this.loggedIn;
   }
 
   getToken() {
@@ -70,7 +84,7 @@ export class AuthService {
     //this.headers=this.headers.set('x-access-token',localStorage.getItem('access_token'));
     let api = `${this.baseURL}/Users/UserToken`;
     //console.log("this.headers",this.headers);
-    return this.http.get(api,{headers: this.headers.set('x-access-token',localStorage.getItem('access_token')) }).pipe(
+    return this.http.get(api,{headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -97,9 +111,12 @@ export class AuthService {
     if (error.error instanceof ErrorEvent) {
       // client-side error
       msg = error.error.message;
+      console.log("client-side error",msg)
     } else {
       // server-side error
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      console.log("server-side error",msg)
+
     }
     return throwError(msg);
   }

@@ -10,32 +10,45 @@ export class ShoppingCartComponent implements OnInit {
 
   id;
   router;
-  productsInShoppingCart;
-  constructor(private service:ShoppingCartService,
-    myActivatedRoute:ActivatedRoute,
-    myRouter: Router) { 
+  productsInShoppingCart:Array<any>;
+  isDataLoaded:boolean = false;
+  constructor(private service:ShoppingCartService, myRouter: Router) { 
 
     this.router = myRouter;
-    this.id = myActivatedRoute.snapshot.params["id"];
   }
 
+  
   ngOnInit(): void {
     window.localStorage.removeItem('refresh');
-    let cartByUserIDObservable=this.service.getShoppingCartProductsByUserID(this.id);
-    let cartByUserIDDispose=cartByUserIDObservable.subscribe((data)=>{
-      this.productsInShoppingCart=data;
-      this.productsInShoppingCart.forEach(element => {
-        element.Image = `http://localhost:3000/static/${element.Image}`
-      });
-      cartByUserIDDispose.unsubscribe();
-    },
-    (err)=>{
-      console.log(err);
-    });
+  }
 
-    let addToCartObservable=this.service.addToCart();
-    let addToCartDispose=addToCartObservable.subscribe((data)=>{
-      
-    })
-}
+  // getUserShoppingCart(){
+  //   let cartByUserIDObservable=this.service.getUserShoppingCart();
+  //   let cartByUserIDDispose=cartByUserIDObservable.subscribe((data)=>{
+  //     //this.productsInShoppingCart=data;
+  //     this.productsInShoppingCart.forEach(element => {
+  //       element.Image = `http://localhost:3000/static/${element.Image}`;
+  //       this.isDataLoaded = true;
+  //     });
+  //     cartByUserIDDispose.unsubscribe();
+  //   },
+  //   (err)=>{
+  //     console.log(err);
+  //   });
+  // }
+  // addToCart(productId){
+  //   let addToCartObservable=this.service.addToCart(productId);
+  //   let addToCartDispose=addToCartObservable.subscribe((data)=>{
+  //     //this.productsInShoppingCart.push(data);
+  //     console.log(typeof(data));
+  //     if(typeof(data)=="object")
+  //     {
+  //     }
+  //     addToCartDispose.unsubscribe();
+  //   },
+  //   (err)=>{
+  //     console.log(err);
+  //   });
+  // }
+
 }

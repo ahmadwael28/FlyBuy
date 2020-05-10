@@ -32,21 +32,14 @@
             <div class="col-lg-6">
                 <div class="login_form_inner">
                     <h3>Log in to enter</h3>
-                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()" >
+                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
                         <!-- [ngClass]="{ 'is-invalid': isSubmitted && formControls.Email.errors }" first div -->
+                       
                         <div class="col-md-12 form-group" >
                             <input type="email" class="form-control" formControlName="Email" placeholder="Enter Email" >
                         </div>
-                        <!-- <div *ngIf="isSubmitted && formControls.Email.errors" class="alert alert-danger">
-                            <div *ngIf="formControls.Email.errors.required">Email is required</div>
-                            <div *ngIf="formControls.Email.errors.email">Enter a valid email address</div>
-                        </div> -->
-                        <!-- <div *ngIf="loginForm.controls['Email'].invalid && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)" class="alert alert-danger">
-                            <div *ngIf="loginForm.controls['Email'].errors.required">
-                                Email is required.
-                            </div>
-                        </div>  -->
-                        <div *ngIf="loginForm.controls['Email'].errors && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)"  class="alert alert-danger col-12">
+                        <div *ngIf="loginForm.controls['Email'].errors && (loginForm.controls['Email'].dirty || loginForm.controls['Email'].touched)" 
+                         class="alert alert-danger col-12">
 
                             <div *ngIf="loginForm.controls['Email'].errors.required" class="text-left">
                                 Email field is required.
@@ -54,28 +47,29 @@
                             <div class="text-left" *ngIf="loginForm.controls['Email'].errors?.pattern ||loginForm.controls['Email'].errors?.validEmailDomain">
                                 Invalid Email format
                             </div>
+                          
                         </div>
-                        <!-- [ngClass]="{ 'is-invalid': isSubmitted && formControls.Password.errors}" first div -->
                         <div class="col-md-12 form-group" >
                             <input type="password" class="form-control" formControlName="Password" placeholder="Password" >
+                            <!-- (keyup)=" validateCredentials()" -->
                         </div>
-                         <!-- <div *ngIf="loginForm.controls['Password'].invalid && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)" class="alert alert-danger">
-                            <div *ngIf="loginForm.controls['Password'].errors.required">
-                                Password is required.
-                            </div>
-                        </div>  -->
                         <div *ngIf="loginForm.controls['Password'].errors && (loginForm.controls['Password'].dirty || loginForm.controls['Password'].touched)"
                         class="alert alert-danger col-12">
 
                         <div *ngIf="loginForm.controls['Password'].errors.required" class="text-left">
                             Password field is required.
                         </div>
-                    </div>
-                        <!-- class="help-block" -->
+                      </div>
+                      <!-- <div class="text-left alert alert-danger" *ngIf="!passedCredentials;else elseBlock">
+                        Invalid Email or Password
+                    </div> -->
+                            <!-- <ng-template #elseBlock class="text-left alert alert-success">
+                                Passed 
+                            </ng-template> -->
                            <div class="col-md-12 form-group">
                             <div class="creat_account">
                                 <input type="checkbox" id="f-option2" name="selector">
-                                <label for="f-option2" *ngIf="authService.getToken">Keep me logged in</label>
+                                <label for="f-option2" >Keep me logged in</label>
                             </div>
                         </div>
                         <div class="col-md-12 form-group">

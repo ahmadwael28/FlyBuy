@@ -28,6 +28,12 @@ export class UserService {
     let response = this.myClient.get(`${this.baseURL}/ValidateUsername/${username}`);
     return response;
   }
+  isPasswordCorrect(password)
+  {
+    console.log("Check if password is correct...")
+    let response = this.myClient.get(`${this.baseURL}/ValidatePassword/${password}`);
+    return response;
+  }
   AddUser(user)
   {
       console.log("Post User..");

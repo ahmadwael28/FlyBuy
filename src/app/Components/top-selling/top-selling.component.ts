@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../shared/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-top-selling',
@@ -10,8 +12,9 @@ import { AuthService } from './../../shared/auth.service';
 })
 export class TopSellingComponent implements OnInit {
 
-  constructor(private Service:BackendLinkService,private router:Router, public authService:AuthService) { }
-
+  constructor(private Service:BackendLinkService,private toaster: ToastrService, private shoppingCartService:ShoppingCartService,private router:Router, public authService:AuthService) { }
+  @Output()
+  myEvent=new EventEmitter();
 
   topSelling;
 
@@ -44,5 +47,30 @@ export class TopSellingComponent implements OnInit {
       this.router.navigateByUrl('Login');
     }
   }
+  addToCart(id)
+  {
+    
+    if(this.authService.isLoggedIn)
+    {
+    let addToCartObservable=this.shoppingCartService.addToCart(id);
+    let addToCartDispose=addToCartObservable.subscribe((data)=>{
+      //this.productsInShoppingCart.push(data);
+      if(typeof(data)=="object")
+      {
+        this.toaster.success('This Product is Added Successfully');
 
+        console.log("Added Successfully",data);
+      }
+      addToCartDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('Product already Exists in your shopping cart, go tour Shopping Cart if you want to add its Quantity?');
+      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
+    });
+    }
+    else
+    {
+      this.router.navigateByUrl('Login');
+    }
+  }
 }
