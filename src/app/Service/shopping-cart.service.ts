@@ -32,15 +32,24 @@ export class ShoppingCartService {
     console.log("increment Product Quantity")
     console.log("productId",productId);
     let response= this.myClient.patch(`${this.baseURL}/ShoppingCarts/UpdateProduct/${productId}/inc`,
-    {headers:{'x-access-token':this.authService.getToken()}}).pipe(
-      map((res: Response) => {
-        console.log("res",res);
-        return res || {}
-      }),
-      catchError(this.authService.handleError)
-    )
-    console.log("response",response);
-    return response;
+    {headers:{'x-access-token':this.authService.getToken()}})
+    // .pipe(
+    //   map((res: Response) => {
+    //     console.log("res",res);
+    //     return res || {}
+    //   }),
+    //   catchError(this.authService.handleError)
+    // )
+    if(response)
+    {
+      console.log("response",response);
+      return response;
+    }
+    else
+    {
+      console.log("false",false);
+     // return response._subscribe;
+    }
   }
   decrementProductQuantity(productId){
     console.log("decrement Product Quantity")

@@ -3,6 +3,7 @@ import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { AuthService } from './../../shared/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,10 +16,12 @@ export class ProductDetailsComponent implements OnInit {
   ID;
   router;
   Product;
+  shoppingCart;
+  Quantity=1;
   isDataLoaded:boolean = false;
   navigationSubscription;
   constructor(private Service:BackendLinkService,private toaster: ToastrService, private shoppingCartService:ShoppingCartService,
-    myActivatedRoute:ActivatedRoute,myRouter: Router) { 
+    myActivatedRoute:ActivatedRoute,myRouter: Router, public authService:AuthService) { 
     
     this.router = myRouter;
     this.ID = myActivatedRoute.snapshot.params["id"];
@@ -31,8 +34,6 @@ export class ProductDetailsComponent implements OnInit {
     //     window.localStorage.setItem('refresh', "1");
     // }
   }
-
-  
   ngOnInit(): void {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -40,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
     });
    
     let observable = this.Service.getProductById(this.ID);
-  let dispose = observable.subscribe((data) => {
+    let dispose = observable.subscribe((data) => {
     console.log(data);
     this.Product = data;
     this.Product.Image = `http://localhost:3000/static/${this.Product.Image}`;
@@ -54,9 +55,27 @@ export class ProductDetailsComponent implements OnInit {
   (err)=>{
     console.log(err);
   });
+
+  let getUserShoppingCartObservable=this.shoppingCart.getUserShoppingCart();
+  let getUserShoppingCartDispose=getUserShoppingCartObservable.subscribe((data)=>{
+    this.shoppingCart=data;
+    this.Quantity=1;
+    for(let i=0;i<this.shoppingCart.Products.length;i++)
+       {
+          if(this.shoppingCart.Products[i].Product._id == this.Product._id)
+           this.Quantity= this.shoppingCart.Products[i].Quantity;
+       }
+       getUserShoppingCartDispose.unsubscribe();
+  },
+  (err)=>{
+    console.log("Quantity ",err);
+    // this.Quantity=1;
+  });
   }
   addToCart(id)
   {
+    if(this.authService.isLoggedIn)
+    {
     let addToCartObservable=this.shoppingCartService.addToCart(id);
     let addToCartDispose=addToCartObservable.subscribe((data)=>{
       //this.productsInShoppingCart.push(data);
@@ -73,16 +92,28 @@ export class ProductDetailsComponent implements OnInit {
       console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
     });
   }
+}
   incrementQuantity(id)
   {
     let incrementObservable=this.shoppingCartService.incrementProductQuantity(id);
     let incrementDispose=incrementObservable.subscribe((data)=>{
       console.log("increment",data);
+      this.shoppingCart=data;
+       
+       for(let i=0;i<this.shoppingCart.Products.length;i++)
+       {
+          if(this.shoppingCart.Products[i].Product._id == this.Product._id)
+           this.Quantity= this.shoppingCart.Products[i].Quantity;
+       }
+      
+      
+      console.log("Quantity",this.Quantity);
+     
       incrementDispose.unsubscribe();
     },
     (err)=>{
-      this.toaster.error('this product in out of stock!');
-      console.log("this product in out of stock!",err);
+      this.toaster.error('this product is out of stock!');
+      console.log("this product is out of stock!",err);
     });
   }
   decrementQuantity(id)
@@ -90,6 +121,16 @@ export class ProductDetailsComponent implements OnInit {
     let decrementObservable=this.shoppingCartService.decrementProductQuantity(id);
     let decrementDispose=decrementObservable.subscribe((data)=>{
       console.log("decrement",data);
+      this.shoppingCart=data;
+       
+      for(let i=0;i<this.shoppingCart.Products.length;i++)
+      {
+         if(this.shoppingCart.Products[i].Product._id == this.Product._id)
+          this.Quantity= this.shoppingCart.Products[i].Quantity;
+      }
+     
+     
+     console.log("Quantity",this.Quantity);
       decrementDispose.unsubscribe();
     },
     (err)=>{

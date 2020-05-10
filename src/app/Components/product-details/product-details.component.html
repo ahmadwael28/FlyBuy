@@ -2,35 +2,45 @@
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
-               <input type="hidden" [value]="Product._id">
+                <input type="hidden" [value]="Product._id">
                 <!-- <div class="owl-carousel owl-theme s_Product_carousel"> -->
-                    <div class="single-prd-item">
-                        <img id="productDetailImg" class="img-fluid" [src]="Product.Image" 
-                          height="500px"  >
+                <div class="single-prd-item">
+                    <img id="productDetailImg" class="img-fluid" [src]="Product.Image" height="500px">
                     <!-- </div> -->
-              </div>
+                </div>
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>{{Product.Name}}</h3>
                     <h2>{{Product.Price}} EGP</h2>
                     <ul class="list">
-                        <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a></li>
-                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock"> : In Stock</span>
-                        <ng-template #elseBlock> : Out Of Stock</ng-template> </a></li>
+                        <li><a class="active" href="#"><span>Category</span> : {{Product.Category.CategoryName}}</a>
+                        </li>
+                        <li><a href="#"><span>Availibility</span><span *ngIf="Product.UnitsInStock>0;else elseBlock"> :
+                                    In Stock</span>
+                                <ng-template #elseBlock> : Out Of Stock</ng-template>
+                            </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
                     <div class="product_count">
-                        <div>
-                        <label for="qty">Quantity:</label>
-                        <a (click)="incrementQuantity(Product._id)" class="btn btn-primary mr-2" type="button">+</a>
-                        <!-- <input type="number" name="qty" id="sst" size="1" maxlength="12" value="1" title="Quantity:" class="input-text qty"> -->
-                        <a (click)="decrementQuantity(Product._id)" class="btn btn-primary mr-2" type="button">-</a>
-                        </div>
-                        <br/>
-                    <a class="button primary-btn" (click)="addToCart(Product._id)">Add to Cart</a>               
+                            <div class="product_count">
+                                <label for="qty">Quantity:</label>
+                                <input type="text" (maxlength)="12" [value]="Quantity" class="input-text qty">
+                                 <!-- [value]="Quantity" -->
+                                 <!-- [(ngModel)]="Quantity" -->
+                                <button (click)="incrementQuantity(Product._id)" class="increase items-count"
+                                    type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                <button (click)="decrementQuantity(Product._id)" class="reduced items-count"
+                                    type="button"><i class="lnr lnr-chevron-down"></i></button>
+                            </div>
+
+                           <!-- <a (click)="incrementQuantity(Product._id)" class="btn btn-primary mr-2" type="button">+</a>
+                            <h3 [(ngModel)]>{{Quantity}}</h3>
+                            <a (click)="decrementQuantity(Product._id)" class="btn btn-primary ml-2" type="button">-</a> -->
+                        <br />
+                        <a class="button primary-btn" (click)="addToCart(Product._id)">Add to Cart</a>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -38,5 +48,3 @@
 </div>
 
 <app-top-selling></app-top-selling>
-
-
