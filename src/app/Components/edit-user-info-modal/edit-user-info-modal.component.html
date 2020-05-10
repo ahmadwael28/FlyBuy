@@ -1,4 +1,4 @@
-<div id="myModal" class="modal fade" style="margin-top: 100px;" role="dialog" [ngClass]="{'show':ShowModal}">
+<div #myDiv id="myModal" class="modal fade" style="margin-top: 100px;" role="dialog" [ngClass]="{'show':ShowModal}">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -105,7 +105,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-info" data-dismiss="modal">Save</button>
+                                <button type="submit" class="btn btn-info" (click)=close()>Save</button>
                             </div>
                         </form>
 

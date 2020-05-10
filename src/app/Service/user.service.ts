@@ -34,4 +34,12 @@ export class UserService {
       let response = this.myClient.post(`${this.baseURL}`,user);
       return response;
   }
+
+  EditUser(user)
+  {
+      console.log("Edit User..");
+      console.log(user);
+      let response = this.myClient.patch(`${this.baseURL}/UpdateUser/`,user)
+      return response;
+  }
 }

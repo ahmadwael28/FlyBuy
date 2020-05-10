@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { UserService } from 'src/app/Service/user.service';
 import { Router } from '@angular/router';
@@ -10,10 +10,11 @@ import { AuthService } from 'src/app/shared/auth.service';
 @Component({
   selector: 'app-edit-user-info-modal',
   templateUrl: './edit-user-info-modal.component.html',
-  styleUrls: ['./edit-user-info-modal.component.css']
+  styleUrls: ['./edit-user-info-modal.component.css'],
+  template: `<body #body>Some text</body>`,
 })
 export class EditUserInfoModalComponent implements OnInit {
-
+  @ViewChild('body') body: ElementRef;
 
   @Input()  ShowModal;
   @Input() currentUser;
@@ -45,7 +46,7 @@ export class EditUserInfoModalComponent implements OnInit {
       ("OnComplete Upload...");
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
-      this.addUser();
+      this.editUser();
       
     };
     
@@ -177,14 +178,13 @@ export class EditUserInfoModalComponent implements OnInit {
       }
       else {
         console.log('No photo is Updated!');
-        this.addUser();
+        this.editUser();
       }
     }
 
-
   }
-  addUser() {
-    console.log('AddUser is Invoked...');
+  editUser() {
+    console.log('EditUser is Invoked...');
 
 
     console.log(this.registerationForm.value);
@@ -200,7 +200,7 @@ export class EditUserInfoModalComponent implements OnInit {
       user = {
         "Email": Email, "Username": Username,"Gender": Gender, "Image": this.fileItem?.file.name
       };
-    let observable = this.Service.AddUser(user);
+    let observable = this.Service.EditUser(user);
 
     let dispose = observable.subscribe((data) => {
       console.log(data);
@@ -212,7 +212,9 @@ export class EditUserInfoModalComponent implements OnInit {
         else
           this.router.navigateByUrl('/Login');
 
-         this.toastr.success('Your account has been registered successfully!');
+        
+
+         this.toastr.success('Your account info has been edited successfully!');
 
 
       }
@@ -226,6 +228,13 @@ export class EditUserInfoModalComponent implements OnInit {
       });
 
 
+  }
+
+  close()
+  {
+    (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
+    (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
+    this.ShowModal = false;
   }
 
 }
