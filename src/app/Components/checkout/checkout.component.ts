@@ -63,7 +63,7 @@ export class CheckoutComponent implements OnInit {
           "FirstName": FirstName, "LastName": LastName, "PhoneNumber": PhoneNumber,
           "City": City,"Zip": Zip,"Street": Street
         };
-        let updateUserObservable = this.service.checkout();
+        let updateUserObservable = this.userService.EditUser(user);
         let updateUserDispose = updateUserObservable.subscribe((data: any) => {
           console.log("update User", data);
          console.log("User Info has been updated succesfully");

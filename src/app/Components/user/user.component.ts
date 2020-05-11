@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   id;
   subscriber;
   subscriber1;
+  ShowModal = false;
   isDataLoaded:boolean=false;
   constructor(public authService: AuthService,private route: ActivatedRoute) {
     // this.id = this.route.snapshot.params['userId'];
@@ -56,6 +57,12 @@ export class UserComponent implements OnInit {
   //     this.currentUser = res;
   // })
 }
+
+  cancelOrder(id)
+  {
+    this.authService.cancelOrder(id);
+    location.reload();
+  }
 
   ngOnInit(): void {
     window.localStorage.removeItem('refresh');
