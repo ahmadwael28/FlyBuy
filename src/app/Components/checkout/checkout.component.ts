@@ -67,7 +67,6 @@ export class CheckoutComponent implements OnInit {
         let updateUserDispose = updateUserObservable.subscribe((data: any) => {
           console.log("update User", data);
          console.log("User Info has been updated succesfully");
-  
          updateUserDispose.unsubscribe();
          let checkoutObservable = this.service.checkout();
          let checkoutDispose = checkoutObservable.subscribe((data: any) => {
@@ -83,8 +82,8 @@ export class CheckoutComponent implements OnInit {
            });
        },
           (err) => {
-            this.toaster.error('Failed To checkout');
-            console.log("Failed To checkout", err);
+            this.toaster.error('Failed To Update User');
+            console.log("Failed To Update User", err);
           });
       }
    
