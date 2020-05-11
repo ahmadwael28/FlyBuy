@@ -70,18 +70,7 @@
                         <div class="col-md-12 form-group p_star">
                             <input type="text" class="form-control" formControlName="Street" placeholder="Street">
                         </div>
-                        <div *ngIf="Street.errors && (Street.dirty ||Street.touched || isValidFormSubmitted)"
-                            class=" col-12  alert alert-danger">
-                            <div *ngIf="Street.errors?.required" class="text-left">
-                                Street is required.
-                            </div>
-
-
-                            <div class="text-left" *ngIf="Street.errors?.pattern">
-                                Invalid Street Format
-                            </div>
-                        </div>
-
+                       
                         <div class="col-md-12 form-group p_star">
                             <input type="text" class="form-control" formControlName="City" placeholder="Town/City">
                             <span class="placeholder" data-placeholder="Town/City"></span>

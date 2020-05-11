@@ -2,6 +2,8 @@ import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { AuthService } from './../../shared/auth.service';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ShopComponent implements OnInit,AfterViewChecked {
 
-  constructor(private Service:BackendLinkService,public authService:AuthService,private router:Router) { 
+  constructor(private toaster: ToastrService,private Service:BackendLinkService,public authService:AuthService,private router:Router,private shoppingCartService:ShoppingCartService) { 
     if(this.authService.isLoggedIn)
       {
         this.router.navigateByUrl(`Shop`);
@@ -142,5 +144,30 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   });
 
   }
+  addToCart(id)
+  {
+    
+    if(this.authService.isLoggedIn)
+    {
+    let addToCartObservable=this.shoppingCartService.addToCart(id);
+    let addToCartDispose=addToCartObservable.subscribe((data)=>{
+      //this.productsInShoppingCart.push(data);
+      if(typeof(data)=="object")
+      {
+        this.toaster.success('This Product is Added Successfully');
 
+        console.log("Added Successfully",data);
+      }
+      addToCartDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('Product already Exists in your shopping cart, go tour Shopping Cart if you want to add its Quantity?');
+      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
+    });
+    }
+    else
+    {
+      this.router.navigateByUrl('Login');
+    }
+  }
 }

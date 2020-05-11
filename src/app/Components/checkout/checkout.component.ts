@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
     FirstName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z-]*$")]),
     LastName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z-]*$")]),
     City: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z-]*$")]),
-    Street: new FormControl('', [Validators.required, Validators.pattern("^[\sa-zA-Z-0-9\.\,]*$")]),
+    Street: new FormControl('', [Validators.required]),
     Zip: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}"), Validators.maxLength(4)]),
     PhoneNumber: new FormControl('', [Validators.required, Validators.pattern("(00201)[0-9]{9}")])
 

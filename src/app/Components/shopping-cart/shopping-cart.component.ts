@@ -25,18 +25,32 @@ export class ShoppingCartComponent implements OnInit {
     window.localStorage.removeItem('refresh');
     let getUserShoppingCartObservable = this.service.getUserShoppingCart();
     let getUserShoppingCartDispose = getUserShoppingCartObservable.subscribe((data:any) => {
-      console.log("response Data",data);
      this.TotalPrice = data.TotalPrice;
       this.productsInShoppingCart = data.ShoppingCart.Products;
-      console.log("Products",this.productsInShoppingCart);
-      console.log("Products",typeof(this.productsInShoppingCart));
-      console.log(this.productsInShoppingCart.length);
   
       this.productsInShoppingCart.forEach(element => {
         console.log("Image",element.Product.Image);
         element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
     });
     getUserShoppingCartDispose.unsubscribe();
+    },
+    (err)=>{
+      console.log(err);
+    });
+  }
+  
+  removeProduct(id)
+  {
+    let deleteProductObservable = this.service.removeProduct(id);
+    let deleteProductDispose = deleteProductObservable.subscribe((data:any) => {
+     this.TotalPrice = data.TotalPrice;
+      this.productsInShoppingCart = data.ShoppingCart.Products;
+  
+      this.productsInShoppingCart.forEach(element => {
+        console.log("Image",element.Product.Image);
+        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+    });
+    deleteProductDispose.unsubscribe();
     },
     (err)=>{
       console.log(err);

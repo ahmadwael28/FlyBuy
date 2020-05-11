@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { AuthService } from './../../app/Shared/auth.service';
 import { catchError, map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,6 +69,19 @@ export class ShoppingCartService {
   {
     
     let response= this.myClient.get(`${this.baseURL}/ShoppingCarts/Products/ByUserToken/Checkout`,
+      {headers:{'x-access-token':this.authService.getToken()}}).pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.authService.handleError)
+      )
+      console.log("response",response);
+      return response;
+  }
+  removeProduct(id)
+  {
+     console.log("deleting product request..");
+    let response= this.myClient.delete(`${this.baseURL}/ShoppingCarts/RemoveProduct/${id}`,
       {headers:{'x-access-token':this.authService.getToken()}}).pipe(
         map((res: Response) => {
           return res || {}
