@@ -11,34 +11,34 @@
                 <div class="col-lg-6">
                     <h3>Billing Details</h3>
                     <form class="row contact_form" [formGroup]="billingForm">
-                        <div class="col-md-6 form-group p_star">
+                        <div class="col-md-12 form-group p_star">
                             <input type="text" class="form-control" formControlName="FirstName" placeholder="FirstName">
                         </div>
-                      
-                        <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" formControlName="LastName" placeholder="LastName">
-
-                        </div>
-                        <div class="col-md-5 form-group p_star alert alert-danger" id="fNameMessError"
+                        <div class="col-md-12 form-group p_star alert alert-danger" id="fNameMessError"
                         *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched || isValidFormSubmitted)">
 
-                           <div *ngIf="FirstName.errors?.required" class="text-left col-md-5 form-group p_star">
+                           <div *ngIf="FirstName.errors?.required" class="text-left col-md-12 form-group p_star">
                                FirstName is required.
                            </div>
 
 
-                           <div class="text-left col-md-6 form-group p_star" *ngIf="FirstName.errors?.pattern">
+                           <div class="text-left col-md-12 form-group p_star" *ngIf="FirstName.errors?.pattern">
                                FirstName must contain alphabets only
                            </div>
                        </div>
-                        <div class="col-md-6 form-group p_star  alert alert-danger" id="lNameMessError"
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" formControlName="LastName" placeholder="LastName">
+
+                        </div>
+                       
+                        <div class="col-md-12 form-group p_star  alert alert-danger" id="lNameMessError"
                         *ngIf="LastName.errors && (LastName.dirty || LastName.touched || isValidFormSubmitted)">
-                            <div *ngIf="LastName.errors?.required" class="text-left col-md-5 form-group p_star">
+                            <div *ngIf="LastName.errors?.required" class="text-left col-md-12 form-group p_star">
                                 LastName is required.
                             </div>
 
 
-                            <div class="text-left col-md-5 form-group p_star" *ngIf="LastName.errors?.pattern">
+                            <div class="text-left col-md-12 form-group p_star" *ngIf="LastName.errors?.pattern">
                                 LastName must contain alphabets only
                             </div>
                         </div>
