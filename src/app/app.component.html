@@ -34,7 +34,7 @@
                 <li class="nav-item"><a class="nav-link" routerLink="Shop">Shop Category</a></li>
                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                 <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Shopping Cart</a></li>
               </ul>
             </li>
             <li class="nav-item submenu dropdown">

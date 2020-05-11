@@ -36,6 +36,11 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from "ng2-file-upload";   
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+
+import { CommonModule } from "@angular/common";
+
+
 
 
 
@@ -49,7 +54,8 @@ const routes:Routes = [
   { path: 'Login', component: LoginComponent },
   {path:'Register',component:RegisterComponent},
   {path:'About',component:AboutComponent},
-  {path:'Search/:searchKey',component:SearchResultsComponent}
+  {path:'Search/:searchKey',component:SearchResultsComponent},
+  {path:'Checkout',component:CheckoutComponent}
 
 ]
 
@@ -71,6 +77,7 @@ const routes:Routes = [
     FooterComponent,
     AboutComponent,
     SearchResultsComponent,
+    CheckoutComponent
     //FileSelectDirective 
   ],
   imports: [
@@ -81,7 +88,8 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    FileUploadModule
+    FileUploadModule,
+    
  
   ],
   providers: [

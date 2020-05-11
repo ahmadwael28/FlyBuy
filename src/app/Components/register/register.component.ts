@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
   },
     {
       validators: this.CheckMatchedPasswords.bind(this)
-    })
+    });
   UniqueUsername(formGroup: FormGroup) {
     console.log("inside Unique Username");
     const usernameContrl = formGroup.get('Username');

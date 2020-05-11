@@ -64,4 +64,17 @@ export class ShoppingCartService {
     console.log("response",response);
     return response;
   }
+  checkout()
+  {
+    
+    let response= this.myClient.get(`${this.baseURL}/ShoppingCarts/Products/ByUserToken/Checkout`,
+      {headers:{'x-access-token':this.authService.getToken()}}).pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.authService.handleError)
+      )
+      console.log("response",response);
+      return response;
+  }
 }
