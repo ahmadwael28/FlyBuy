@@ -84,4 +84,9 @@ export class BackendLinkService {
       return response;
   }
 
+  GetNProducts(id) {
+    let response= this.myClient.get(`${this.baseURL}/Categories/${id}/GetProductsCount`);
+    return response;
+  }
+
 }

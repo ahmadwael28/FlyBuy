@@ -44,6 +44,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
 
   NProductsPerPage = 5;
   Npages;
+  NExistingProducts;
   CurrentPage = 1;
 
   ngAfterViewChecked(): void {
@@ -70,8 +71,18 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
 
     this.GetPage(this.CurrentPage);
-    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
-    
+
+    let NExistingProductsResult = this.Service.GetNProducts(this.SelectedCategoryId);
+    let NExistingProductsdispose = NExistingProductsResult.subscribe((data) => {
+
+      this.NExistingProducts = data;
+      this.Npages = Math.ceil(Number.parseInt(this.NExistingProducts.count) / this.NProductsPerPage);
+
+      NExistingProductsdispose.unsubscribe();
+    },
+      (err) => {
+        console.log(err);
+      });
 
   AllCategoriesdispose.unsubscribe();
   },
@@ -108,7 +119,17 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     //this.SelectedProducts = this.AllCategories.find(category => category._id == this.SelectedCategoryId).Products;
     this.GetPage(this.CurrentPage);
 
-    this.Npages = Math.ceil(this.SelectedCategory.Products.length / this.NProductsPerPage);
+    let NExistingProductsResult = this.Service.GetNProducts(this.SelectedCategoryId);
+    let NExistingProductsdispose = NExistingProductsResult.subscribe((data) => {
+
+      this.NExistingProducts = data;
+      this.Npages = Math.ceil(Number.parseInt(this.NExistingProducts.count) / this.NProductsPerPage);
+
+      NExistingProductsdispose.unsubscribe();
+    },
+      (err) => {
+        console.log(err);
+      });
 
     (<HTMLInputElement>document.querySelector("#search")).value = ""
   }
