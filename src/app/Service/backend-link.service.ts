@@ -89,4 +89,12 @@ export class BackendLinkService {
     return response;
   }
 
+  EditProduct(product,productId)
+  {
+    console.log("Edit Product..");
+      console.log(product);
+      let response = this.myClient.patch(`${this.baseURL}/Products/${productId}`,product)
+      return response;
+  }
+
 }

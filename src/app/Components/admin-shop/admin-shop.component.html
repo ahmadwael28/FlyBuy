@@ -29,6 +29,14 @@
 <section class="section-margin--small mb-5">
     <div class="container">
         <div class="row">
+
+
+
+            <div id="editModal">
+                <app-edit-product-modal [ShowModal]="ShowModal" [currentProduct] = currentProduct></app-edit-product-modal>
+            </div>
+
+
             <div class="col-xl-3 col-lg-4 col-md-5">
                 <div class="sidebar-categories">
                     <div class="head">Browse Categories</div>
@@ -81,7 +89,7 @@
                 <!-- End Filter Bar -->
                 <!-- Start Products List -->
 
-                <app-admin-products-section [ProductsInput]="SelectedProducts" [CategoryNameInput]="SelectedCategoryName">
+                <app-admin-products-section (currentProductChanged)='ChangeCurrentProduct($event)' [ProductsInput]="SelectedProducts" [CategoryNameInput]="SelectedCategoryName">
                 </app-admin-products-section>
 
                 <!-- End Products List -->

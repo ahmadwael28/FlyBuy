@@ -45,6 +45,7 @@ import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.com
 import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
 import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';   
+import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';   
 
 
 
@@ -90,6 +91,7 @@ const routes:Routes = [
     AdminShopComponent,
     AdminProductsSectionComponent,
     AdminOrdersComponent,
+    EditProductModalComponent,
     //FileSelectDirective 
   ],
   imports: [

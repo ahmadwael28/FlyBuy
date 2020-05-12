@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 
 @Component({
@@ -8,8 +8,17 @@ import { BackendLinkService } from 'src/app/Service/backend-link.service';
 })
 export class AdminProductsSectionComponent implements OnInit {
 
+  currentProduct;
   constructor(private Service:BackendLinkService) { }
 
+  @Output() currentProductChanged = new EventEmitter();
+
+  ChangeCurrentProduct(product) {
+    //set current product
+    console.log("child method invoked");
+        this.currentProduct = product;
+        this.currentProductChanged.emit(this.currentProduct);
+    }
   ngOnInit(): void {
   }
 

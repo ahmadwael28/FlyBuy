@@ -54,6 +54,28 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
   NExistingProducts;
   CurrentPage = 1;
 
+  currentProduct = {
+  "Category": "",
+  "Description": "",
+  "Image": "",
+  "IsDeleted": false,
+  "NSales": 0,
+  "Name": "",
+  "Price": 0,
+  "Promotion": 0,
+  "UnitsInStock": 0,
+  "_id": ""
+};
+  ShowModal=false;
+
+  ChangeCurrentProduct(event)
+  {
+    console.log("parent method invoked");
+    this.currentProduct = event;
+    this.ShowModal = true;
+    console.log(this.currentProduct)
+  }
+  
   ngAfterViewChecked(): void {
     if(this.authService.currentUser.Role != "Admin")
     {
