@@ -10,6 +10,7 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   title = 'Fly-Buy';
   constructor(public authService: AuthService, private router: Router) {
+    authService.InitCurrentUser();
   }
 
   
