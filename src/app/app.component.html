@@ -11,6 +11,7 @@
 
 <!--================ Start navbar Area =================-->
 
+      
 <app-user-navbar *ngIf="(!authService.currentUser || authService.currentUser.Role=='User');else elseBlock"></app-user-navbar>
 <ng-template #elseBlock>
   <app-admin-navbar></app-admin-navbar>

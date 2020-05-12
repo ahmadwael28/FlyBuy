@@ -15,6 +15,7 @@ export class ShoppingCartComponent implements OnInit {
   checkedOut=false;
   isDataLoaded:boolean = false;
   TotalPrice;
+  
   constructor(private service:ShoppingCartService, myRouter: Router,private toaster: ToastrService) { 
 
     this.router = myRouter;
