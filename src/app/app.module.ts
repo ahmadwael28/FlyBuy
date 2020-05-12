@@ -41,7 +41,8 @@ import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/ed
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
 import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';
 import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
-import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';   
+import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';
+import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';   
 
 
 
@@ -85,6 +86,7 @@ const routes:Routes = [
     AdminNavbarComponent,
     AdminShopComponent,
     AdminProductsSectionComponent,
+    EditProductModalComponent,
     //FileSelectDirective 
   ],
   imports: [
