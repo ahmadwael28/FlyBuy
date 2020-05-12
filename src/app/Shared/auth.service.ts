@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from './user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit{
   
 
   baseURL: string='http://localhost:3000';
@@ -19,7 +19,23 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public router: Router
-  ) {}
+  ) 
+  {
+  }
+  ngOnInit(): void {
+
+    let Userobservable = this.getUserByToken();
+    let Userdispose = Userobservable.subscribe((data) => {
+
+      this.currentUser = data;
+      console.log("current user role by route", this.currentUser.Role);
+
+      Userdispose.unsubscribe();
+    },
+      (err) => {
+        console.log(err);
+      });
+  }
 
   // Login
    login(user) {
@@ -73,6 +89,7 @@ export class AuthService {
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
     if (removeToken == null) {
+      this.currentUser = null;
       this.router.navigate(['Login']);
     }
   }
@@ -95,6 +112,12 @@ export class AuthService {
   getUserOrders(id)
   {
     return this.http.request('GET', `${this.baseURL}/Orders/user/${id}`);
+  }
+
+  getUserByToken()
+  {
+    return this.http.request('GET', `${this.baseURL}/Users/UserToken`,
+    {headers: this.headers});
   }
 
   cancelOrder(id) {
