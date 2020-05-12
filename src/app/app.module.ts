@@ -41,7 +41,8 @@ import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/ed
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
 import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';
 import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
-import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';   
+import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';
+import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';   
 
 
 
@@ -50,6 +51,7 @@ const routes:Routes = [
   {path:'Home',component:HomeComponent},
   {path:'Shop',component:ShopComponent,canActivate:[AuthGuard]},
   {path:'AdminShop',component:AdminShopComponent,canActivate:[AuthGuard]},
+  {path:'AdminOrders',component:AdminOrdersComponent,canActivate:[AuthGuard]},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts',component:ShoppingCartComponent,canActivate:[AuthGuard]},
   {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
@@ -85,6 +87,7 @@ const routes:Routes = [
     AdminNavbarComponent,
     AdminShopComponent,
     AdminProductsSectionComponent,
+    AdminOrdersComponent,
     //FileSelectDirective 
   ],
   imports: [
