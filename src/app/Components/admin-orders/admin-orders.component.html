@@ -1,1 +1,50 @@
-<p>admin-orders works!</p>
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <h1>Orders</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Products</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">TotalPrice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orders;">
+                            <td>
+                                <div *ngFor="let p of item.Order.Products" >
+                                    <!-- <div class="d-flex">
+                                        <img width="150px" [src]=p.Product.Image alt="">
+                                    </div> -->
+                                    <div class="media-body">
+                                        <h4 class="card-product__title"><a [routerLink]="['/Products/', p.Product._id]">{{p.Product.Name}}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h4>{{item.Order.User.Username}}</h4>
+                            </td>
+                            <td>
+                                <p>{{item.Order.Date}}</p>
+                            </td>
+                            <td>
+                                <h4>{{item.TotalPrice}}</h4>
+                            </td>
+                            <td>
+                                <button class="btn btn-info"><i class="ti-pencil"></i></button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-danger" ><i class="ti-trash"></i></button>
+                            </td>
+                            <!-- (click)=delete(item.productId._id) -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

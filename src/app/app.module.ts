@@ -35,7 +35,9 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from "ng2-file-upload";   
+import { FileUploadModule } from "ng2-file-upload"; 
+import * as moment from 'moment';
+
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
