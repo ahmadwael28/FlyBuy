@@ -10,56 +10,6 @@
   </div> -->
 
 <!--================ Start navbar Area =================-->
-<header class="header_area">
-  <div class="main_menu">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <!-- <a class="navbar-brand logo_h" href="index.html"><img src="../assets/img/logo.png" alt=""></a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-          <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" routerLinkActive="Active" routerLink="Home">Home</a>
-              <!-- <a class="nav-link" href="index.html">Home</a> -->
-            </li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                aria-expanded="false">Shop</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" routerLink="Shop">Shop Category</a></li>
-                <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Shopping Cart</a></li>
-              </ul>
-            </li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                aria-expanded="false">Blog</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-              </ul>
-            </li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
-                  <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-              </ul>
-            </li>
-            <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
-            <li class="nav-item"><a class="nav-link" routerLink="About">About</a></li>
-          </ul>
 
           <ul class="nav-shop" >
             <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search" *ngIf="authService.isLoggedIn"></li>
@@ -73,6 +23,10 @@
     </nav>
   </div>
 </header>
+<app-user-navbar *ngIf="(!authService.currentUser || authService.currentUser.Role=='User');else elseBlock"></app-user-navbar>
+<ng-template #elseBlock>
+  <app-admin-navbar></app-admin-navbar>
+</ng-template>
 <!--================ End navbar Area =================-->
 
 <!-- 

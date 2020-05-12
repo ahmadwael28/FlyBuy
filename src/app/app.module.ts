@@ -37,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from "ng2-file-upload";   
 import { CheckoutComponent } from './Components/checkout/checkout.component';
-import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';   
+import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
+import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
+import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';   
 
 
 
@@ -76,6 +78,8 @@ const routes:Routes = [
     SearchResultsComponent,
     CheckoutComponent,
     EditUserInfoModalComponent,
+    UserNavbarComponent,
+    AdminNavbarComponent,
     //FileSelectDirective 
   ],
   imports: [

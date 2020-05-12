@@ -11,6 +11,7 @@ import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.
 })
 export class AppComponent implements OnInit{
   title = 'Fly-Buy';
+<<<<<<< HEAD
   cartLength;
   constructor(public authService: AuthService, private router: Router, private shoppingCartService:ShoppingCartService,
     private shoppingCart:ShoppingCartComponent) { 
@@ -31,19 +32,10 @@ export class AppComponent implements OnInit{
   logout() {
     this.authService.doLogout();
     this.router.navigate(['Login']);
+=======
+  constructor(public authService: AuthService, private router: Router) {
+>>>>>>> 817e55eec32718e21bbb271600ada5302145be14
   }
 
-  Search() {
-    var searchKey = (<HTMLInputElement>document.getElementById("searchBar")).value;
-    if (searchKey != "") {
-
-      //if (this.authService.isLoggedIn) {
-        this.router.navigateByUrl(`Search/${searchKey}`);
-      // }
-      // else {
-      //   this.router.navigateByUrl('Login');
-      // }
-    }
-
-  }
+  
 }
