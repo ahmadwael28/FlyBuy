@@ -4,30 +4,37 @@ import { AuthService } from './../../shared/auth.service';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  selector: 'app-admin-shop',
+  templateUrl: './admin-shop.component.html',
+  styleUrls: ['./admin-shop.component.css']
 })
-export class ShopComponent implements OnInit,AfterViewChecked {
+export class AdminShopComponent implements OnInit,AfterViewChecked {
 
   constructor(private toaster: ToastrService,private Service:BackendLinkService,public authService:AuthService,private router:Router,private shoppingCartService:ShoppingCartService) { 
-    // if(this.authService.currentUser.Role != "User")
+    
+    // if(this.authService.currentUser.Role != "Admin")
     // {
-    //   alert("an auth user")
+    //   alert("an auth admin")
     //   this.router.navigateByUrl('Home');
     // }
-    
-    // if(this.authService.isLoggedIn && this.authService.currentUser.Role == "User")
+    // if(this.authService.isLoggedIn && this.authService.currentUser.Role == "Admin")
     //   {
-    //     this.router.navigateByUrl(`Shop`);
+    //     alert("admin auth")
+    //     this.router.navigateByUrl(`AdminShop`);
     //   }
     //   else if(this.authService.isLoggedIn)
     //   {
+    //     alert("admin unauth")
+
     //     this.router.navigateByUrl('Home');
+
     //   }
     //   else
     //   {
+    //     alert("logged out")
+
     //     this.router.navigateByUrl('Login');
     //   }
   }
@@ -47,13 +54,11 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   CurrentPage = 1;
 
   ngAfterViewChecked(): void {
-    if(this.authService.currentUser.Role != "User")
+    if(this.authService.currentUser.Role != "Admin")
     {
       alert("un authorized access")
       this.router.navigateByUrl('Home');
     }
-
-    
   }
   
   ngOnInit(): void {
@@ -187,4 +192,5 @@ export class ShopComponent implements OnInit,AfterViewChecked {
       this.router.navigateByUrl('Login');
     }
   }
+
 }

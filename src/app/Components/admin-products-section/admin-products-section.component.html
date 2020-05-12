@@ -1,0 +1,41 @@
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ProductsInput; index as j;">
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img width="150px" [src]=item.productId.Image alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="card-product__title"><a [routerLink]="['/Products/', item._id]">{{item.productId.Name}}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info"><i class="ti-pencil"></i></button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-danger" (click)=delete(item.productId._id)><i class="ti-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
