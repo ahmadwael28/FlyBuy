@@ -11,18 +11,7 @@
 
 <!--================ Start navbar Area =================-->
 
-          <ul class="nav-shop" >
-            <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search" *ngIf="authService.isLoggedIn"></li>
-            <li class="nav-item"><button><i class="ti-search" (click)=Search() *ngIf="authService.isLoggedIn"></i></button></li>
-            <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
-                  class="nav-shop__circle" *ngIf="authService.isLoggedIn">{{cartLength}}</span></button> </li>
-          </ul>
-          <button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
+      
 <app-user-navbar *ngIf="(!authService.currentUser || authService.currentUser.Role=='User');else elseBlock"></app-user-navbar>
 <ng-template #elseBlock>
   <app-admin-navbar></app-admin-navbar>
