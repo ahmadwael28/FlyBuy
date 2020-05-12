@@ -15,7 +15,63 @@
 
                         <!------------- modal content start ------------->
 
-                        {{currentProduct.Name}}
+                        <form class="row login_form" [formGroup]="EditProductForm" (ngSubmit)="onSubmit()">
+
+                            <div class="col-12 text-center">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control"
+                                        formControlName="Name"
+                                        placeholder="Product Name" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Product Name'">
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control"
+                                    formControlName="Description" placeholder="Description"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Description'">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control"
+                                    formControlName="Price" placeholder="Price"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'"
+                                    min="0">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control"
+                                    formControlName="Promotion" placeholder="Promotion"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Promotion'"
+                                    min="0" max="100">
+                            </div>
+
+
+
+                            <div class="col-md-12">
+                                    <label id="file" class="text-left"><b>Choose Image</b>
+                                        <br>
+                                        <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
+                                            [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
+                                            accept="image/x-png,image/gif,image/jpeg" width="3em" />
+                                    </label>
+                                </div>
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-info" (click)=close()>Save</button>
+                            </div>
+                        </form>
                         <!------------- modal content end ----------------->
 
 
