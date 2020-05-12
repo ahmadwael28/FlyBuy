@@ -15,9 +15,8 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" routerLink="AdminShop">Shop Category</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="Shop">Shop Category</a></li>
                   <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Shopping Cart</a></li>
-                  <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Da el Admin</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -46,9 +45,9 @@
   
             <ul class="nav-shop" >
               <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search" *ngIf="authService.isLoggedIn"></li>
-              <li class="nav-item"><button><i class="ti-search" (click)=Search() *ngIf="authService.isLoggedIn"></i></button></li>
+              <!-- <li class="nav-item"><button><i class="ti-search" (click)=Search() *ngIf="authService.isLoggedIn"></i></button></li>
               <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
-                    class="nav-shop__circle" *ngIf="authService.isLoggedIn">3</span></button> </li>
+                    class="nav-shop__circle" *ngIf="authService.isLoggedIn">3</span></button> </li> -->
             </ul>
             <button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
           </div>
