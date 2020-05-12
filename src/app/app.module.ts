@@ -39,14 +39,17 @@ import { FileUploadModule } from "ng2-file-upload";
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
-import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';   
+import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';
+import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
+import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';   
 
 
 
 const routes:Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'Home',component:HomeComponent},
-  {path:'Shop',component:ShopComponent},
+  {path:'Shop',component:ShopComponent,canActivate:[AuthGuard]},
+  {path:'AdminShop',component:AdminShopComponent,canActivate:[AuthGuard]},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts',component:ShoppingCartComponent,canActivate:[AuthGuard]},
   {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
@@ -80,6 +83,8 @@ const routes:Routes = [
     EditUserInfoModalComponent,
     UserNavbarComponent,
     AdminNavbarComponent,
+    AdminShopComponent,
+    AdminProductsSectionComponent,
     //FileSelectDirective 
   ],
   imports: [

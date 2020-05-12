@@ -70,4 +70,23 @@ export class BackendLinkService {
     return this.myClient.request('GET', `${this.baseURL}/Categories/Page/${categoryId}/${NProductsPerPage}/${RequiredPage}`);
   }
 
+  RemoveProduct(id)
+  {
+     console.log("deleting product request..");
+    let response= this.myClient.delete(`${this.baseURL}/Products/${id}`
+    // ,{headers:{'x-access-token':this.authService.getToken()}}).pipe(
+    //     map((res: Response) => {
+    //       return res || {}
+    //     }),
+    //     catchError(this.authService.handleError)
+      )
+      console.log("response",response);
+      return response;
+  }
+
+  GetNProducts(id) {
+    let response= this.myClient.get(`${this.baseURL}/Categories/${id}/GetProductsCount`);
+    return response;
+  }
+
 }

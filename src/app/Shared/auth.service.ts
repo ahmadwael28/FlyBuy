@@ -8,13 +8,14 @@ import { Router,ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit{
+export class AuthService{
   
 
   baseURL: string='http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser ;
   loggedIn:boolean=false;
+  IsUserLoaded:boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -22,12 +23,14 @@ export class AuthService implements OnInit{
   ) 
   {
   }
-  ngOnInit(): void {
+  InitCurrentUser(){
 
+    console.log("service initttttttttttttttttttttttttttt");
     let Userobservable = this.getUserByToken();
     let Userdispose = Userobservable.subscribe((data) => {
 
       this.currentUser = data;
+      this.IsUserLoaded = true;
       console.log("current user role by route", this.currentUser.Role);
 
       Userdispose.unsubscribe();
