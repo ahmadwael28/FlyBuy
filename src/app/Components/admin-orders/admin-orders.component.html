@@ -4,8 +4,8 @@
             <div class="table-responsive">
                 <h1>Orders</h1>
                 <!-- <div id="editModal">
-                    <app-edit-order-status [ShowModal]="ShowModal" [orders] = orders.Order></app-edit-order-status>
-                </div> -->
+                    <app-edit-order-status  [currentOrder]="currentOrder"></app-edit-order-status>
+                </div>  -->
                 <table class="table">
                     <thead>
                         <tr>
@@ -38,13 +38,20 @@
                                 <h4>{{item.TotalPrice}} EGP</h4>
                             </td>
                             <td>
-                                <button class="btn btn-info" (click)=ChangeCurrentStatus(item.Order) data-toggle="modal" data-target="#EditOrderModal">
-                                    <i class="ti-pencil"></i></button>
-    
-                            </td>
+                                <!-- <button class="btn btn-info" (click)=ChangeCurrentStatus(item.Order) data-toggle="modal" data-target="#EditOrderModal"> -->
+                                    <!-- <i class="ti-pencil"></i></button> -->
+                                    <!-- <input id="toggle-one" type="checkbox"  data-toggle="toggle" data-on="Yes" data-off="No" >
+                                    <toggle ng-model="toggleValue" ng-change="changed()" on="Enabled" off="Disabled"></toggle> -->
+                                    <!-- <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                                    <toggle ng-model="toggleValue" ng-change="changed()" on="Enabled" off="Disabled"></toggle> -->
+                                <input class="btn btn-success"  type="button" (click)="editOrderStatus(item.Order,'Accepted')"
+                                value="Accepted">
+                                    
+                                </td>
 
                             <td>
-                                <button class="btn btn-danger" ><i class="ti-trash"></i></button>
+                                <input class="btn btn-danger" type="button" (click)="editOrderStatus(item.Order,'Rejected')"
+                                   value="Rejected">
                             </td>
                             <!-- (click)=delete(item.productId._id) -->
                            
