@@ -35,14 +35,18 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from "ng2-file-upload";   
+import { FileUploadModule } from "ng2-file-upload"; 
+//import * as moment from 'moment';
+
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
 import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.component';
 import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
 import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';
-import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';   
+import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';   
+import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';
+import { EditOrderStatusComponent } from './Components/edit-order-status/edit-order-status.component';   
 
 
 
@@ -51,6 +55,7 @@ const routes:Routes = [
   {path:'Home',component:HomeComponent},
   {path:'Shop',component:ShopComponent,canActivate:[AuthGuard]},
   {path:'AdminShop',component:AdminShopComponent,canActivate:[AuthGuard]},
+  {path:'AdminOrders',component:AdminOrdersComponent,canActivate:[AuthGuard]},
   {path:'Products/:id',component:ProductDetailsComponent},
   {path:'ShoppingCarts',component:ShoppingCartComponent,canActivate:[AuthGuard]},
   {path:'Users',component:UserComponent,canActivate:[AuthGuard]},
@@ -86,7 +91,9 @@ const routes:Routes = [
     AdminNavbarComponent,
     AdminShopComponent,
     AdminProductsSectionComponent,
+    AdminOrdersComponent,
     EditProductModalComponent,
+    EditOrderStatusComponent,
     //FileSelectDirective 
   ],
   imports: [
@@ -98,6 +105,8 @@ const routes:Routes = [
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+  
+    
     
  
   ],
