@@ -3,6 +3,9 @@
         <div class="cart_inner">
             <div class="table-responsive">
                 <h1>Orders</h1>
+                <!-- <div id="editModal">
+                    <app-edit-order-status [ShowModal]="ShowModal" [orders] = orders.Order></app-edit-order-status>
+                </div> -->
                 <table class="table">
                     <thead>
                         <tr>
@@ -15,6 +18,7 @@
                     <tbody>
                         <tr *ngFor="let item of orders;">
                             <td>
+                                
                                 <div *ngFor="let p of item.Order.Products" >
                                     <!-- <div class="d-flex">
                                         <img width="150px" [src]=p.Product.Image alt="">
@@ -28,19 +32,22 @@
                                 <h4>{{item.Order.User.Username}}</h4>
                             </td>
                             <td>
-                                <p>{{item.Order.Date}}</p>
+                                <h5>{{item.Order.Date}}</h5>
                             </td>
                             <td>
-                                <h4>{{item.TotalPrice}}</h4>
+                                <h4>{{item.TotalPrice}} EGP</h4>
                             </td>
                             <td>
-                                <button class="btn btn-info"><i class="ti-pencil"></i></button>
+                                <button class="btn btn-info" (click)=ChangeCurrentStatus(item.Order) data-toggle="modal" data-target="#EditOrderModal">
+                                    <i class="ti-pencil"></i></button>
+    
                             </td>
 
                             <td>
                                 <button class="btn btn-danger" ><i class="ti-trash"></i></button>
                             </td>
                             <!-- (click)=delete(item.productId._id) -->
+                           
                         </tr>
                     </tbody>
                 </table>

@@ -129,7 +129,6 @@ EditProductForm = new FormGroup({
 
       });
 
-
   }
 
   close()

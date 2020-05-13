@@ -15,4 +15,9 @@ export class OrderService {
     let response = this.myClient.get(`${this.baseURL}`);
     return response;
   }
+  editOrderStatus(id,obj)
+  {
+    let response = this.myClient.patch(`${this.baseURL}/${id}`,obj);
+    return response;
+  }
 }

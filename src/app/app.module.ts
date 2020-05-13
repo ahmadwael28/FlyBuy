@@ -36,7 +36,7 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from "ng2-file-upload"; 
-import * as moment from 'moment';
+//import * as moment from 'moment';
 
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
@@ -45,7 +45,8 @@ import { AdminNavbarComponent } from './Components/admin-navbar/admin-navbar.com
 import { AdminShopComponent } from './Components/admin-shop/admin-shop.component';
 import { AdminProductsSectionComponent } from './Components/admin-products-section/admin-products-section.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';   
-import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';   
+import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';
+import { EditOrderStatusComponent } from './Components/edit-order-status/edit-order-status.component';   
 
 
 
@@ -92,6 +93,7 @@ const routes:Routes = [
     AdminProductsSectionComponent,
     AdminOrdersComponent,
     EditProductModalComponent,
+    EditOrderStatusComponent,
     //FileSelectDirective 
   ],
   imports: [
@@ -103,6 +105,8 @@ const routes:Routes = [
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+  
+    
     
  
   ],
