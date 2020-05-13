@@ -77,11 +77,11 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
   }
   
   ngAfterViewChecked(): void {
-    if(this.authService.currentUser.Role != "Admin")
-    {
-      alert("un authorized access")
-      this.router.navigateByUrl('Home');
-    }
+    // if(this.authService.currentUser.Role != "Admin")
+    // {
+    //   alert("un authorized access")
+    //   this.router.navigateByUrl('Home');
+    // }
   }
   
   ngOnInit(): void {

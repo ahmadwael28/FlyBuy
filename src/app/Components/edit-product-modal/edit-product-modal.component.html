@@ -1,4 +1,5 @@
-<div #myDiv id="EditProductModal" class="modal fade" style="margin-top: 100px;" role="dialog" [ngClass]="{'show':ShowModal}">
+<div #myDiv id="EditProductModal" class="modal fade" style="margin-top: 100px;" role="dialog"
+    [ngClass]="{'show':ShowModal}">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -19,55 +20,68 @@
 
                             <div class="col-12 text-center">
                                 <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control"
-                                        formControlName="Name"
+                                    <input type="text" class="form-control" formControlName="Name"
                                         placeholder="Product Name" onfocus="this.placeholder = ''"
                                         onblur="this.placeholder = 'Product Name'">
                                 </div>
                             </div>
 
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" formControlName="Description"
+                                    placeholder="Description" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Description'">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="Price" placeholder="Price"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'" min="0">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="Promotion"
+                                    placeholder="Promotion" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Promotion'" min="0" max="100">
+                            </div>
+
+
+
+
+                            <div class="dropdown col-md-12 form-group">
+                                <button class="btn btn-secondary dropdown-toggle uniqueClass" type="button" [id]=selectedCategoryId data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  {{selectedCategoryName}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <div class="dropdown-item" *ngFor="let category of Categories; index as i;" [id]=category._id (click)= CategorySelectionChange($event) >{{category.CategoryName}}</div>
+                                  
+                              </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+
                             
 
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control"
-                                    formControlName="Description" placeholder="Description"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Description'">
-                            </div>
-
-
-
-
-                            <div class="col-md-12 form-group">
-                                <input type="number" class="form-control"
-                                    formControlName="Price" placeholder="Price"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'"
-                                    min="0">
-                            </div>
-
-
-
-
-                            <div class="col-md-12 form-group">
-                                <input type="number" class="form-control"
-                                    formControlName="Promotion" placeholder="Promotion"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Promotion'"
-                                    min="0" max="100">
-                            </div>
-
-
-
                             <div class="col-md-12">
-                                    <label id="file" class="text-left"><b>Choose Image</b>
-                                        <br>
-                                        <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
-                                            [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
-                                            accept="image/x-png,image/gif,image/jpeg" width="3em" />
-                                    </label>
-                                </div>
+                                <label id="file" class="text-left"><b>Choose Image</b></label>
+                                <br>
+                                <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
+                                    [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
+                                    accept="image/x-png,image/gif,image/jpeg" width="3em" />
+                            </div>
+                            <br>
 
 
 
-                            <div class="modal-footer">
+                            <div class="modal-footer col-md-12">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-info" (click)=close()>Save</button>
                             </div>
