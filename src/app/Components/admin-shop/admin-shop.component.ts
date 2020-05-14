@@ -67,6 +67,7 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
   "_id": ""
 };
   ShowModal=false;
+  ShowAddModal = false;
 
   ChangeCurrentProduct(event)
   {
@@ -77,11 +78,11 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
   }
   
   ngAfterViewChecked(): void {
-    // if(this.authService.currentUser.Role != "Admin")
-    // {
-    //   alert("un authorized access")
-    //   this.router.navigateByUrl('Home');
-    // }
+    if(this.authService.currentUser.Role != "Admin")
+    {
+      alert("un authorized access")
+      this.router.navigateByUrl('Home');
+    }
   }
   
   ngOnInit(): void {
@@ -211,32 +212,6 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
     console.log(err);
   });
 
-  }
-  addToCart(id)
-  {
-    
-    if(this.authService.isLoggedIn)
-    {
-    let addToCartObservable=this.shoppingCartService.addToCart(id);
-    let addToCartDispose=addToCartObservable.subscribe((data)=>{
-      //this.productsInShoppingCart.push(data);
-      if(typeof(data)=="object")
-      {
-        this.toaster.success('This Product is Added Successfully');
-
-        console.log("Added Successfully",data);
-      }
-      addToCartDispose.unsubscribe();
-    },
-    (err)=>{
-      this.toaster.error('Product already Exists in your shopping cart, go tour Shopping Cart if you want to add its Quantity?');
-      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
-    });
-    }
-    else
-    {
-      this.router.navigateByUrl('Login');
-    }
   }
 
 }

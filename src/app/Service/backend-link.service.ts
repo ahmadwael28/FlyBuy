@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendLinkService {
+  
 
   constructor(private myClient:HttpClient) { 
   }
@@ -80,6 +81,13 @@ export class BackendLinkService {
     //     }),
     //     catchError(this.authService.handleError)
       )
+      console.log("response",response);
+      return response;
+  }
+
+  AddProduct(product) {
+    console.log("deleting product request..");
+    let response= this.myClient.post(`${this.baseURL}/Products/`,product)
       console.log("response",response);
       return response;
   }

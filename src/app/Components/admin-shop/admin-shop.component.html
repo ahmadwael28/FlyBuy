@@ -36,6 +36,10 @@
                 <app-edit-product-modal [ShowModal]="ShowModal" [currentProduct] = currentProduct></app-edit-product-modal>
             </div>
 
+            <div id="editModal">
+                <app-add-product-modal [ShowAddModal]="ShowAddModal"></app-add-product-modal>
+            </div>
+
 
             <div class="col-xl-3 col-lg-4 col-md-5">
                 <div class="sidebar-categories">
@@ -48,8 +52,8 @@
                                         <input class="pixel-radio" [value]=item._id type="radio" id="item.CategoryName"
                                             name="brand" index=i (click)="changeCategory($event)"
                                             [checked]=" (SelectedCategoryId==item._id)">
-                                        <label for="item.CategoryName">{{item.CategoryName}}<span>
-                                                ({{item.Products.length}})</span>
+                                        <label for="item.CategoryName">{{item.CategoryName}}
+                                            <!-- <span>({{item.Products.length}})</span> -->
                                         </label>
                                     </li>
                                 </ul>
@@ -63,18 +67,11 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting">
-                        <select>
-                            <option value="1">Default sorting</option>
-                            <option value="1">Default sorting</option>
-                            <option value="1">Default sorting</option>
-                        </select>
+                        <button class="btn btn-success"  data-toggle="modal" data-target="#AddProductModal">New Product</button>
+
                     </div>
                     <div class="sorting mr-auto">
-                        <select>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                        </select>
+                        
                     </div>
                     <div>
                         <div class="input-group filter-bar-search">

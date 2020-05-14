@@ -1,0 +1,110 @@
+<div #myDiv id="AddProductModal" class="modal fade" style="margin-top: 100px;" role="dialog"
+    [ngClass]="{'show':ShowAddModal}">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Product</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+
+
+
+                        <!------------- modal content start ------------->
+
+                        <form class="row login_form" [formGroup]="EditProductForm" (ngSubmit)="onSubmit()">
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" formControlName="Name"
+                                    placeholder="Product Name" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Product Name'">
+                            </div>
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" formControlName="Description"
+                                    placeholder="Description" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Description'">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="Price" placeholder="Price"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'" min="0">
+                            </div>
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="Promotion"
+                                    placeholder="Promotion" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Promotion'" min="0" max="100">
+                            </div>
+
+
+
+
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="UnitsInStock"
+                                    placeholder="Units in stock" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Units in stock'" min="0">
+                            </div>
+
+
+
+
+                            <div class="dropdown col-md-12 form-group">
+                                <button class="btn btn-secondary dropdown-toggle uniqueClass" type="button"
+                                    [id]=selectedCategoryId data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{selectedCategoryName}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-item" *ngFor="let category of Categories; index as i;"
+                                        [id]=category._id (click)=CategorySelectionChange($event)>
+                                        {{category.CategoryName}}</div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+
+
+
+                            <div class="col-md-12">
+                                <label id="file" class="text-left"><b>Choose Image</b></label>
+                                <br>
+                                <input type="file" class="btn-primary" ng2FileSelect [uploader]="uploader"
+                                    [(ngModel)]="fileValue" [ngModelOptions]="{standalone: true}"
+                                    accept="image/x-png,image/gif,image/jpeg" width="3em" />
+                            </div>
+                            <br>
+
+
+
+                            <div class="modal-footer col-md-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-info" (click)=close()>Save</button>
+                            </div>
+                        </form>
+                        <!------------- modal content end ----------------->
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
