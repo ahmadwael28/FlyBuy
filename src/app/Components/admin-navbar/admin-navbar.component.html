@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
             <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                aria-expanded="false">Shop</a>
-              <ul class="dropdown-menu">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" routerLink="AdminShop"
+                aria-expanded="false">Shop Category</a>
+              <!-- <ul class="dropdown-menu">
                 <li class="nav-item"><a class="nav-link" routerLink="AdminShop">Shop Category</a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="nav-item submenu dropdown">
               <a href="#" class="nav-link dropdown-toggle" routerLink="AdminOrders">Orders</a>
@@ -27,7 +27,7 @@
                 aria-expanded="false">Pages</a>
               <ul class="dropdown-menu">
                 <li class="nav-item">
-                  <!-- <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a> -->
+                  <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
                   <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
