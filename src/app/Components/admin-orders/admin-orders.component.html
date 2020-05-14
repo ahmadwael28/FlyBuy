@@ -44,14 +44,14 @@
                                     <toggle ng-model="toggleValue" ng-change="changed()" on="Enabled" off="Disabled"></toggle> -->
                                     <!-- <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
                                     <toggle ng-model="toggleValue" ng-change="changed()" on="Enabled" off="Disabled"></toggle> -->
-                                <input class="btn btn-success"  type="button" (click)="editOrderStatus(item.Order,'Accepted')"
-                                value="Accepted">
+                                <input class="btn btn-success"  type="button" (click)="editOrderStatus(item.Order,'Accept')"
+                                value="Accept">
                                     
                                 </td>
 
                             <td>
-                                <input class="btn btn-danger" type="button" (click)="editOrderStatus(item.Order,'Rejected')"
-                                   value="Rejected">
+                                <input class="btn btn-danger" type="button" (click)="editOrderStatus(item.Order,'Reject')"
+                                   value="Reject">
                             </td>
                             <!-- (click)=delete(item.productId._id) -->
                            

@@ -67,12 +67,14 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
     let dispose = observable.subscribe((data) => {
       console.log("data",data);
       this.orderStatus = data;
-      if (value=="Accepted") {
-        console.log("Order Accepted!");
+      if (value=="Accept") {
+        console.log("Order Accept!");
+        alert("Accepted");
         this.toaster.success('Order Status Accepted!');
       }
-      if (value=="Rejected") {
-        console.log("Order Rejected!");
+      if (value=="Reject") {
+        console.log("Order Reject!");
+        alert("Rejected");
         this.toaster.success('Order Status Rejected!');
       }
       dispose.unsubscribe();
