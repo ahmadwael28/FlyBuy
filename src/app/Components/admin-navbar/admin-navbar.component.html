@@ -16,8 +16,6 @@
                 aria-expanded="false">Shop</a>
               <ul class="dropdown-menu">
                 <li class="nav-item"><a class="nav-link" routerLink="AdminShop">Shop Category</a></li>
-                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Shopping Cart</a></li>
-                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Da el Admin</a></li>
               </ul>
             </li>
             <li class="nav-item submenu dropdown">
@@ -29,11 +27,10 @@
                 aria-expanded="false">Pages</a>
               <ul class="dropdown-menu">
                 <li class="nav-item">
-                  <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
+                  <!-- <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a> -->
                   <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
               </ul>
             </li>
             <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
