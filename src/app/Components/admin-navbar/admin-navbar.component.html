@@ -2,7 +2,7 @@
   <div class="main_menu">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <!-- <a class="navbar-brand logo_h" href="index.html"><img src="../assets/img/logo.png" alt=""></a> -->
+        <a class="navbar-brand logo_h" href="index.html"><img src="../../../assets/img/flybuy.png" height="50px" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="icon-bar"></span>
@@ -14,38 +14,35 @@
             <li class="nav-item submenu dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" routerLink="AdminShop"
                 aria-expanded="false">Shop Category</a>
-              <!-- <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" routerLink="AdminShop">Shop Category</a></li>
-              </ul> -->
             </li>
+
+
             <li class="nav-item submenu dropdown">
               <a href="#" class="nav-link dropdown-toggle" routerLink="AdminOrders">Orders</a>
-              
             </li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
-                  <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
-              </ul>
+
+
+            <li class="nav-item">
+              <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">Profile</a>
             </li>
-            <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
-            <li class="nav-item"><a class="nav-link" routerLink="About">About</a></li>
-            <li class="nav-item"><a (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="nav-link text-danger">Logout</a></li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="About">About</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="nav-link text-danger">Logout</a>
+            </li>
 
           </ul>
 
           <ul class="nav-shop" >
             <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search" *ngIf="authService.isLoggedIn"></li>
             <li class="nav-item"><button><i class="ti-search" (click)=Search() *ngIf="authService.isLoggedIn"></i></button></li>
-            <!-- <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
-                  class="nav-shop__circle" *ngIf="authService.isLoggedIn">3</span></button> </li> -->
+            
           </ul>
-          <!-- <button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
         </div>
       </div>
     </nav>
