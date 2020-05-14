@@ -52,8 +52,8 @@
                                         <input class="pixel-radio" [value]=item._id type="radio" id="item.CategoryName"
                                             name="brand" index=i (click)="changeCategory($event)"
                                             [checked]=" (SelectedCategoryId==item._id)">
-                                        <label for="item.CategoryName">{{item.CategoryName}}<span>
-                                                ({{item.Products.length}})</span>
+                                        <label for="item.CategoryName">{{item.CategoryName}}
+                                            <!-- <span>({{item.Products.length}})</span> -->
                                         </label>
                                     </li>
                                 </ul>
