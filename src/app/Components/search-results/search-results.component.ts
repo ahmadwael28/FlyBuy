@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule, ActivatedRouteSnapshot, RouterLink, NavigationEnd } from '@angular/router';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { AuthService } from './../../shared/auth.service';
 
 @Component({
   selector: 'app-search-results',
@@ -14,7 +15,7 @@ export class SearchResultsComponent implements OnInit {
 
   SearchResults;
   navigationSubscription;
-  constructor(private Service:BackendLinkService,
+  constructor(private Service:BackendLinkService,public authService:AuthService,
     myActivatedRoute:ActivatedRoute,
     myRouter: Router) { 
     
