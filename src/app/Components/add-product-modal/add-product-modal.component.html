@@ -18,12 +18,10 @@
 
                         <form class="row login_form" [formGroup]="EditProductForm" (ngSubmit)="onSubmit()">
 
-                            <div class="col-12 text-center">
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" formControlName="Name"
-                                        placeholder="Product Name" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Product Name'">
-                                </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" formControlName="Name"
+                                    placeholder="Product Name" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Product Name'">
                             </div>
 
 
@@ -54,21 +52,35 @@
 
 
 
+
+                            <div class="col-md-12 form-group">
+                                <input type="number" class="form-control" formControlName="UnitsInStock"
+                                    placeholder="Units in stock" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Units in stock'" min="0">
+                            </div>
+
+
+
+
                             <div class="dropdown col-md-12 form-group">
-                                <button class="btn btn-secondary dropdown-toggle uniqueClass" type="button" [id]=selectedCategoryId data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  {{selectedCategoryName}}
+                                <button class="btn btn-secondary dropdown-toggle uniqueClass" type="button"
+                                    [id]=selectedCategoryId data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{selectedCategoryName}}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <div class="dropdown-item" *ngFor="let category of Categories; index as i;" [id]=category._id (click)= CategorySelectionChange($event) >{{category.CategoryName}}</div>
-                                  
-                              </div>
+                                    <div class="dropdown-item" *ngFor="let category of Categories; index as i;"
+                                        [id]=category._id (click)=CategorySelectionChange($event)>
+                                        {{category.CategoryName}}</div>
+
+                                </div>
                             </div>
                             <br>
                             <br>
                             <br>
 
 
-                            
+
 
                             <div class="col-md-12">
                                 <label id="file" class="text-left"><b>Choose Image</b></label>

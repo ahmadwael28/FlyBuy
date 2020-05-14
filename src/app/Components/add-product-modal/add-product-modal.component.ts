@@ -51,7 +51,7 @@ export class AddProductModalComponent implements OnInit {
       ("OnComplete Upload...");
       this.fileItem = item;
       console.log('Uploaded File Details:', item);
-      this.editProduct();
+      this.AddProduct();
       
     };
 
@@ -87,7 +87,8 @@ EditProductForm = new FormGroup({
   Name: new FormControl('', Validators.required),
   Description: new FormControl( '', [Validators.required, Validators.minLength(20),Validators.maxLength(1000)]),
   Price: new FormControl('', [Validators.required,Validators.min(0)]),
-  Promotion:new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)])
+  Promotion:new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)]),
+  UnitsInStock:new FormControl('', [Validators.required,Validators.min(0)]),
 })
 
   GetAllCategories()
@@ -109,7 +110,7 @@ EditProductForm = new FormGroup({
 
   
    onSubmit() {
-    //console.log("Inside submit..");
+    console.log("Inside submit..");
     this.isValidFormSubmitted = true;
 
     //console.log("fileValue", this.fileValue);
@@ -117,20 +118,21 @@ EditProductForm = new FormGroup({
 
     if (this.EditProductForm.valid) {
       if (this.fileValue != "") {
-        //console.log('User chose a photo to upload');
+        console.log('User chose a photo to upload');
         this.uploader.uploadAll();
       }
       else {
-        //console.log('No photo is Updated!');
-        this.editProduct();
+        console.log('No photo is Updated!');
+        this.AddProduct();
       }
      }
 
    }
-   editProduct() {
+   AddProduct() {
 
+    console.log("inside add product");
     this.btnSelection = <HTMLButtonElement>document.getElementsByClassName("uniqueClass")[0];
-    let { Name, Description, Price,Promotion,Category } = this.EditProductForm.value;
+    let { Name, Description, Price,Promotion,UnitsInStock,Category } = this.EditProductForm.value;
     let product;
     if (this.fileValue == "")
       product = {
@@ -138,7 +140,11 @@ EditProductForm = new FormGroup({
         "Description": Description,
         "Price": Price,
         "Promotion": Promotion,
-        "Category":this.selectedCategoryId
+        "Category":this.selectedCategoryId,
+        "UnitsInStock":UnitsInStock,
+        "NSales":0,
+        "Image":"default.jpg",
+        "Orders":[] 
       };
     else
     product = {
@@ -147,10 +153,14 @@ EditProductForm = new FormGroup({
         "Price": Price,
         "Promotion": Promotion,
         "Category":this.selectedCategoryId,
-        "Image": this.fileItem?.file.name
+        "UnitsInStock":UnitsInStock,
+        "NSales":0,
+        "Image": this.fileItem?.file.name,
+        "Orders":[] 
       };
 
-    let observable = this.Service.EditProduct(product,this.currentProduct._id);
+      console.log(product)
+    let observable = this.Service.AddProduct(product);
 
     let dispose = observable.subscribe((data) => {
       console.log(data);
