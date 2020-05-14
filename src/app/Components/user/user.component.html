@@ -16,73 +16,69 @@
                             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" (click)="ShowModal=true">
                                 <i class="ti-settings"></i>
                             </button>
-
-                            <p>
-                            </p>
                             <div class="br"></div>
 
-                            <div>
-                                <h3 class="text-left">Your Orders</h3>
-                            </div>
-
-                            <div class="cart_inner order-container mt-3" *ngFor="let order of userOrders; index as i;">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let Product of order.Products; index as j;">
-                                                <td>
-                                                    <div class="media">
-                                                        <div class="d-flex">
-                                                            <img [src]="Product.Product.Image" alt="" height="70px">
+                            <div [hidden]="!IsUser" >
+                                <div>
+                                    <h3 class="text-left">Your Orders</h3>
+                                </div>
+                            
+                                <div class="cart_inner order-container mt-3" *ngFor="let order of userOrders; index as i;">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let Product of order.Products; index as j;">
+                                                    <td>
+                                                        <div class="media">
+                                                            <div class="d-flex">
+                                                                <img [src]="Product.Product.Image" alt="" height="70px">
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <p>{{Product.Product.Name}}</p>
+                                                            </div>
                                                         </div>
-                                                        <div class="media-body">
-                                                            <p>{{Product.Product.Name}}</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5>{{Product.Product.Price}} EGP</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>{{Product.Quantity}}</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>{{Product.Product.Price * Product.Quantity}} EGP</h5>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <h3>Order Status</h3>
-                                                </td>
-                                                <td>
-                                                    <h3 *ngIf="order.Status == 'Pending'" class="text-warning">
-                                                        {{order.Status}}</h3>
-                                                    <h3 *ngIf="order.Status == 'Canceled'" class="text-danger">
-                                                        {{order.Status}}</h3>
-                                                    <h3 *ngIf="order.Status == 'Accepted'" class="text-success">
-                                                        {{order.Status}}</h3>
-                                                </td>
-                                                <td><button
-                                                        *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'"
-                                                        class="btn btn-danger"
-                                                        (click)=cancelOrder(order._id)>Cancel</button></td>
-                                            </tr>
-
-
-                                        </tbody>
-                                    </table>
+                                                    </td>
+                                                    <td>
+                                                        <h5>{{Product.Product.Price}} EGP</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>{{Product.Quantity}}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>{{Product.Product.Price * Product.Quantity}} EGP</h5>
+                                                    </td>
+                                                </tr>
+                            
+                                                <tr>
+                                                    <td>
+                                                        <h3>Order Status</h3>
+                                                    </td>
+                                                    <td>
+                                                        <h3 *ngIf="order.Status == 'Pending'" class="text-warning">
+                                                            {{order.Status}}</h3>
+                                                        <h3 *ngIf="order.Status == 'Canceled'" class="text-danger">
+                                                            {{order.Status}}</h3>
+                                                        <h3 *ngIf="order.Status == 'Accepted'" class="text-success">
+                                                            {{order.Status}}</h3>
+                                                    </td>
+                                                    <td><button *ngIf="order.Status == 'Pending' || order.Status == 'Accepted'"
+                                                            class="btn btn-danger" (click)=cancelOrder(order._id)>Cancel</button></td>
+                                                </tr>
+                            
+                            
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-
 
                         </div>
                     </aside>

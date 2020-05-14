@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   subscriber;
   subscriber1;
   ShowModal = false;
+  IsUser = false;
   isDataLoaded:boolean=false;
   constructor(public authService: AuthService,private route: ActivatedRoute) {
     // this.id = this.route.snapshot.params['userId'];
@@ -24,6 +25,11 @@ export class UserComponent implements OnInit {
       console.log("response", res);
       this.currentUser = res;
       this.isDataLoaded=true;
+      
+
+      if(this.currentUser.Role == "User")
+        this.IsUser = true;
+
       this.currentUser.Image = `http://localhost:3000/static/${this.currentUser.Image}`;
       console.log("currentUser", this.currentUser);
 
