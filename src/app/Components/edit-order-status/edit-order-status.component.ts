@@ -12,7 +12,7 @@ export class EditOrderStatusComponent implements OnInit {
 
 
   @ViewChild('body') body: ElementRef;
-  @Input()  ShowModal;
+ // @Input()  ShowModal;
   @Input()  currentOrder;
   isValidFormSubmitted: boolean = false;
   updatedStatus;
@@ -76,7 +76,7 @@ ngOnChanges(changes: SimpleChanges) {
  {
    (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
    (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
-   this.ShowModal = false;
+   //this.ShowModal = false;
    location.reload();
  }
 

@@ -15,9 +15,9 @@ export class OrderService {
     let response = this.myClient.get(`${this.baseURL}`);
     return response;
   }
-  editOrderStatus(id,obj)
+  editOrderStatus(id,status)
   {
-    let response = this.myClient.patch(`${this.baseURL}/${id}`,obj);
+    let response = this.myClient.patch(`${this.baseURL}/${id}`,status);
     return response;
   }
 }

@@ -35,9 +35,7 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from "ng2-file-upload"; 
-//import * as moment from 'moment';
-
+import { FileUploadModule } from "ng2-file-upload";  
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { EditUserInfoModalComponent } from './Components/edit-user-info-modal/edit-user-info-modal.component';
 import { UserNavbarComponent } from './Components/user-navbar/user-navbar.component';
@@ -47,6 +45,9 @@ import { AdminProductsSectionComponent } from './Components/admin-products-secti
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';   
 import { EditProductModalComponent } from './Components/edit-product-modal/edit-product-modal.component';
 import { EditOrderStatusComponent } from './Components/edit-order-status/edit-order-status.component';   
+
+
+import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 
@@ -104,7 +105,8 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    FileUploadModule,
+    FileUploadModule, 
+    
   
     
     
@@ -119,6 +121,10 @@ const routes:Routes = [
       useClass: AuthInterceptor,
       multi: true
     }
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })
