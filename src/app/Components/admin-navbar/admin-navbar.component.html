@@ -35,6 +35,8 @@
             </li>
             <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
             <li class="nav-item"><a class="nav-link" routerLink="About">About</a></li>
+            <li class="nav-item"><a (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="nav-link text-danger">Logout</a></li>
+
           </ul>
 
           <ul class="nav-shop" >
@@ -43,7 +45,7 @@
             <!-- <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
                   class="nav-shop__circle" *ngIf="authService.isLoggedIn">3</span></button> </li> -->
           </ul>
-          <button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
+          <!-- <button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
         </div>
       </div>
     </nav>

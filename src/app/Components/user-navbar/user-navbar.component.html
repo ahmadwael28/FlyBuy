@@ -22,7 +22,8 @@
                 <li class="nav-item"><a class="nav-link" routerLink="Shop">Shop Category</a></li>
                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                 <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn" routerLink="ShoppingCarts">Shopping Cart</a></li>
+                <li class="nav-item"><a class="nav-link" *ngIf="authService.isLoggedIn"
+                    routerLink="ShoppingCarts">Shopping Cart</a></li>
               </ul>
             </li>
             <li class="nav-item submenu dropdown">
@@ -39,24 +40,29 @@
               <ul class="dropdown-menu">
                 <li class="nav-item">
                   <a *ngIf="authService.isLoggedIn" class="nav-link" routerLink="/Users">User Profile</a>
-                  <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/Login">Login</a>
+                  <a *ngIf="!authService.isLoggedIn" class="nav-link" routerLinkActive="active"
+                    routerLink="/Login">Login</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn" routerLink="Register">Register</a></li>
+                <li class="nav-item"><a class="nav-link" *ngIf="!authService.isLoggedIn"
+                    routerLink="Register">Register</a></li>
                 <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
               </ul>
             </li>
             <!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
             <li class="nav-item"><a class="nav-link" routerLink="About">About</a></li>
+            <li class="nav-item"><a (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="nav-link text-danger">Logout</a></li>
+
           </ul>
-<ul class="nav-shop" >
-  <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search" *ngIf="authService.isLoggedIn"></li>
-  <li class="nav-item"><button><i class="ti-search" (click)=Search() *ngIf="authService.isLoggedIn"></i></button></li>
-  <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
-        class="nav-shop__circle" *ngIf="authService.isLoggedIn">{{cartLength}}</span></button> </li>
-</ul>
-<button (click)="logout()" *ngIf="authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
-</div>
-</div>
-</nav>
-</div>
+          <ul class="nav-shop">
+            <li><input id="searchBar" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                *ngIf="authService.isLoggedIn"></li>
+            <li class="nav-item"><button><i class="ti-search" (click)=Search()
+                  *ngIf="authService.isLoggedIn"></i></button></li>
+            <li class="nav-item"><button><i class="ti-shopping-cart" *ngIf="authService.isLoggedIn"></i><span
+                  class="nav-shop__circle" *ngIf="authService.isLoggedIn">{{cartLength}}</span></button> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
