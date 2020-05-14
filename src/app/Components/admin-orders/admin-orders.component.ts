@@ -69,13 +69,11 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
       this.orderStatus = data;
       if (value=="Accept") {
         console.log("Order Accept!");
-        alert("Accepted");
         this.toaster.success('Order Status Accepted!');
       }
       if (value=="Reject") {
         console.log("Order Reject!");
-        alert("Rejected");
-        this.toaster.success('Order Status Rejected!');
+        this.toaster.error('Order Status Rejected!');
       }
       dispose.unsubscribe();
  
