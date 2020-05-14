@@ -27,8 +27,8 @@
                                 <h5>{{item.Price}} EGP</h5>
                             </td>
 
-                            <td>
-                                <button><i class="ti-shopping-cart"></i></button>
+                            <td *ngIf="authService.currentUser.Role=='User'">
+                                <button class="btn btn-primary"><i class="ti-shopping-cart"></i></button>
                             </td>
                         </tr>
                     </tbody>

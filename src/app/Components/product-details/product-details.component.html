@@ -1,6 +1,6 @@
 <div class="product_image_area">
     <div class="container">
-        <div class="row s_product_inner">
+        <div class="row s_product_inner" *ngIf="isDataLoaded">
             <div class="col-lg-6">
                 <input type="hidden" [value]="Product._id">
                 <!-- <div class="owl-carousel owl-theme s_Product_carousel"> -->
@@ -22,7 +22,7 @@
                             </a></li>
                     </ul>
                     <p>{{Product.Description}}</p>
-                    <div class="product_count">
+                    <div class="product_count" *ngIf="authService.currentUser.Role=='User'">
                             <div class="product_count">
                                 <label for="qty">Quantity:</label>
                                 <input type="text" (maxlength)="12" [value]="Quantity" class="input-text qty">
@@ -38,7 +38,7 @@
                             <h3 [(ngModel)]>{{Quantity}}</h3>
                             <a (click)="decrementQuantity(Product._id)" class="btn btn-primary ml-2" type="button">-</a> -->
                         <br />
-                        <a class="button primary-btn" (click)="addToCart(Product._id)">Add to Cart</a>
+                        <a class="button primary-btn" (click)="addToCart(Product._id)" >Add to Cart</a>
                     </div>
 
                 </div>

@@ -25,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
     
     this.router = myRouter;
     this.ID = myActivatedRoute.snapshot.params["id"];
+    console.log("id",this.ID);
 
     //console.log("ctor")
     // var refresh = window.localStorage.getItem('refresh');
@@ -33,6 +34,7 @@ export class ProductDetailsComponent implements OnInit {
     //     window.location.reload();
     //     window.localStorage.setItem('refresh', "1");
     // }
+  
   }
   ngOnInit(): void {
 
@@ -55,7 +57,8 @@ export class ProductDetailsComponent implements OnInit {
   (err)=>{
     console.log(err);
   });
-
+if(this.authService.currentUser.Role=="User")
+{
   let getUserShoppingCartObservable=this.shoppingCart.getUserShoppingCart();
   let getUserShoppingCartDispose=getUserShoppingCartObservable.subscribe((data)=>{
     this.shoppingCart=data;
@@ -72,6 +75,7 @@ export class ProductDetailsComponent implements OnInit {
     // this.Quantity=1;
   });
   }
+}
   addToCart(id)
   {
     if(this.authService.isLoggedIn)

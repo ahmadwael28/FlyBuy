@@ -48,8 +48,9 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
       this.orders.forEach(element => {
         element.Order.Date = moment(element.Order.Date).format('LLL');
         element.Order.Products.forEach(element => {
-        console.log("Image",element.Product.Image);
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+       
+        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`;
+         console.log("Image",element.Product.Image);
     });
   });
       getOrdersDispose.unsubscribe();
@@ -67,11 +68,11 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
     let dispose = observable.subscribe((data) => {
       console.log("data",data);
       this.orderStatus = data;
-      if (value=="Accept") {
+      if (value=="Accepted") {
         console.log("Order Accept!");
         this.toaster.success('Order Status Accepted!');
       }
-      if (value=="Reject") {
+      if (value=="Canceled") {
         console.log("Order Reject!");
         this.toaster.error('Order Status Rejected!');
       }
