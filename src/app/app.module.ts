@@ -48,6 +48,7 @@ import { EditOrderStatusComponent } from './Components/edit-order-status/edit-or
 
 
 import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AddProductModalComponent } from './Components/add-product-modal/add-product-modal.component';
 
 
 
@@ -95,6 +96,7 @@ const routes:Routes = [
     AdminOrdersComponent,
     EditProductModalComponent,
     EditOrderStatusComponent,
+    AddProductModalComponent,
     //FileSelectDirective 
   ],
   imports: [

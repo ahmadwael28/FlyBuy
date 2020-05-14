@@ -36,6 +36,10 @@
                 <app-edit-product-modal [ShowModal]="ShowModal" [currentProduct] = currentProduct></app-edit-product-modal>
             </div>
 
+            <div id="editModal">
+                <app-add-product-modal [ShowAddModal]="ShowAddModal"></app-add-product-modal>
+            </div>
+
 
             <div class="col-xl-3 col-lg-4 col-md-5">
                 <div class="sidebar-categories">
@@ -63,7 +67,7 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting">
-                        <button class="btn btn-success">New Product</button>
+                        <button class="btn btn-success"  data-toggle="modal" data-target="#AddProductModal">New Product</button>
 
                     </div>
                     <div class="sorting mr-auto">

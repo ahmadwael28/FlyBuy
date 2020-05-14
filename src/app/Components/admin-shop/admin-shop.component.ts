@@ -67,6 +67,7 @@ export class AdminShopComponent implements OnInit,AfterViewChecked {
   "_id": ""
 };
   ShowModal=false;
+  ShowAddModal = false;
 
   ChangeCurrentProduct(event)
   {
