@@ -31,7 +31,7 @@ export class ShoppingCartComponent implements OnInit {
   
       this.productsInShoppingCart.forEach(element => {
         console.log("Image",element.Product.Image);
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+        element.Product.Image = `https://flybuyapi.herokuapp.com/static/${element.Product.Image}`
     });
     getUserShoppingCartDispose.unsubscribe();
     },
@@ -49,7 +49,7 @@ export class ShoppingCartComponent implements OnInit {
   
       this.productsInShoppingCart.forEach(element => {
         console.log("Image",element.Product.Image);
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+        element.Product.Image = `https://flybuyapi.herokuapp.com/static/${element.Product.Image}`
     });
     deleteProductDispose.unsubscribe();
     },
@@ -66,7 +66,7 @@ export class ShoppingCartComponent implements OnInit {
       this.productsInShoppingCart=data.Products;
       this.productsInShoppingCart.forEach(element => {
         console.log("Image",element.Product.Image);
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+        element.Product.Image = `https://flybuyapi.herokuapp.com/static/${element.Product.Image}`
     });
      
       incrementDispose.unsubscribe();
@@ -84,7 +84,7 @@ export class ShoppingCartComponent implements OnInit {
       this.productsInShoppingCart=data.Products;
       this.productsInShoppingCart.forEach(element => {
         console.log("Image",element.Product.Image);
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`
+        element.Product.Image = `https://flybuyapi.herokuapp.com/static/${element.Product.Image}`
     });
       decrementDispose.unsubscribe();
     },
@@ -100,7 +100,7 @@ export class ShoppingCartComponent implements OnInit {
   //   let cartByUserIDDispose=cartByUserIDObservable.subscribe((data)=>{
   //     //this.productsInShoppingCart=data;
   //     this.productsInShoppingCart.forEach(element => {
-  //       element.Image = `http://localhost:3000/static/${element.Image}`;
+  //       element.Image = `https://flybuyapi.herokuapp.com/static/${element.Image}`;
   //       this.isDataLoaded = true;
   //     });
   //     cartByUserIDDispose.unsubscribe();

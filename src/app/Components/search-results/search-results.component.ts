@@ -43,7 +43,7 @@ export class SearchResultsComponent implements OnInit {
     this.SearchResults = data;
 
     this.SearchResults.forEach(element => {
-      element.Image = `http://localhost:3000/static/${element.Image}`
+      element.Image = `https://flybuyapi.herokuapp.com/static/${element.Image}`
   });
 
   SearchResultdispose.unsubscribe();

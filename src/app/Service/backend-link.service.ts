@@ -10,7 +10,7 @@ export class BackendLinkService {
   constructor(private myClient:HttpClient) { 
   }
   
-  baseURL = 'http://localhost:3000';
+  baseURL = 'https://flybuyapi.herokuapp.com';
 
   getAllProducts(){    
     console.log("get all products")

@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
       if(this.currentUser.Role == "User")
         this.IsUser = true;
 
-      this.currentUser.Image = `http://localhost:3000/static/${this.currentUser.Image}`;
+      this.currentUser.Image = `https://flybuyapi.herokuapp.com/static/${this.currentUser.Image}`;
       console.log("currentUser", this.currentUser);
 
 
@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
 
         this.userOrders.forEach(order => {
           order.Products.forEach(product => {
-            product.Product.Image = `http://localhost:3000/static/${product.Product.Image}`;
+            product.Product.Image = `https://flybuyapi.herokuapp.com/static/${product.Product.Image}`;
           });
         });
 

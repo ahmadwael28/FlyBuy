@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OrderService {
-  baseURL = 'http://localhost:3000/Orders';
+  baseURL = 'https://flybuyapi.herokuapp.com/Orders';
 
   constructor(private myClient:HttpClient) { }
 

@@ -98,7 +98,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     console.log(this.AllProducts.length);
 
     this.AllProducts.forEach(element => {
-      element.Image = `http://localhost:3000/static/${element.Image}`
+      element.Image = `https://flybuyapi.herokuapp.com/static/${element.Image}`
   });
   AllProductsdispose.unsubscribe();
   },
@@ -146,7 +146,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
         console.log(data)
         this.SearchRes = data;
         this.SearchRes.forEach(element => {
-          element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`;
+          element.productId.Image = `https://flybuyapi.herokuapp.com/static/${element.productId.Image}`;
         });
 
         this.SelectedProducts = this.SearchRes;
@@ -172,7 +172,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
     this.SelectedProducts = data;
 
     this.SelectedProducts.forEach(element => {
-        element.productId.Image = `http://localhost:3000/static/${element.productId.Image}`
+        element.productId.Image = `https://flybuyapi.herokuapp.com/static/${element.productId.Image}`
       }); 
 
       NewPageProductsdispose.unsubscribe();

@@ -10,7 +10,7 @@ export class ShoppingCartService {
 
   constructor(private myClient:HttpClient,public authService:AuthService) { 
   }
-  baseURL = 'http://localhost:3000';
+  baseURL = 'https://flybuyapi.herokuapp.com';
   getUserShoppingCart(){
     console.log("get User Shopping Cart by token")
       let response= this.myClient.get(`${this.baseURL}/ShoppingCarts/UserShoppingCart`);

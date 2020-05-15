@@ -7,7 +7,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/auth.service';
 
-const URL = 'http://localhost:3000/Users/upload';
+const URL = 'https://flybuyapi.herokuapp.com/Users/upload';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

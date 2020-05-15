@@ -46,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
     let dispose = observable.subscribe((data) => {
     console.log(data);
     this.Product = data;
-    this.Product.Image = `http://localhost:3000/static/${this.Product.Image}`;
+    this.Product.Image = `https://flybuyapi.herokuapp.com/static/${this.Product.Image}`;
    
     this.isDataLoaded = true;
     console.log(this.Product.Image);

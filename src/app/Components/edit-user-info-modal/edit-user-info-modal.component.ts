@@ -19,7 +19,7 @@ export class EditUserInfoModalComponent implements OnInit {
   @Input()  ShowModal;
   @Input() currentUser;
 
-  URL = 'http://localhost:3000/Users/upload';
+  URL = 'https://flybuyapi.herokuapp.com/Users/upload';
   public uploader: FileUploader = new FileUploader({
     url: this.URL, itemAlias: 'photo'
   });

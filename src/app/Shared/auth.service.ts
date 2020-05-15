@@ -11,7 +11,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 export class AuthService{
   
 
-  baseURL: string='http://localhost:3000';
+  baseURL: string='https://flybuyapi.herokuapp.com';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser ;
   loggedIn:boolean=false;
@@ -45,7 +45,7 @@ export class AuthService{
     console.log("Email",user.Email);
     console.log("Password",user.Password);
     console.log("Login");
-    let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
+    let result=  this.http.post(`https://flybuyapi.herokuapp.com/Users/Login`, user)
       .subscribe( (res: any) => {
         localStorage.setItem('access_token', res.tokenCreated)
         this.loggedIn=true;
@@ -67,7 +67,7 @@ export class AuthService{
   }
 
   ValidateCredentials(user){
-    let result=  this.http.post(`http://localhost:3000/Users/Login`, user)
+    let result=  this.http.post(`https://flybuyapi.herokuapp.com/Users/Login`, user)
     .subscribe( (res: any) => {
       localStorage.setItem('access_token', res.tokenCreated)
       this.loggedIn=true;

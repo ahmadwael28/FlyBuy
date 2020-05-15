@@ -9,7 +9,7 @@ export class UserService {
   constructor(private myClient:HttpClient) { 
   }
 
-  baseURL = 'http://localhost:3000/Users';
+  baseURL = 'https://flybuyapi.herokuapp.com/Users';
 
   getAllUsers(){    
     console.log("get all users")

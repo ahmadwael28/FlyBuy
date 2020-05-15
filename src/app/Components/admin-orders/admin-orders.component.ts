@@ -49,7 +49,7 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
         element.Order.Date = moment(element.Order.Date).format('LLL');
         element.Order.Products.forEach(element => {
        
-        element.Product.Image = `http://localhost:3000/static/${element.Product.Image}`;
+        element.Product.Image = `https://flybuyapi.herokuapp.com/static/${element.Product.Image}`;
          console.log("Image",element.Product.Image);
     });
   });

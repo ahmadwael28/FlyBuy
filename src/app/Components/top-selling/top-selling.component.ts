@@ -27,7 +27,7 @@ export class TopSellingComponent implements OnInit {
     console.log(this.topSelling.length);
 
     this.topSelling.forEach(element => {
-      element.Image = `http://localhost:3000/static/${element.Image}`
+      element.Image = `https://flybuyapi.herokuapp.com/static/${element.Image}`
   });
   TopProductsdispose.unsubscribe();
   },

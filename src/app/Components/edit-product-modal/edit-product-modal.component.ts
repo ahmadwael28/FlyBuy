@@ -19,7 +19,7 @@ export class EditProductModalComponent implements OnInit {
   @Input()  ShowModal;
   @Input() currentProduct;
 
-  URL = 'http://localhost:3000/Users/upload';
+  URL = 'https://flybuyapi.herokuapp.com/Users/upload';
   public uploader: FileUploader = new FileUploader({
     url: this.URL, itemAlias: 'photo'
   });
