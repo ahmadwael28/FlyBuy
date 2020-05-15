@@ -3,11 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
+
+  },
+  "engines": {
+    "node": "~12.16.1",
+    "npm": "~6.13.4"
   },
   "private": true,
   "dependencies": {
@@ -25,10 +31,12 @@
     "angular-bootstrap-toggle": "^0.4.2",
     "bootstrap": "^4.4.1",
     "bootstrap-toggle": "^2.2.2",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
     "moment": "^2.25.3",
     "ng2-file-upload": "^1.4.0",
     "ngx-toastr": "^12.0.1",
+    "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
