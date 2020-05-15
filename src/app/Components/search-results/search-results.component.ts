@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule, ActivatedRouteSnapshot, RouterLink, NavigationEnd } from '@angular/router';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
-import { AuthService } from './../../shared/auth.service';
+import { AuthService } from './../../Shared/auth.service';
 import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
 import { ToastrService } from 'ngx-toastr';
 

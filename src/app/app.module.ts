@@ -24,12 +24,12 @@ import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { UserComponent } from './Components/user/user.component';
 
-import { AuthGuard } from "./shared/auth.guard";
+import { AuthGuard } from "./Shared/auth.guard";
 import { PaginationComponent } from './Components/pagination/pagination.component';
 import { TopSellingComponent } from './Components/top-selling/top-selling.component';
 import { FooterComponent } from './Components/footer/footer.component';
 
-import { AuthInterceptor } from './shared/authconfig.interceptor';
+import { AuthInterceptor } from './Shared/authconfig.interceptor';
 import { AboutComponent } from './Components/about/about.component';
 import { SearchResultsComponent } from './Components/search-results/search-results.component';
 

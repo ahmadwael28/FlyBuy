@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
-import { AuthService } from './../../shared/auth.service';
+import { AuthService } from './../../Shared/auth.service';
 
 @Component({
   selector: 'app-products-section',

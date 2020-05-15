@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './../../shared/auth.service';
+import { AuthService } from './../../Shared/auth.service';
 
 @Component({
   selector: 'app-home',
