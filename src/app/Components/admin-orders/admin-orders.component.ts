@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewChecked, Output,EventEmitter } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from '../../Shared/auth.service';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/Service/order.service';
+import { OrderService } from '../../Service/order.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';// = require('moment');
 //var moment = require("moment");

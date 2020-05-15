@@ -1,8 +1,8 @@
-import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { BackendLinkService } from '../../Service/backend-link.service';
 import { Component, OnInit, AfterViewInit, AfterContentChecked, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { AuthService } from './../../Shared/auth.service';
 import { Router } from '@angular/router';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-shop',

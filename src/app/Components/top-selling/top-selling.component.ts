@@ -1,6 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { BackendLinkService } from 'src/app/Service/backend-link.service';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { BackendLinkService } from '../../Service/backend-link.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../Shared/auth.service';
 import { ToastrService } from 'ngx-toastr';

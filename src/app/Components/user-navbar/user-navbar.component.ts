@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from '../../Shared/auth.service';
 import { Router } from '@angular/router';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 
 @Component({
   selector: 'app-user-navbar',

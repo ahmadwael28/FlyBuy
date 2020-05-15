@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { BackendLinkService } from '../../Service/backend-link.service';
 
 @Component({
   selector: 'app-admin-products-section',

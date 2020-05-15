@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({

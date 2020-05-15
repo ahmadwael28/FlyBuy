@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/Service/user.service';
+import { UserService } from '../../Service/user.service';
 
 
 @Component({

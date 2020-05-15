@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { UserService } from 'src/app/Service/user.service';
+import { UserService } from '../../Service/user.service';
 import { Router } from '@angular/router';
 
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from '../../Shared/auth.service';
 
 const URL = 'https://flybuyapi.herokuapp.com/Users/upload';
 @Component({

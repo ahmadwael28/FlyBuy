@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/shared/auth.service';
-import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { AuthService } from '../../Shared/auth.service';
+import { BackendLinkService } from '../../Service/backend-link.service';
 
 @Component({
   selector: 'app-edit-product-modal',

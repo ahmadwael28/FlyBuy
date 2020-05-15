@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, ViewChild, ElementRef  } from '@angular/core';
-import { OrderService } from 'src/app/Service/order.service';
+import { OrderService } from '../../Service/order.service';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendLinkService } from 'src/app/Service/backend-link.service';
+import { BackendLinkService } from '../../Service/backend-link.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ShoppingCartService } from '../../Service/shopping-cart.service';
 import { AuthService } from './../../Shared/auth.service';
 
 @Component({
