@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
       return null;//validation passes
     }
   }
-  //  async validateCredentials()
-  //  {
-  //    if(this.loginForm.valid)
-  //    {
-  //      console.log("inside validate credentials..")
-  //     this.passedCredentials = await this.authService.ValidateCredentials(this.loginForm.value);
-  //    }
-  //  }
+   async validateCredentials()
+   {
+     if(this.loginForm.valid)
+     {
+       console.log("inside validate credentials..")
+      this.passedCredentials = await this.authService.ValidateCredentials(this.loginForm.value);
+     }
+   }
   doesEmailExist(formGroup: FormGroup) {
     const emailControl = formGroup.get('Email');
     console.log(emailControl);
@@ -105,7 +105,6 @@ export class LoginComponent implements OnInit {
   get formControls() {
     return this.loginForm.controls;
   }
-
   get emailStatus() {
     return this.loginForm.get('Email');
   }
@@ -124,7 +123,15 @@ export class LoginComponent implements OnInit {
     // if (this.loginForm.invalid) {
     //   return;
     // }
-    this.authService.login(this.loginForm.value);
+    let r=this.authService.login(this.loginForm.value);
+    console.log("r",r);
+    if(this.authService.currentUser.Email==this.loginForm.get('Email'))
+    {
+      this.passedCredentials=true;
+    }
+    else{
+      this.passedCredentials=false;
+    }
     // if(this.isSubmitted)
     // {
     //   if (this.isLoggedInChecked)

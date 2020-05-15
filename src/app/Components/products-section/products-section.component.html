@@ -9,7 +9,7 @@
                     <ul class="card-product__imgOverlay">
                       <!-- <li><button><i class="ti-search" (click)="goProductDetails(item.productId._id)"></i></button></li> -->
                       <li><button (click)="goProductDetails(item.productId._id)"><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
+                      <li><button (click)="addToCart(item.productId._id)"><i class="ti-shopping-cart"></i></button></li>
                     </ul>
                   </div>
                   <div class="card-body">

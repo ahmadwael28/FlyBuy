@@ -28,7 +28,7 @@
                             </td>
 
                             <td *ngIf="authService.currentUser.Role=='User'">
-                                <button class="btn btn-primary"><i class="ti-shopping-cart"></i></button>
+                                <a (click)="addToCart(item._id)" class="btn btn-primary"><i class="ti-shopping-cart"></i></a>
                             </td>
                         </tr>
                     </tbody>

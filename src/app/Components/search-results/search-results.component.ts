@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule, ActivatedRouteSnapshot, RouterLink, NavigationEnd } from '@angular/router';
 import { BackendLinkService } from 'src/app/Service/backend-link.service';
 import { AuthService } from './../../shared/auth.service';
+import { ShoppingCartService } from 'src/app/Service/shopping-cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-search-results',
@@ -16,7 +18,7 @@ export class SearchResultsComponent implements OnInit {
   SearchResults;
   navigationSubscription;
   constructor(private Service:BackendLinkService,public authService:AuthService,
-    myActivatedRoute:ActivatedRoute,
+    myActivatedRoute:ActivatedRoute,private toaster: ToastrService, private shoppingCartService:ShoppingCartService,
     myRouter: Router) { 
     
     this.router = myRouter;
@@ -50,5 +52,27 @@ export class SearchResultsComponent implements OnInit {
     console.log(err);
   });
   }
+
+  addToCart(id)
+  {
+    if(this.authService.isLoggedIn)
+    {
+    let addToCartObservable=this.shoppingCartService.addToCart(id);
+    let addToCartDispose=addToCartObservable.subscribe((data)=>{
+      //this.productsInShoppingCart.push(data);
+      if(typeof(data)=="object")
+      {
+        this.toaster.success('This Product is Added Successfully');
+
+        console.log("Added Successfully",data);
+      }
+      addToCartDispose.unsubscribe();
+    },
+    (err)=>{
+      this.toaster.error('Product already Exists in your shopping cart, Do you want to change its Quantity?');
+      console.log("Product already Exists in shopping cart, Do you want to add its Quantity?",err);
+    });
+  }
+}
 
 }

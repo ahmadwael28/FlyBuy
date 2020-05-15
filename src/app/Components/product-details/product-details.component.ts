@@ -116,7 +116,7 @@ if(this.authService.currentUser.Role=="User")
       incrementDispose.unsubscribe();
     },
     (err)=>{
-      this.toaster.error('this product is out of stock!');
+      this.toaster.error('Make Sure that this product is added to your cart first');
       console.log("this product is out of stock!",err);
     });
   }

@@ -37,7 +37,7 @@ export class UserService {
   AddUser(user)
   {
       console.log("Post User..");
-      let response = this.myClient.post(`${this.baseURL}`,user);
+      let response = this.myClient.post(`${this.baseURL}/`,user);
       return response;
   }
 
