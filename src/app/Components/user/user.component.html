@@ -10,7 +10,7 @@
                     <aside class="single_sidebar_widget search_widget">
 
                         <div class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" width="200px" [src]=currentUser.Image alt="">
+                            <img class="author_img rounded-circle" width="200px" [src]=currentUser.Image alt="" onerror="this.src='https:/www.chillinoodle.co.uk/media/catalog/product/cache/1/image/265x/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/image.jpg';">
                             <h2>{{currentUser.Username}}</h2>
                             <h4>{{currentUser.Email}}</h4>
                             <br>

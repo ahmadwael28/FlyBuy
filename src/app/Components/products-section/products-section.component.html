@@ -5,7 +5,7 @@
               <div class="col-md-6 col-lg-4" *ngFor="let item of ProductsInput; index as j;">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <img class="card-img" [src]=item.productId.Image alt="">
+                    <img class="card-img" [src]=item.productId.Image alt="" onerror="this.src='https:/www.chillinoodle.co.uk/media/catalog/product/cache/1/image/265x/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/image.jpg';">
                     <ul class="card-product__imgOverlay">
                       <!-- <li><button><i class="ti-search" (click)="goProductDetails(item.productId._id)"></i></button></li> -->
                       <li><button (click)="goProductDetails(item.productId._id)"><i class="ti-search"></i></button></li>

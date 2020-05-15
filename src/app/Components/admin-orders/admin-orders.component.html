@@ -21,7 +21,7 @@
                                 
                                 <div *ngFor="let p of item.Order.Products" >
                                     <div class="d-flex">
-                                        <img width="100em" height="100em" [src]=p.Product.Image alt="">
+                                        <img width="100em" height="100em" [src]=p.Product.Image alt="" onerror="this.src='https:/www.chillinoodle.co.uk/media/catalog/product/cache/1/image/265x/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/image.jpg';">
                                         <p class="offset-2">{{p.Product.Name}}</p>
                                     </div>
                                     <!-- <div class="media-body">
