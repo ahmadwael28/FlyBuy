@@ -11,7 +11,7 @@
 
                     <div class="card-product__img">
 
-                        <img class="card-img" [src]=item.Image alt="">
+                        <img class="card-img" [src]=item.Image alt="" onerror="this.src='https:/www.chillinoodle.co.uk/media/catalog/product/cache/1/image/265x/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/image.jpg';">
                         <ul class="card-product__imgOverlay">
                             <li><button (click)="goProductDetails(item._id)"><i class="ti-search"></i>
                                     <!--<a [routerLink]="['Products/', item._id]"></a>--></button></li>
