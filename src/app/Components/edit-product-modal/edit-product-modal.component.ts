@@ -152,6 +152,7 @@ EditProductForm = new FormGroup({
         "Image": this.fileItem?.file.name
       };
 
+      console.log('Updated Product Info',product);
     let observable = this.Service.EditProduct(product,this.currentProduct._id);
 
     let dispose = observable.subscribe((data) => {

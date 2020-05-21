@@ -205,21 +205,23 @@ export class EditUserInfoModalComponent implements OnInit {
     let dispose = observable.subscribe((data) => {
       console.log(data);
       this.userAddedSuccMess = data;
-      if (this.userAddedSuccMess) {
-        console.log("User Added Successfully!");
-        if (this.isLoggedInChecked)
-          this.auth.login(user);
-        else
-          this.router.navigateByUrl('/Login');
+      // if (this.userAddedSuccMess) {
+      //   console.log("User Added Successfully!");
+      //   if (this.isLoggedInChecked)
+      //     this.auth.login(user);
+      //   else
+      //     this.router.navigateByUrl('/Login');
+      console.log(this.userAddedSuccMess);
+      this.router.navigateByUrl('/Users');
 
         
 
          this.toastr.success('Your account info has been edited successfully!');
+         dispose.unsubscribe();
 
+     
 
-      }
-
-      dispose.unsubscribe();
+     
 
     },
       (err) => {

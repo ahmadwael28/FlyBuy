@@ -28,7 +28,7 @@ export class AdminOrdersComponent implements OnInit,AfterViewChecked {
     
     if(this.authService.currentUser.Role != "Admin")
     {
-      alert("un authorized access")
+      //alert("un authorized access")
       this.router.navigateByUrl('Home');
     }
   }
