@@ -18,6 +18,7 @@ export class AdminProductsSectionComponent implements OnInit {
     console.log("child method invoked");
         this.currentProduct = product;
         this.currentProductChanged.emit(this.currentProduct);
+        console.log("currentProductChanged",this.currentProductChanged);
     }
   ngOnInit(): void {
   }
