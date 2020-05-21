@@ -25,7 +25,7 @@ export class TopSellingComponent implements OnInit {
     
     this.topSelling = data;
     console.log(this.topSelling.length);
-
+    this.topSelling = this.topSelling.filter(p=>p.IsDeleted==false);
     this.topSelling.forEach(element => {
       element.Image = `https://flybuyapi.herokuapp.com/static/${element.Image}`
   });
