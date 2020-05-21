@@ -50,7 +50,7 @@ export class ShopComponent implements OnInit,AfterViewChecked {
   ngAfterViewChecked(): void {
     if(this.authService.currentUser.Role != "User")
     {
-      alert("un authorized access")
+     // alert("un authorized access")
       this.router.navigateByUrl('Home');
     }
 
