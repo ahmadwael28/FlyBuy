@@ -237,7 +237,7 @@ export class EditUserInfoModalComponent implements OnInit {
     (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
     (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
     this.ShowModal = false;
-    location.reload();
+    this.router.navigateByUrl('/Users');
 
   }
 
