@@ -217,6 +217,8 @@ export class EditUserInfoModalComponent implements OnInit {
         
 
          this.toastr.success('Your account info has been edited successfully!');
+
+         location.reload();
          dispose.unsubscribe();
 
      
@@ -237,7 +239,7 @@ export class EditUserInfoModalComponent implements OnInit {
     (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
     (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
     this.ShowModal = false;
-    this.router.navigateByUrl('/Users');
+   
 
   }
 
