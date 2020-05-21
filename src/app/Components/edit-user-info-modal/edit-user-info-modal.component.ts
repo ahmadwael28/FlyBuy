@@ -218,6 +218,7 @@ export class EditUserInfoModalComponent implements OnInit {
 
          this.toastr.success('Your account info has been edited successfully!');
 
+         
          location.reload();
          dispose.unsubscribe();
 
