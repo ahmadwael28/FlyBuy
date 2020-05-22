@@ -126,7 +126,8 @@ EditProductForm = new FormGroup({
         this.AddProduct();
       }
      }
-
+     else 
+        console.log("Failed Form Validations")
    }
    AddProduct() {
 
@@ -183,7 +184,7 @@ EditProductForm = new FormGroup({
   close()
   {
     (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
-    //(<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
+    (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
     this.ShowAddModal = false;
     //location.reload();
   }
