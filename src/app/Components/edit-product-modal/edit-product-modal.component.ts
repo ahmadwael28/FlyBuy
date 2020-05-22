@@ -141,7 +141,7 @@ EditProductForm = new FormGroup({
         "Price": Price,
         "Promotion": Promotion,
         "Category":this.selectedCategoryId
-      };
+      }
     else
     product = {
         "Name": Name, 
@@ -150,7 +150,7 @@ EditProductForm = new FormGroup({
         "Promotion": Promotion,
         "Category":this.selectedCategoryId,
         "Image": this.fileItem?.file.name
-      };
+      }
 
       //console.log('Updated Product Info',JSON.stringify(product));
     let observable = this.Service.EditProduct(product,this.currentProduct._id);
