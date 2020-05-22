@@ -157,7 +157,8 @@ EditProductForm = new FormGroup({
 
     let dispose = observable.subscribe((data) => {
       console.log(data);
-      this.userAddedSuccMess = data;
+      //this.userAddedSuccMess = data;
+      this.router.navigateByUrl('/AdminShop');
       this.toastr.success('product edited successfully!');
       location.reload();
       // if (this.userAddedSuccMess) {
