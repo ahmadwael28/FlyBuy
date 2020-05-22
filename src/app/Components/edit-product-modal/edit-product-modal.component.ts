@@ -92,6 +92,8 @@ EditProductForm = new FormGroup({
   Promotion:new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)])
 })
 
+ 
+
   GetAllCategories()
   {
     let AllCategoreisobservable = this.Service.getAllCategories();

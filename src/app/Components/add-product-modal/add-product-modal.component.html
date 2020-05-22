@@ -23,14 +23,34 @@
                                     placeholder="Product Name" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Product Name'">
                             </div>
+                            <div *ngIf="Name.errors && (Name.dirty || Name.touched || isValidFormSubmitted)"
+                            class=" col-12  alert alert-danger">
+
+                            <div *ngIf="Name.errors?.required" class="text-left">
+                              Product Name field is required.
+                            </div>
+                            </div>
 
 
 
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" formControlName="Description"
                                     placeholder="Description" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Description'">
+                                    minlength="20" onblur="this.placeholder = 'Description'">
                             </div>
+                            <div *ngIf="Description.errors && (Description.dirty || Description.touched || isValidFormSubmitted)"
+                            class="alert alert-danger col-12">
+
+                            <div *ngIf="Description.errors.required" class="text-left">
+                                Description field is required.
+                            </div>
+                            <div *ngIf="Description.errors.minlength" class="text-left">
+                                Description must be at least 20 characters long.
+                            </div>
+
+
+                        </div>
+
 
 
 
