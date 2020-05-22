@@ -171,7 +171,6 @@ EditProductForm = new FormGroup({
     },
       (err) => {
         console.log(err);
-
       });
 
   }
