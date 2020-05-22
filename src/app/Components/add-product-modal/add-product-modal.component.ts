@@ -167,6 +167,7 @@ EditProductForm = new FormGroup({
       this.userAddedSuccMess = data;
       if (this.userAddedSuccMess) {
         this.toastr.success('product edited successfully!');
+        location.reload();
       }
 
       dispose.unsubscribe();
@@ -184,7 +185,7 @@ EditProductForm = new FormGroup({
     (<HTMLBodyElement>document.getElementsByTagName("body")[0]).classList.remove('modal-open');
     (<HTMLCollection>document.getElementsByClassName('modal-backdrop'))[0].remove();
     this.ShowAddModal = false;
-    location.reload();
+    //location.reload();
   }
 
 }
