@@ -98,7 +98,7 @@ EditProductForm = new FormGroup({
     let AllCategoreisdispose = AllCategoreisobservable.subscribe((data) => {
       this.Categories = data;
 
-      console.log("all damn categories",this.Categories);
+      console.log("all categories",this.Categories);
 
       AllCategoreisdispose.unsubscribe();
 
@@ -152,12 +152,13 @@ EditProductForm = new FormGroup({
         "Image": this.fileItem?.file.name
       };
 
-      console.log('Updated Product Info',product);
+      //console.log('Updated Product Info',JSON.stringify(product));
     let observable = this.Service.EditProduct(product,this.currentProduct._id);
 
     let dispose = observable.subscribe((data) => {
       console.log(data);
       this.userAddedSuccMess = data;
+      //console.log("edittttttttttt producttttttttt", this.userAddedSuccMess);
       if (this.userAddedSuccMess) {
         this.toastr.success('product edited successfully!');
         location.reload();
@@ -168,6 +169,11 @@ EditProductForm = new FormGroup({
     },
       (err) => {
         console.log(err);
+        if(err.status == 200)
+        {
+          this.toastr.success('product edited successfully!');
+          location.reload();
+        }
 
       });
 
