@@ -169,15 +169,12 @@ EditProductForm = new FormGroup({
     },
       (err) => {
         console.log(err);
-<<<<<<< HEAD
-=======
         if(err.status == 200)
         {
           this.toastr.success('product edited successfully!');
           location.reload();
         }
 
->>>>>>> 859362500c08d74165275a7be4f1ea81a9f25fcd
       });
 
   }
