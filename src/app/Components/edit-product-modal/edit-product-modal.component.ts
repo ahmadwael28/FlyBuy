@@ -158,10 +158,12 @@ EditProductForm = new FormGroup({
     let dispose = observable.subscribe((data) => {
       console.log(data);
       this.userAddedSuccMess = data;
-      if (this.userAddedSuccMess) {
-        this.toastr.success('product edited successfully!');
-        location.reload();
-      }
+      this.toastr.success('product edited successfully!');
+      location.reload();
+      // if (this.userAddedSuccMess) {
+        
+        
+      // }
 
       dispose.unsubscribe();
 
