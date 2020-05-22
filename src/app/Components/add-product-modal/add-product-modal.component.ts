@@ -87,8 +87,8 @@ EditProductForm = new FormGroup({
   Name: new FormControl('', Validators.required),
   Description: new FormControl( '', [Validators.required, Validators.minLength(20),Validators.maxLength(1000)]),
   Price: new FormControl('', [Validators.required,Validators.min(0)]),
-  Promotion:new FormControl('0', [Validators.required,Validators.min(0),Validators.max(100)]),
-  UnitsInStock:new FormControl('0', [Validators.required,Validators.min(0)]),
+  Promotion:new FormControl('', [Validators.required,Validators.min(0),Validators.max(100)]),
+  UnitsInStock:new FormControl('', [Validators.required,Validators.min(0)]),
 });
 get Name() { return this.EditProductForm.get('Name') }
 get Description() { return this.EditProductForm.get('Description') }
